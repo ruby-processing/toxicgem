@@ -1,6 +1,6 @@
 ### Using Toxiclibs jars in JRubyArt
 
-Here we demonstrate how to create a gem to use Karsten Schmidts (aka toxi, @postspectacular) toxiclibs jars in JRubyArt. To compile the gem follow the instructions for [JRubyArt][]. In this proof of concept version, only a small part of toxiclibs API is exposed, but in principal it should be possible to make all available!!!
+Here we demonstrate how to create a gem to use Karsten Schmidts (aka toxi, @postspectacular) toxiclibs jars in JRubyArt. To compile the gem follow the instructions for [JRubyArt][]. In this proof of concept version, only a small part of toxiclibs API is exposed, but in principle it should be possible to make all available!!!
 
 ### Web Links
 
