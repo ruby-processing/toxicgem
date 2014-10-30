@@ -2,7 +2,7 @@
 
 Here we demonstrate how to create a gem to use Karsten Schmidts (aka toxi, @postspectacular) toxiclibs jars in JRubyArt. To compile the gem follow the instructions for [JRubyArt][]. In this proof of concept version, only a small part of toxiclibs API is exposed, but in principle it should be possible to make all available!!! For this demonstration I have used up to date source code for version 21, since [toxis final release][] has yet to materialise.
 
-![http://2.bp.blogspot.com/-JsC9K50fgXA/VFJJBQv_TLI/AAAAAAAAEgM/sTSniY-z7OY/s1600/](grayscott.png)
+![grayscott image]http://2.bp.blogspot.com/-JsC9K50fgXA/VFJJBQv_TLI/AAAAAAAAEgM/sTSniY-z7OY/s1600/grayscott.png)
 
 ### Web Links
 
