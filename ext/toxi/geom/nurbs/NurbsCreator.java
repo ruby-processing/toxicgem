@@ -310,7 +310,7 @@ public final class NurbsCreator {
         }
 
         Vec4D[] pj = curve.getControlPoints();
-        Vec3D P0 = new Vec3D();
+        Vec3D P0;// = new Vec3D();
         final Vec3D P2 = new Vec3D();
         final Vec3D O = new Vec3D();
         final Vec3D T2 = new Vec3D();
@@ -427,7 +427,7 @@ public final class NurbsCreator {
         }
 
         final Vec4D[] pj = curve.getControlPoints();
-        Vec3D P0 = new Vec3D();
+        Vec3D P0;// = new Vec3D();
         final Vec3D O = new Vec3D();
         final Vec3D P2 = new Vec3D();
         final Vec3D T2 = new Vec3D();

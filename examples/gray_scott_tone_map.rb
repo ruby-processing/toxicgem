@@ -1,4 +1,4 @@
-require 'jruby_art'
+# :require 'jruby_art'
 require 'toxiclibs'
 
 class GrayScottToneMap < Processing::App 
@@ -51,10 +51,10 @@ class GrayScottToneMap < Processing::App
       # see javadocs for list of names:
       # http://toxiclibs.org/docs/colorutils/toxi/color/NamedColor::html
       # NB: use '::' in place of '.' here for these java constants
-      grad.add_color_at(0, Toxi::NamedColor::BLACK)
-      grad.add_color_at(128, Toxi::NamedColor::RED)
-      grad.add_color_at(192, Toxi::NamedColor::YELLOW)
-      grad.add_color_at(255, Toxi::NamedColor::WHITE)
+      grad.add_color_at(0, TC::BLACK)
+      grad.add_color_at(128, TC::RED)
+      grad.add_color_at(192, TC::YELLOW)
+      grad.add_color_at(255, TC::WHITE)
       # this gradient is used to map simulation values to colors
       # the first 2 parameters define the min/max values of the
       # input range (Gray-Scott produces values in the interval of 0.0 - 0.5)

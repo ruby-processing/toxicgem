@@ -70,7 +70,7 @@ public class AABB extends Vec3D implements Shape3D {
      * @return bounding rect
      */
     public static final AABB getBoundingBox(List<? extends Vec3D> points) {
-        if (points == null || points.size() == 0) {
+        if (points == null || points.isEmpty()) {
             return null;
         }
         Vec3D first = points.get(0);
@@ -137,10 +137,12 @@ public class AABB extends Vec3D implements Shape3D {
         setExtent(extent);
     }
 
+    @Override
     public boolean containsPoint(ReadonlyVec3D p) {
         return p.isInAABB(this);
     }
 
+    @Override
     public AABB copy() {
         return new AABB(this);
     }
@@ -408,10 +410,7 @@ public class AABB extends Vec3D implements Shape3D {
         // compute plane equation of triangle: normal*x+d=0
         normal = e0.cross(e1);
         float d = -normal.dot(v0);
-        if (!planeBoxOverlap(normal, d, extent)) {
-            return false;
-        }
-        return true;
+        return planeBoxOverlap(normal, d, extent);
     }
 
     private boolean planeBoxOverlap(Vec3D normal, float d, Vec3D maxbox) {
@@ -444,10 +443,7 @@ public class AABB extends Vec3D implements Shape3D {
         if (normal.dot(vmin) + d > 0.0f) {
             return false;
         }
-        if (normal.dot(vmax) + d >= 0.0f) {
-            return true;
-        }
-        return false;
+        return normal.dot(vmax) + d >= 0.0f;
     }
 
     public AABB set(AABB box) {
@@ -459,8 +455,10 @@ public class AABB extends Vec3D implements Shape3D {
      * Updates the position of the box in space and calls
      * {@link #updateBounds()} immediately
      * 
+     * @return 
      * @see toxi.geom.Vec3D#set(float, float, float)
      */
+    @Override
     public Vec3D set(float x, float y, float z) {
         this.x = x;
         this.y = y;
@@ -473,8 +471,11 @@ public class AABB extends Vec3D implements Shape3D {
      * Updates the position of the box in space and calls
      * {@link #updateBounds()} immediately
      * 
+     * @param v
+     * @return 
      * @see toxi.geom.Vec3D#set(toxi.geom.Vec3D)
      */
+    @Override
     public AABB set(ReadonlyVec3D v) {
         x = v.x();
         y = v.y();
@@ -490,7 +491,7 @@ public class AABB extends Vec3D implements Shape3D {
      *            new box size
      * @return itself, for method chaining
      */
-    public AABB setExtent(ReadonlyVec3D extent) {
+    public final AABB setExtent(ReadonlyVec3D extent) {
         this.extent = extent.copy();
         return updateBounds();
     }
@@ -499,16 +500,16 @@ public class AABB extends Vec3D implements Shape3D {
             float vb, float wa, float wb, float ea, float eb) {
         float p0 = a * va + b * vb;
         float p2 = a * wa + b * wb;
-        float min, max;
+        float amin, amax;
         if (p0 < p2) {
-            min = p0;
-            max = p2;
+            amin = p0;
+            amax = p2;
         } else {
-            min = p2;
-            max = p0;
+            amin = p2;
+            amax = p0;
         }
         float rad = fa * ea + fb * eb;
-        return (min > rad || max < -rad);
+        return (amin > rad || amax < -rad);
     }
 
     public Mesh3D toMesh() {
@@ -557,8 +558,9 @@ public class AABB extends Vec3D implements Shape3D {
      * 
      * @see toxi.geom.Vec3D#toString()
      */
+    @Override
     public String toString() {
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
         sb.append("<aabb> pos: ").append(super.toString()).append(" ext: ")
                 .append(extent);
         return sb.toString();

@@ -33,7 +33,7 @@ import java.util.List;
 
 public class EventDispatcher<T> implements Iterable<T> {
 
-    protected List<T> listeners = new LinkedList<T>();
+    protected List<T> listeners = new LinkedList<>();
 
     public EventDispatcher() {
     }
@@ -48,6 +48,11 @@ public class EventDispatcher<T> implements Iterable<T> {
         return listeners;
     }
 
+    /**
+     *
+     * @return
+     */
+    @Override
     public Iterator<T> iterator() {
         return listeners.iterator();
     }

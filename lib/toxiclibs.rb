@@ -5,3 +5,5 @@ module Toxi
   include_package 'toxi.math'
   include_package 'toxi.color'
 end
+
+TC = Toxi::NamedColor
