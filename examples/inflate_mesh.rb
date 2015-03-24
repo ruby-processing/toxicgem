@@ -1,8 +1,8 @@
 require 'jruby_art'
 require 'toxiclibs'
-
+# A JRubyArt sketch needs refactoring for ruby-processing
 #
-# Copyright (c) 2010 Karsten Schmidt & ruby-processing version Martin Prout 2012
+# Copyright (c) 2010 Karsten Schmidt & JRubyArt version Martin Prout 2015
 # This library is free software you can redistribute it and/or
 # modify it under the terms of the GNU Lesser General Public
 # License as published by the Free Software Foundation either
@@ -24,6 +24,7 @@ class InflateMesh < Processing::App
 
   def setup
     size(680, 382, P3D)
+    Processing::ArcBall.init(self)
     @gfx = Gfx::ToxiclibsSupport.new(self)
     init_physics
   end
@@ -37,9 +38,6 @@ class InflateMesh < Processing::App
     box.face_outwards
     box.compute_vertex_normals
     background(51)
-    translate(width / 2.0, height / 2.0, 0)
-    rotate_x((height / 2 - mouse_x) * 0.01)
-    rotate_y((width / 2 - mouse_y) * 0.01)
     no_fill
     lights
     directional_light(255, 255, 255, -200, 1000, 500)
@@ -52,7 +50,7 @@ class InflateMesh < Processing::App
   end
 
   def init_physics
-    @box = Volume::WETriangleMesh.new
+    @box = Toxi::WETriangleMesh.new
     # create a simple start mesh
     # box.addMesh(Toxi::Cone.new(Toxi::Vec3D.new(0, 0, 0), Toxi::Vec3D.new(0, 1, 0), 10, 50, 100).to_mesh(4))
     box.add_mesh(Toxi::AABB.new(Toxi::Vec3D.new, 50).to_mesh)

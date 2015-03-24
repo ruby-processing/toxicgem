@@ -18,15 +18,19 @@ module Physics
 end
 
 module Volume
-  include_package 'toxi.geom'
-  include_package 'toxi.geom.mesh'
-  include_package 'toxi.geom.mesh.subdiv'
   include_package 'toxi.volume'
 end
 
 module Toxi
-  include_package 'toxi.math'
   include_package 'toxi.color'
+  include_package 'toxi.color.theory'
+  include_package 'toxi.util.datatypes'
+  include_package 'toxi.util.events'
+  include_package 'toxi.geom'
+  include_package 'toxi.geom.mesh'
+  include_package 'toxi.geom.mesh.subdiv'
+  include_package 'toxi.geom.nurbs'
+  include_package 'toxi.math'  
 end
 
 module Gfx

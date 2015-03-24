@@ -1,3 +1,5 @@
+# A ruby processing sketch (needs re-factoring for jruby_art)
+#
 #
 # This example implements a custom VolumetricSpace using an implicit function
 # to calculate each voxel. This is slower than the default array or HashMap
@@ -37,8 +39,7 @@
 #
 
 require 'toxiclibs'
-load_library 'vecmath'
-
+load_library 'vecmath' # uncomment this line for ruby-processing
 RES = 64
 ISO = 0.2
 MAX_ISO = 0.66
@@ -50,7 +51,7 @@ def setup
   @gfx = Gfx::ToxiclibsSupport.new(self)
   vol = EvaluatingVolume.new(Toxi::Vec3D.new(400, 400, 400), RES, RES, RES, MAX_ISO)
   surface = Volume::HashIsoSurface.new(vol)
-  @mesh = Volume::WETriangleMesh.new
+  @mesh = Toxi::WETriangleMesh.new
   surface.compute_surface_mesh(mesh, ISO)
   @is_wire_frame = false
 end
