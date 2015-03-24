@@ -64,6 +64,7 @@ def draw
   else
     fill(255)
     no_stroke
+    define_lights
     lights
   end
   @gfx.mesh(mesh, true)
@@ -74,10 +75,17 @@ def key_pressed
   when 'w', 'W'
     @is_wire_frame = !is_wire_frame
   when 'l', 'L'
-    Volume::LaplacianSmooth.new.filter(mesh, 1)
+    Toxi::LaplacianSmooth.new.filter(mesh, 1)
   when 's', 'S'
     save_frame('implicit.png')
   end
+end
+
+def define_lights
+  ambient_light(50, 50, 50)
+  point_light(30, 30, 30, 200, -150, 0)
+  directional_light(0, 30, 50, 1, 0, 0)
+  spot_light(30, 30, 30, 0, 40, 200, 0, -0.5, -0.5, PI / 2, 2)
 end
 
 # Creating a volumetric space class
@@ -106,8 +114,9 @@ class EvaluatingVolume < Volume::VolumetricSpace
       xx = x * 1.0 / resX - 0.5  # NB: careful about integer division !!!
       yy = y * 1.0 / resY - 0.5
       zz = z * 1.0 / resZ - 0.5
-      val = Math.sin(xx * FREQ) + Math.cos(yy * FREQ) + Math.sin(zz * FREQ)
-      # val = Math.sin(xx * FREQ) * (xx * FREQ) + Math.sin(yy * FREQ) * (yy * FREQ) + Math.sin(zz * FREQ) * (zz * FREQ)
+      val = cos(xx * FREQ) * sin(yy * FREQ) + cos(yy * FREQ) * sin(zz* FREQ) + cos(zz * FREQ) * sin(xx * FREQ)
+      # val = sin(xx * FREQ) + cos(yy * FREQ) + sin(zz * FREQ)
+      # val = sin(xx * FREQ) * (xx * FREQ) + sin(yy * FREQ) * (yy * FREQ) + sin(zz * FREQ) * (zz * FREQ)
       val = 0 if val > upper_bound
     end
     val

@@ -25,7 +25,7 @@ spec = Gem::Specification.new do |s|
   s.add_development_dependency "rake-compiler", "~> 0.9"
   s.requirements << 'A decent graphics card'
   s.requirements << 'java runtime >= 1.7+'
-  s.requirements << 'processing = 2.2.1+'
+  s.requirements << 'jruby_art = 0.2+'
 end
 
 # -*- ruby -*-

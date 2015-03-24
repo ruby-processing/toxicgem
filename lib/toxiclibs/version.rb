@@ -1,3 +1,3 @@
 module Toxiclibs
-  VERSION = '0.2'
+  VERSION = '0.2.pre'
 end
