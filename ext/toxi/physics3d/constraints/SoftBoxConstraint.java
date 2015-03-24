@@ -25,39 +25,38 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
-package toxi.util.events;
+package toxi.physics3d.constraints;
 
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-public class EventDispatcher<T> implements Iterable<T> {
+import toxi.geom.AABB;
+import toxi.geom.Vec3D.Axis;
+import toxi.physics3d.VerletParticle3D;
 
-    protected List<T> listeners = new LinkedList<>();
+public class SoftBoxConstraint implements ParticleConstraint3D {
 
-    public EventDispatcher() {
+    public AABB box;
+    public List<Axis> axes = new LinkedList<Axis>();
+    public float smooth;
+
+    public SoftBoxConstraint(AABB box, float smooth) {
+        this.box = box;
+        this.smooth = smooth;
     }
 
-    public void addListener(T listener) {
-        if (!listeners.contains(listener)) {
-            listeners.add(listener);
+    public SoftBoxConstraint addAxis(Axis a) {
+        axes.add(a);
+        return this;
+    }
+
+    public void apply(VerletParticle3D p) {
+        if (p.isInAABB(box)) {
+            for (Axis a : axes) {
+                float val = p.getComponent(a);
+                p.setComponent(a, val + (box.getComponent(a) - val) * smooth);
+            }
         }
     }
 
-    public List<T> getListeners() {
-        return listeners;
-    }
-
-    /**
-     *
-     * @return
-     */
-    @Override
-    public Iterator<T> iterator() {
-        return listeners.iterator();
-    }
-
-    public void removeListener(T listener) {
-        listeners.remove(listener);
-    }
 }

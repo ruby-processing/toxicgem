@@ -25,28 +25,25 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
-package toxi.math;
+package toxi.physics3d;
 
 /**
- * Implementation of the cosine interpolation function:
- * 
- * i = b+(a-b)*(0.5+0.5*cos(f*PI))
+ * Implements a string which will only enforce its rest length if the current
+ * distance is less than its rest length. This is handy if you just want to
+ * ensure objects are at least a certain distance from each other, but don't
+ * care if it's bigger than the enforced minimum.
  */
-public class CosineInterpolation implements InterpolateStrategy {
+public class VerletMinDistanceSpring3D extends VerletSpring3D {
 
-    @Override
-    public double interpolate(double a, double b, double f) {
-        return b + (a - b) * (0.5 + 0.5 * Math.cos(f * Math.PI));
+    public VerletMinDistanceSpring3D(VerletParticle3D a, VerletParticle3D b,
+            float len, float str) {
+        super(a, b, len, str);
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see toxi.math.InterpolateStrategy#interpolate(float, float, float)
-     */
     @Override
-    public final float interpolate(float a, float b, float f) {
-        return b + (a - b) * (float) (0.5 + 0.5 * Math.cos(f * MathUtils.PI));
+    public void update(boolean applyConstraints) {
+        if (b.distanceToSquared(a) < restLengthSquared) {
+            super.update(applyConstraints);
+        }
     }
-
 }

@@ -25,39 +25,26 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
-package toxi.util.events;
+package toxi.physics2d.behaviors;
 
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
+import toxi.geom.SpatialIndex;
+import toxi.geom.Vec2D;
+import toxi.physics2d.VerletParticle2D;
 
-public class EventDispatcher<T> implements Iterable<T> {
-
-    protected List<T> listeners = new LinkedList<>();
-
-    public EventDispatcher() {
-    }
-
-    public void addListener(T listener) {
-        if (!listeners.contains(listener)) {
-            listeners.add(listener);
-        }
-    }
-
-    public List<T> getListeners() {
-        return listeners;
-    }
+public interface ParticleBehavior2D {
 
     /**
-     *
-     * @return
+     * Applies the constraint to the passed in particle. The method is assumed
+     * to manipulate the given instance directly.
+     * 
+     * @param p
+     *            particle
      */
-    @Override
-    public Iterator<T> iterator() {
-        return listeners.iterator();
-    }
+    public void apply(VerletParticle2D p);
 
-    public void removeListener(T listener) {
-        listeners.remove(listener);
-    }
+    public void applyWithIndex(SpatialIndex<Vec2D> index);
+
+    public void configure(float timeStep);
+
+    public boolean supportsSpatialIndex();
 }

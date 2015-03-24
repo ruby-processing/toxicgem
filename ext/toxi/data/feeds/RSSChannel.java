@@ -25,39 +25,37 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
-package toxi.util.events;
+package toxi.data.feeds;
 
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.ArrayList;
 
-public class EventDispatcher<T> implements Iterable<T> {
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import javax.xml.datatype.XMLGregorianCalendar;
 
-    protected List<T> listeners = new LinkedList<>();
+import toxi.data.feeds.util.Rfc822DateAdapter;
 
-    public EventDispatcher() {
-    }
+public class RSSChannel {
 
-    public void addListener(T listener) {
-        if (!listeners.contains(listener)) {
-            listeners.add(listener);
-        }
-    }
+    @XmlElement
+    public String title;
 
-    public List<T> getListeners() {
-        return listeners;
-    }
+    @XmlElement
+    public String link;
 
-    /**
-     *
-     * @return
-     */
-    @Override
-    public Iterator<T> iterator() {
-        return listeners.iterator();
-    }
+    @XmlElement
+    public String description;
 
-    public void removeListener(T listener) {
-        listeners.remove(listener);
-    }
+    @XmlElement
+    public String language;
+
+    @XmlElement
+    public String generator;
+
+    @XmlElement
+    @XmlJavaTypeAdapter(Rfc822DateAdapter.class)
+    public XMLGregorianCalendar pubDate, lastBuiltDate;
+
+    @XmlElement(name = "item")
+    public ArrayList<RSSItem> items = new ArrayList<RSSItem>();
 }

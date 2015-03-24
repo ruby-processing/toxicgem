@@ -25,39 +25,41 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
-package toxi.util.events;
+package toxi.physics2d.constraints;
 
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
+import toxi.geom.Polygon2D;
+import toxi.physics2d.VerletParticle2D;
 
-public class EventDispatcher<T> implements Iterable<T> {
+public class PolygonConstraint implements ParticleConstraint2D {
 
-    protected List<T> listeners = new LinkedList<>();
+    protected Polygon2D poly;
+    private boolean isContainer;
 
-    public EventDispatcher() {
+    public PolygonConstraint(Polygon2D poly, boolean isContainer) {
+        this.poly = poly;
+        this.isContainer = isContainer;
     }
 
-    public void addListener(T listener) {
-        if (!listeners.contains(listener)) {
-            listeners.add(listener);
+    @Override
+    public void apply(VerletParticle2D p) {
+        if (poly.containsPoint(p) != isContainer) {
+            p.constrain(poly);
         }
     }
 
-    public List<T> getListeners() {
-        return listeners;
+    public Polygon2D getPolygon() {
+        return poly;
     }
 
-    /**
-     *
-     * @return
-     */
-    @Override
-    public Iterator<T> iterator() {
-        return listeners.iterator();
+    public boolean isContainer() {
+        return isContainer;
     }
 
-    public void removeListener(T listener) {
-        listeners.remove(listener);
+    public void setIsContainer(boolean isContainer) {
+        this.isContainer = isContainer;
+    }
+
+    public void setPolygon(Polygon2D poly) {
+        this.poly = poly;
     }
 }

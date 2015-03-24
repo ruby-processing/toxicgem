@@ -25,39 +25,35 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
-package toxi.util.events;
+package toxi.physics2d.constraints;
 
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
+import toxi.geom.Vec2D;
+import toxi.math.MathUtils;
+import toxi.physics2d.VerletParticle2D;
 
-public class EventDispatcher<T> implements Iterable<T> {
+public class AngularConstraint implements ParticleConstraint2D {
 
-    protected List<T> listeners = new LinkedList<>();
+    public Vec2D rootPos;
+    public float theta;
 
-    public EventDispatcher() {
+    public AngularConstraint(float theta) {
+        this.theta = theta;
     }
 
-    public void addListener(T listener) {
-        if (!listeners.contains(listener)) {
-            listeners.add(listener);
-        }
+    public AngularConstraint(int theta) {
+        this.theta = MathUtils.radians(theta);
     }
 
-    public List<T> getListeners() {
-        return listeners;
+    public AngularConstraint(Vec2D p, int theta) {
+        rootPos = new Vec2D(p);
+        this.theta = MathUtils.radians(theta);
     }
 
-    /**
-     *
-     * @return
-     */
     @Override
-    public Iterator<T> iterator() {
-        return listeners.iterator();
+    public void apply(VerletParticle2D p) {
+        Vec2D delta = p.sub(rootPos);
+        float heading = MathUtils.floor(delta.heading() / theta) * theta;
+        p.set(rootPos.add(Vec2D.fromTheta(heading).scaleSelf(delta.magnitude())));
     }
 
-    public void removeListener(T listener) {
-        listeners.remove(listener);
-    }
 }

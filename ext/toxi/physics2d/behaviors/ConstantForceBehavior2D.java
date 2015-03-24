@@ -25,39 +25,64 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
-package toxi.util.events;
+package toxi.physics2d.behaviors;
 
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
+import toxi.geom.SpatialIndex;
+import toxi.geom.Vec2D;
+import toxi.physics2d.VerletParticle2D;
 
-public class EventDispatcher<T> implements Iterable<T> {
+public class ConstantForceBehavior2D implements ParticleBehavior2D {
 
-    protected List<T> listeners = new LinkedList<>();
+    protected Vec2D force;
+    protected Vec2D scaledForce = new Vec2D();
+    protected float timeStep;
 
-    public EventDispatcher() {
+    public ConstantForceBehavior2D(Vec2D force) {
+        this.force = force;
     }
 
-    public void addListener(T listener) {
-        if (!listeners.contains(listener)) {
-            listeners.add(listener);
-        }
-    }
-
-    public List<T> getListeners() {
-        return listeners;
+    @Override
+    public void apply(VerletParticle2D p) {
+        p.addForce(scaledForce);
     }
 
     /**
      *
-     * @return
+     * @param spaceHash
      */
     @Override
-    public Iterator<T> iterator() {
-        return listeners.iterator();
+    public void applyWithIndex(SpatialIndex<Vec2D> spaceHash) {
+        throw new UnsupportedOperationException("not implemented");
     }
 
-    public void removeListener(T listener) {
-        listeners.remove(listener);
+    /**
+     *
+     * @param timeStep
+     */
+    @Override
+    public void configure(float timeStep) {
+        this.timeStep = timeStep;
+        setForce(force);
     }
+
+    /**
+     * @return the force
+     */
+    public Vec2D getForce() {
+        return force;
+    }
+
+    /**
+     * @param force
+     *            the force to set
+     */
+    public void setForce(Vec2D force) {
+        this.force = force;
+        this.scaledForce = force.scale(timeStep);
+    }
+
+    public boolean supportsSpatialIndex() {
+        return false;
+    }
+
 }

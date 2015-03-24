@@ -25,39 +25,20 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
-package toxi.util.events;
+package toxi.physics3d.behaviors;
 
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
+import toxi.physics3d.VerletParticle3D;
 
-public class EventDispatcher<T> implements Iterable<T> {
-
-    protected List<T> listeners = new LinkedList<>();
-
-    public EventDispatcher() {
-    }
-
-    public void addListener(T listener) {
-        if (!listeners.contains(listener)) {
-            listeners.add(listener);
-        }
-    }
-
-    public List<T> getListeners() {
-        return listeners;
-    }
+public interface ParticleBehavior3D {
 
     /**
-     *
-     * @return
+     * Applies the constraint to the passed in particle. The method is assumed
+     * to manipulate the given instance directly.
+     * 
+     * @param p
+     *            particle
      */
-    @Override
-    public Iterator<T> iterator() {
-        return listeners.iterator();
-    }
+    public void apply(VerletParticle3D p);
 
-    public void removeListener(T listener) {
-        listeners.remove(listener);
-    }
+    public void configure(float timeStep);
 }

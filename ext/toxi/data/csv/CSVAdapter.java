@@ -25,39 +25,28 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
-package toxi.util.events;
+package toxi.data.csv;
 
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
+public class CSVAdapter implements CSVListener {
 
-public class EventDispatcher<T> implements Iterable<T> {
-
-    protected List<T> listeners = new LinkedList<>();
-
-    public EventDispatcher() {
-    }
-
-    public void addListener(T listener) {
-        if (!listeners.contains(listener)) {
-            listeners.add(listener);
-        }
-    }
-
-    public List<T> getListeners() {
-        return listeners;
-    }
-
-    /**
-     *
-     * @return
-     */
     @Override
-    public Iterator<T> iterator() {
-        return listeners.iterator();
+    public void csvNewItemFailure(String[] fields, CSVFieldMapper map) {
+
     }
 
-    public void removeListener(T listener) {
-        listeners.remove(listener);
+    @Override
+    public void csvNewItemParsed(String[] fields, CSVFieldMapper map) {
+
     }
+
+    @Override
+    public void csvParseFailure(CSVParser parser) {
+
+    }
+
+    @Override
+    public void csvParseSuccess(CSVParser parser) {
+
+    }
+
 }

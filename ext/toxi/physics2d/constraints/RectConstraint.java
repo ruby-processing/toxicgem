@@ -25,39 +25,53 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
-package toxi.util.events;
+package toxi.physics2d.constraints;
 
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
+import toxi.geom.Ray2D;
+import toxi.geom.Rect;
+import toxi.geom.Vec2D;
+import toxi.physics2d.VerletParticle2D;
 
-public class EventDispatcher<T> implements Iterable<T> {
+public class RectConstraint implements ParticleConstraint2D {
 
-    protected List<T> listeners = new LinkedList<>();
+    protected Rect rect;
+    protected Ray2D intersectRay;
+    protected boolean isContainer;
 
-    public EventDispatcher() {
+    public RectConstraint(Rect rect) {
+        this(rect, false);
     }
 
-    public void addListener(T listener) {
-        if (!listeners.contains(listener)) {
-            listeners.add(listener);
+    public RectConstraint(Rect rect, boolean isContainer) {
+        this.isContainer = isContainer;
+        setBox(rect);
+    }
+
+    public RectConstraint(Vec2D min, Vec2D max) {
+        this(new Rect(min, max), false);
+    }
+
+    @Override
+    public void apply(VerletParticle2D p) {
+        if (isContainer) {
+            if (!rect.containsPoint(p)) {
+                p.constrain(rect);
+            }
+        } else {
+            if (rect.containsPoint(p)) {
+                p.set(rect.intersectsRay(
+                        intersectRay.setDirection(intersectRay.sub(p)), 0,
+                        Float.MAX_VALUE));
+            }
         }
     }
 
-    public List<T> getListeners() {
-        return listeners;
+    public Rect getBox() {
+        return rect.copy();
     }
 
-    /**
-     *
-     * @return
-     */
-    @Override
-    public Iterator<T> iterator() {
-        return listeners.iterator();
-    }
-
-    public void removeListener(T listener) {
-        listeners.remove(listener);
+    public final void setBox(Rect rect) {
+        this.rect = rect.copy();
+        this.intersectRay = new Ray2D(rect.getCentroid(), new Vec2D());
     }
 }

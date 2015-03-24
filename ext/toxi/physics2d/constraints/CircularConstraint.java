@@ -25,39 +25,29 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
-package toxi.util.events;
+package toxi.physics2d.constraints;
 
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
+import toxi.geom.Circle;
+import toxi.geom.Vec2D;
+import toxi.physics2d.VerletParticle2D;
 
-public class EventDispatcher<T> implements Iterable<T> {
+public class CircularConstraint implements ParticleConstraint2D {
 
-    protected List<T> listeners = new LinkedList<>();
+    public Circle circle;
 
-    public EventDispatcher() {
+    public CircularConstraint(Circle circle) {
+        this.circle = circle;
     }
 
-    public void addListener(T listener) {
-        if (!listeners.contains(listener)) {
-            listeners.add(listener);
+    public CircularConstraint(Vec2D origin, float radius) {
+        this.circle = new Circle(origin, radius);
+    }
+
+    @Override
+    public void apply(VerletParticle2D p) {
+        if (circle.containsPoint(p)) {
+            p.set(circle.add(p.sub(circle).normalizeTo(circle.getRadius())));
         }
     }
 
-    public List<T> getListeners() {
-        return listeners;
-    }
-
-    /**
-     *
-     * @return
-     */
-    @Override
-    public Iterator<T> iterator() {
-        return listeners.iterator();
-    }
-
-    public void removeListener(T listener) {
-        listeners.remove(listener);
-    }
 }

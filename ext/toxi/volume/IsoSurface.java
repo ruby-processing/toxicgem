@@ -25,28 +25,35 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
-package toxi.math;
+package toxi.volume;
+
+import toxi.geom.mesh.Mesh3D;
+import toxi.geom.mesh.TriangleMesh;
 
 /**
- * Implementation of the cosine interpolation function:
- * 
- * i = b+(a-b)*(0.5+0.5*cos(f*PI))
+ * IsoSurface class based on C version by Paul Bourke and Lingo version by
+ * myself.
  */
-public class CosineInterpolation implements InterpolateStrategy {
+public interface IsoSurface {
 
-    @Override
-    public double interpolate(double a, double b, double f) {
-        return b + (a - b) * (0.5 + 0.5 * Math.cos(f * Math.PI));
-    }
-
-    /*
-     * (non-Javadoc)
+    /**
+     * Computes the surface mesh for the given iso value. An existing mesh
+     * container can be reused (will be cleared) or created automatically (if
+     * null). In the latter case a simple {@link TriangleMesh} instance is
+     * created.
      * 
-     * @see toxi.math.InterpolateStrategy#interpolate(float, float, float)
+     * @param mesh
+     *            existing mesh container or null
+     * @param iso
+     *            surface iso value
+     * @return Mesh3D instance
      */
-    @Override
-    public final float interpolate(float a, float b, float f) {
-        return b + (a - b) * (float) (0.5 + 0.5 * Math.cos(f * MathUtils.PI));
-    }
+    public Mesh3D computeSurfaceMesh(Mesh3D mesh, final float iso);
 
+    /**
+     * Resets mesh vertices to default positions and clears face index. Needs to
+     * be called inbetween successive calls to
+     * {@link #computeSurfaceMesh(Mesh3D, float)}.
+     */
+    public void reset();
 }

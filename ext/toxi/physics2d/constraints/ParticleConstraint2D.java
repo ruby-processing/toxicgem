@@ -25,28 +25,23 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
-package toxi.math;
+package toxi.physics2d.constraints;
+
+import toxi.physics2d.VerletParticle2D;
 
 /**
- * Implementation of the cosine interpolation function:
- * 
- * i = b+(a-b)*(0.5+0.5*cos(f*PI))
+ * Defines an interface used to constrain VerletParticles based on a custom
+ * criteria (e.g. only allowed to move along an axis or shape etc.). The
+ * constraints will be applied directly after each spring update.
  */
-public class CosineInterpolation implements InterpolateStrategy {
+public interface ParticleConstraint2D {
 
-    @Override
-    public double interpolate(double a, double b, double f) {
-        return b + (a - b) * (0.5 + 0.5 * Math.cos(f * Math.PI));
-    }
-
-    /*
-     * (non-Javadoc)
+    /**
+     * Applies the constraint to the passed in particle. The method is assumed
+     * to manipulate the given instance directly.
      * 
-     * @see toxi.math.InterpolateStrategy#interpolate(float, float, float)
+     * @param p
+     *            particle
      */
-    @Override
-    public final float interpolate(float a, float b, float f) {
-        return b + (a - b) * (float) (0.5 + 0.5 * Math.cos(f * MathUtils.PI));
-    }
-
+    public void apply(VerletParticle2D p);
 }

@@ -25,28 +25,42 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
-package toxi.math;
+package toxi.physics3d.constraints;
+
+import toxi.geom.Vec3D;
+import toxi.geom.Vec3D.Axis;
+import toxi.physics3d.VerletParticle3D;
 
 /**
- * Implementation of the cosine interpolation function:
- * 
- * i = b+(a-b)*(0.5+0.5*cos(f*PI))
+ * Constrains a particle's movement by locking it to a fixed axis aligned plane.
  */
-public class CosineInterpolation implements InterpolateStrategy {
+public class PlaneConstraint implements ParticleConstraint3D {
 
-    @Override
-    public double interpolate(double a, double b, double f) {
-        return b + (a - b) * (0.5 + 0.5 * Math.cos(f * Math.PI));
+    public Vec3D constraint;
+    public Axis axis1, axis2;
+
+    /**
+     * @param axis
+     *            1st axis to lock
+     * @param axis2
+     *            2d axis to lock
+     * @param constraint
+     *            point on the desired constraint plane
+     */
+    public PlaneConstraint(Axis axis, Axis axis2, Vec3D constraint) {
+        this.axis1 = axis;
+        this.axis2 = axis2;
+        this.constraint = constraint;
     }
 
     /*
      * (non-Javadoc)
      * 
-     * @see toxi.math.InterpolateStrategy#interpolate(float, float, float)
+     * @see toxi.physics.IParticleConstraint#apply(toxi.physics.VerletParticle)
      */
-    @Override
-    public final float interpolate(float a, float b, float f) {
-        return b + (a - b) * (float) (0.5 + 0.5 * Math.cos(f * MathUtils.PI));
+    public void apply(VerletParticle3D p) {
+        p.setComponent(axis1, constraint.getComponent(axis1));
+        p.setComponent(axis2, constraint.getComponent(axis2));
     }
 
 }

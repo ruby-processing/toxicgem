@@ -25,39 +25,24 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
-package toxi.util.events;
+package toxi.physics3d.behaviors;
 
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
+import toxi.geom.Vec3D;
 
-public class EventDispatcher<T> implements Iterable<T> {
+public class GravityBehavior3D extends ConstantForceBehavior3D {
 
-    protected List<T> listeners = new LinkedList<>();
-
-    public EventDispatcher() {
+    public GravityBehavior3D(Vec3D gravity) {
+        super(gravity);
     }
 
-    public void addListener(T listener) {
-        if (!listeners.contains(listener)) {
-            listeners.add(listener);
-        }
+    public GravityBehavior3D(Vec3D gravity, float timeStep) {
+        super(gravity);
+        configure(timeStep);
     }
-
-    public List<T> getListeners() {
-        return listeners;
-    }
-
-    /**
-     *
-     * @return
-     */
+    
     @Override
-    public Iterator<T> iterator() {
-        return listeners.iterator();
-    }
-
-    public void removeListener(T listener) {
-        listeners.remove(listener);
+    public void setForce(Vec3D force) {
+        this.force = force;
+        this.scaledForce = force.scale(timeStep * timeStep);
     }
 }

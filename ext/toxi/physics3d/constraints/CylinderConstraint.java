@@ -25,39 +25,44 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
-package toxi.util.events;
+package toxi.physics3d.constraints;
 
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
+import toxi.geom.AxisAlignedCylinder;
+import toxi.geom.Vec3D;
+import toxi.physics3d.VerletParticle3D;
 
-public class EventDispatcher<T> implements Iterable<T> {
+public class CylinderConstraint implements ParticleConstraint3D {
 
-    protected List<T> listeners = new LinkedList<>();
+    protected AxisAlignedCylinder cylinder;
+    protected Vec3D centroid = new Vec3D();
+    protected Vec3D.Axis axis;
 
-    public EventDispatcher() {
+    public CylinderConstraint(AxisAlignedCylinder cylinder) {
+        setCylinder(cylinder);
     }
 
-    public void addListener(T listener) {
-        if (!listeners.contains(listener)) {
-            listeners.add(listener);
+    public void apply(VerletParticle3D p) {
+        if (cylinder.containsPoint(p)) {
+            centroid.setComponent(axis, p.getComponent(axis));
+            p.set(centroid.add(p.sub(centroid)
+                    .normalizeTo(cylinder.getRadius())));
         }
     }
 
-    public List<T> getListeners() {
-        return listeners;
+    /**
+     * @return the cylinder
+     */
+    public AxisAlignedCylinder getCylinder() {
+        return cylinder;
     }
 
     /**
-     *
-     * @return
+     * @param cylinder
+     *            the cylinder to set
      */
-    @Override
-    public Iterator<T> iterator() {
-        return listeners.iterator();
-    }
-
-    public void removeListener(T listener) {
-        listeners.remove(listener);
+    public void setCylinder(AxisAlignedCylinder cylinder) {
+        this.cylinder = cylinder;
+        centroid.set(cylinder.getPosition());
+        axis = cylinder.getMajorAxis();
     }
 }

@@ -25,39 +25,27 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
-package toxi.util.events;
+package toxi.physics2d;
 
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
+/**
+ * Creates a pullback spring (default restlength=0.5) between 2 particles and
+ * locks the first one given at the current position. The spring is only
+ * enforced if the current length of the spring exceeds the rest length. This
+ * behaviour is the opposite to the {@link VerletMinDistanceSpring2D}.
+ */
+class PullBackSpring2D extends VerletSpring2D {
 
-public class EventDispatcher<T> implements Iterable<T> {
-
-    protected List<T> listeners = new LinkedList<>();
-
-    public EventDispatcher() {
+    public PullBackSpring2D(VerletParticle2D a, VerletParticle2D b,
+            float strength) {
+        super(a, b, 0, strength);
+        a.lock();
+        setRestLength(0.5f);
     }
 
-    public void addListener(T listener) {
-        if (!listeners.contains(listener)) {
-            listeners.add(listener);
-        }
-    }
-
-    public List<T> getListeners() {
-        return listeners;
-    }
-
-    /**
-     *
-     * @return
-     */
     @Override
-    public Iterator<T> iterator() {
-        return listeners.iterator();
-    }
-
-    public void removeListener(T listener) {
-        listeners.remove(listener);
+    protected void update(boolean applyConstraints) {
+        if (b.distanceToSquared(a) > restLengthSquared) {
+            super.update(applyConstraints);
+        }
     }
 }

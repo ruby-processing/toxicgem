@@ -25,39 +25,20 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
-package toxi.util.events;
+package toxi.data.feeds;
 
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
+import javax.xml.bind.annotation.XmlAttribute;
 
-public class EventDispatcher<T> implements Iterable<T> {
+public class RSSEnclosure {
 
-    protected List<T> listeners = new LinkedList<>();
+    @XmlAttribute
+    public String url, type;
 
-    public EventDispatcher() {
+    @XmlAttribute
+    public int length;
+
+    public String toString() {
+        return url + " (" + type + ")";
     }
 
-    public void addListener(T listener) {
-        if (!listeners.contains(listener)) {
-            listeners.add(listener);
-        }
-    }
-
-    public List<T> getListeners() {
-        return listeners;
-    }
-
-    /**
-     *
-     * @return
-     */
-    @Override
-    public Iterator<T> iterator() {
-        return listeners.iterator();
-    }
-
-    public void removeListener(T listener) {
-        listeners.remove(listener);
-    }
 }

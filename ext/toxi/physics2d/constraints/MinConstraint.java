@@ -25,39 +25,26 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
-package toxi.util.events;
+package toxi.physics2d.constraints;
 
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
+import toxi.geom.Vec2D.Axis;
+import toxi.physics2d.VerletParticle2D;
 
-public class EventDispatcher<T> implements Iterable<T> {
+public class MinConstraint implements ParticleConstraint2D {
 
-    protected List<T> listeners = new LinkedList<>();
+    public Axis axis;
+    public float threshold;
 
-    public EventDispatcher() {
+    public MinConstraint(Axis axis, float threshold) {
+        this.axis = axis;
+        this.threshold = threshold;
     }
 
-    public void addListener(T listener) {
-        if (!listeners.contains(listener)) {
-            listeners.add(listener);
+    @Override
+    public void apply(VerletParticle2D p) {
+        if (p.getComponent(axis) < threshold) {
+            p.setComponent(axis, threshold);
         }
     }
 
-    public List<T> getListeners() {
-        return listeners;
-    }
-
-    /**
-     *
-     * @return
-     */
-    @Override
-    public Iterator<T> iterator() {
-        return listeners.iterator();
-    }
-
-    public void removeListener(T listener) {
-        listeners.remove(listener);
-    }
 }

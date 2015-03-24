@@ -25,39 +25,49 @@
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
  */
 
-package toxi.util.events;
+package toxi.physics3d.behaviors;
 
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
+import toxi.geom.Vec3D;
+import toxi.physics3d.VerletParticle3D;
 
-public class EventDispatcher<T> implements Iterable<T> {
+public class ConstantForceBehavior3D implements ParticleBehavior3D {
 
-    protected List<T> listeners = new LinkedList<>();
+    protected Vec3D force;
+    protected Vec3D scaledForce = new Vec3D();
+    protected float timeStep;
 
-    public EventDispatcher() {
+    public ConstantForceBehavior3D(Vec3D force) {
+        this.force = force;
     }
 
-    public void addListener(T listener) {
-        if (!listeners.contains(listener)) {
-            listeners.add(listener);
-        }
-    }
-
-    public List<T> getListeners() {
-        return listeners;
+    @Override
+    public void apply(VerletParticle3D p) {
+        p.addForce(scaledForce);
     }
 
     /**
      *
-     * @return
+     * @param timeStep
      */
     @Override
-    public Iterator<T> iterator() {
-        return listeners.iterator();
+    public void configure(float timeStep) {
+        this.timeStep = timeStep;
+        setForce(force);
     }
 
-    public void removeListener(T listener) {
-        listeners.remove(listener);
+    /**
+     * @return the force
+     */
+    public Vec3D getForce() {
+        return force;
+    }
+
+    /**
+     * @param force
+     *            the force to set
+     */
+    public void setForce(Vec3D force) {
+        this.force = force;
+        scaledForce = force.scale(timeStep);
     }
 }
