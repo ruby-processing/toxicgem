@@ -49,7 +49,7 @@ def setup
   size(720, 720, P3D)
   ArcBall.init(self)
   @gfx = Gfx::ToxiclibsSupport.new(self)
-  vol = EvaluatingVolume.new(Toxi::Vec3D.new(400, 400, 400), RES, RES, RES, MAX_ISO)
+  vol = EvaluatingVolume.new(TVec3D.new(400, 400, 400), RES, RES, RES, MAX_ISO)
   surface = Volume::HashIsoSurface.new(vol)
   @mesh = Toxi::WETriangleMesh.new
   surface.compute_surface_mesh(mesh, ISO)

@@ -52,12 +52,12 @@ class InflateMesh < Processing::App
   def init_physics
     @box = Toxi::WETriangleMesh.new
     # create a simple start mesh
-    # box.addMesh(Toxi::Cone.new(Toxi::Vec3D.new(0, 0, 0), Toxi::Vec3D.new(0, 1, 0), 10, 50, 100).to_mesh(4))
-    box.add_mesh(Toxi::AABB.new(Toxi::Vec3D.new, 50).to_mesh)
+    # box.addMesh(Toxi::Cone.new(TVec3D.new(0, 0, 0), TVec3D.new(0, 1, 0), 10, 50, 100).to_mesh(4))
+    box.add_mesh(AABB.new(TVec3D.new, 50).to_mesh)
     # then subdivide a few times...
     4.times { box.subdivide }
     @physics = Physics::VerletPhysics3D.new
-    physics.set_world_bounds(Toxi::AABB.new(Toxi::Vec3D.new, 180))
+    physics.set_world_bounds(AABB.new(TVec3D.new, 180))
     # turn mesh vertices into physics particles
     box.vertices.values.each { |v| physics.add_particle(Physics::VerletParticle3D.new(v)) }
     # turn mesh edges into springs
@@ -76,7 +76,7 @@ class InflateMesh < Processing::App
   end
 
   def mouse_pressed
-    @inflate = Physics::AttractionBehavior3D.new(Toxi::Vec3D.new, 400, -0.3, 0.001)
+    @inflate = Physics::AttractionBehavior3D.new(TVec3D.new, 400, -0.3, 0.001)
     physics.add_behavior(inflate)
   end
 
