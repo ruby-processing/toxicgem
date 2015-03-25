@@ -31,5 +31,5 @@ version 2.1 of the License, or (at your option) any later version.
 [Post Spectacular Home]:http://postspectacular.com/
 [Toxiclibs Bitbucket]:http://hg.postspectacular.com/
 [Toxiclibs Documentation]:http://toxiclibs.org/
-[Example Usage]:https://github.com/ruby-processing/toxicgem/blob/master/example/gray_scott_tone_map.rb
+[Example Usage]:https://github.com/ruby-processing/toxicgem/tree/master/examples
 [here]:https://github.com/ruby-processing/toxiclibs/issues
