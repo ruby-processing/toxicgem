@@ -39,7 +39,7 @@
 #
 
 require 'toxiclibs'
-load_library 'vecmath' # uncomment this line for ruby-processing
+load_library 'vecmath' 
 RES = 64
 ISO = 0.2
 MAX_ISO = 0.66
