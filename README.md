@@ -1,4 +1,5 @@
 ## Using Toxiclibs jars in JRubyArt
+[![Gem Version](https://badge.fury.io/rb/toxiclibs.svg)](http://badge.fury.io/rb/toxiclibs)
 ### Installing
 ```bash
 gem install toxiclibs --pre
