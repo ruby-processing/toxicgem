@@ -32,6 +32,7 @@ import java.util.Iterator;
  * @author Paul Chew
  * 
  *         Created December 2007. For use with Voronoi/Delaunay applet.
+ * @param <E>
  * 
  */
 public class ArraySet<E> extends AbstractSet<E> {
@@ -53,7 +54,7 @@ public class ArraySet<E> extends AbstractSet<E> {
      *            the source for the items of the small set
      */
     public ArraySet(Collection<? extends E> collection) {
-        items = new ArrayList<E>(collection.size());
+        items = new ArrayList<>(collection.size());
         for (E item : collection) {
             if (!items.contains(item)) {
                 items.add(item);
@@ -68,7 +69,7 @@ public class ArraySet<E> extends AbstractSet<E> {
      *            the initial capacity
      */
     public ArraySet(int initialCapacity) {
-        items = new ArrayList<E>(initialCapacity);
+        items = new ArrayList<>(initialCapacity);
     }
 
     @Override
@@ -88,7 +89,7 @@ public class ArraySet<E> extends AbstractSet<E> {
      */
     public boolean containsAny(Collection<?> collection) {
         for (Object item : collection) {
-            if (this.contains(item)) {
+            if (this.contains((E)item)) {
                 return true;
             }
         }

@@ -29,6 +29,7 @@ package toxi.geom;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import javax.xml.bind.annotation.XmlElement;
 
@@ -84,6 +85,7 @@ public class Line2D {
             return type;
         }
 
+        @Override
         public String toString() {
             return "type: " + type + " pos: " + pos;
         }
@@ -112,7 +114,7 @@ public class Line2D {
     public static final List<Vec2D> splitIntoSegments(Vec2D a, Vec2D b,
             float stepLength, List<Vec2D> segments, boolean addFirst) {
         if (segments == null) {
-            segments = new ArrayList<Vec2D>();
+            segments = new ArrayList<>();
         }
         if (addFirst) {
             segments.add(a.copy());
@@ -196,18 +198,29 @@ public class Line2D {
 
     @Override
     public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (this == obj) {
-            return true;
-        }
-        if (!(obj instanceof Line2D)) {
-            return false;
-        }
+        if (obj instanceof Line2D) {
         Line2D l = (Line2D) obj;
         return (a.equals(l.a) || a.equals(l.b))
                 && (b.equals(l.b) || b.equals(l.a));
+        }
+        return false;
+    }
+    
+    /**
+     * Computes a hash code ignoring the directionality of the line.
+     * 
+     * @return hash code
+     * 
+     * @see java.lang.Object#hashCode()
+     * @see #hashCodeWithDirection()
+     */
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 37 * hash + Objects.hashCode(this.a);
+        hash = 37 * hash + Objects.hashCode(this.b);
+        return hash;
     }
 
     public Circle getBoundingCircle() {
@@ -252,18 +265,6 @@ public class Line2D {
     }
 
     /**
-     * Computes a hash code ignoring the directionality of the line.
-     * 
-     * @return hash code
-     * 
-     * @see java.lang.Object#hashCode()
-     * @see #hashCodeWithDirection()
-     */
-    public int hashCode() {
-        return a.hashCode() + b.hashCode();
-    }
-
-    /**
      * Computes the hash code for this instance taking directionality into
      * account. A->B will produce a different hash code than B->A. If
      * directionality is not required or desired use the default
@@ -296,7 +297,7 @@ public class Line2D {
      * @return intersection result
      */
     public LineIntersection intersectLine(Line2D l) {
-        LineIntersection isec = null;
+        LineIntersection isec;
         float denom = (l.b.y - l.a.y) * (b.x - a.x) - (l.b.x - l.a.x)
                 * (b.y - a.y);
 
@@ -367,6 +368,7 @@ public class Line2D {
         return new Ray2D(a.copy(), getDirection());
     }
 
+    @Override
     public String toString() {
         return a.toString() + " -> " + b.toString();
     }

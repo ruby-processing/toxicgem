@@ -83,7 +83,17 @@ public class DelaunayTriangle extends ArraySet<DelaunayVertex> {
 
     @Override
     public boolean equals(Object o) {
+        if (o instanceof DelaunayTriangle){
         return (this == o);
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 53 * hash + this.idNumber;
+        return hash;
     }
 
     /**
@@ -96,7 +106,7 @@ public class DelaunayTriangle extends ArraySet<DelaunayVertex> {
      *             if the vertex is not in triangle
      */
     public ArraySet<DelaunayVertex> facetOpposite(DelaunayVertex vertex) {
-        ArraySet<DelaunayVertex> facet = new ArraySet<DelaunayVertex>(this);
+        ArraySet<DelaunayVertex> facet = new ArraySet<>(this);
         if (!facet.remove(vertex)) {
             throw new IllegalArgumentException("Vertex not in triangle");
         }
@@ -133,13 +143,6 @@ public class DelaunayTriangle extends ArraySet<DelaunayVertex> {
         throw new NoSuchElementException("No vertex found");
     }
 
-    /* The following two methods ensure that a DelaunayTriangle is immutable */
-
-    @Override
-    public int hashCode() {
-        return (idNumber ^ (idNumber >>> 32));
-    }
-
     /**
      * True iff triangles are neighbors. Two triangles are neighbors if they
      * share a facet.
@@ -164,17 +167,20 @@ public class DelaunayTriangle extends ArraySet<DelaunayVertex> {
     public Iterator<DelaunayVertex> iterator() {
         return new Iterator<DelaunayVertex>() {
 
-            private Iterator<DelaunayVertex> it = DelaunayTriangle.super
+            private final Iterator<DelaunayVertex> it = DelaunayTriangle.super
                     .iterator();
 
+            @Override
             public boolean hasNext() {
                 return it.hasNext();
             }
 
+            @Override
             public DelaunayVertex next() {
                 return it.next();
             }
 
+            @Override
             public void remove() {
                 throw new UnsupportedOperationException();
             }

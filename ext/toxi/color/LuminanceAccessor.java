@@ -55,8 +55,6 @@ public class LuminanceAccessor extends AccessCriteria {
      * The setter for this accessor is not doing anything, since the luminance
      * of a color is a coputed value depending on 3 color channels.
      * 
-     * @param col
-     * @param value
      * @see toxi.color.AccessCriteria#setComponentValueFor(toxi.color.TColor,
      *      float)
      */

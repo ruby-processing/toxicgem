@@ -185,13 +185,13 @@ public class DelaunayVertex {
     public static String toString(DelaunayVertex[] matrix) {
         StringBuilder buf = new StringBuilder("{");
         for (DelaunayVertex row : matrix) {
-            buf.append(" " + row);
+            buf.append(" ").append(row);
         }
         buf.append(" }");
         return buf.toString();
     }
 
-    private double[] coordinates; // The point's coordinates
+    private final double[] coordinates; // The point's coordinates
 
     /**
      * Constructor.
@@ -253,6 +253,7 @@ public class DelaunayVertex {
     }
 
     /**
+     * @param i
      * @return the specified coordinate of this DelaunayVertex
      * @throws ArrayIndexOutOfBoundsException
      *             for bad coordinate
@@ -335,15 +336,15 @@ public class DelaunayVertex {
         return new DelaunayVertex(result);
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        for (double c : this.coordinates) {
-            long bits = Double.doubleToLongBits(c);
-            hash = (31 * hash) ^ (int) (bits ^ (bits >> 32));
-        }
-        return hash;
-    }
+    // @Override
+    // public int hashCode() {
+        // int hash = 0;
+        // for (double c : this.coordinates) {
+            // long bits = Double.doubleToLongBits(c);
+            // hash = (31 * hash) ^ (int) (bits ^ (bits >> 32));
+        // }
+        // return hash;
+    // }
 
     /* Pnts as simplices */
 
@@ -428,8 +429,6 @@ public class DelaunayVertex {
      *            an array of Pnts representing a simplex
      * @return an array of signs showing relation between this DelaunayVertex
      *         and simplex
-     * @throws IllegalArgumentExcpetion
-     *             if the simplex is degenerate
      */
     public int[] relation(DelaunayVertex[] simplex) {
         /*

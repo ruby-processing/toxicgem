@@ -48,10 +48,6 @@ public class EventDispatcher<T> implements Iterable<T> {
         return listeners;
     }
 
-    /**
-     *
-     * @return
-     */
     @Override
     public Iterator<T> iterator() {
         return listeners.iterator();

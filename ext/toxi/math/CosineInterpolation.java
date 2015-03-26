@@ -48,5 +48,4 @@ public class CosineInterpolation implements InterpolateStrategy {
     public final float interpolate(float a, float b, float f) {
         return b + (a - b) * (float) (0.5 + 0.5 * Math.cos(f * MathUtils.PI));
     }
-
 }

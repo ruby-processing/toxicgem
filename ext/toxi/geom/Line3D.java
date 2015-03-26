@@ -29,6 +29,7 @@ package toxi.geom;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import javax.xml.bind.annotation.XmlElement;
 
@@ -87,6 +88,7 @@ public class Line3D {
                     && coeff[1] >= 0 && coeff[1] <= 1;
         }
 
+        @Override
         public String toString() {
             return "type: " + type + " line: " + line;
         }
@@ -115,7 +117,7 @@ public class Line3D {
     public static final List<Vec3D> splitIntoSegments(Vec3D a, Vec3D b,
             float stepLength, List<Vec3D> segments, boolean addFirst) {
         if (segments == null) {
-            segments = new ArrayList<Vec3D>();
+            segments = new ArrayList<>();
         }
         if (addFirst) {
             segments.add(a.copy());
@@ -164,6 +166,8 @@ public class Line3D {
      * Code based on original by Paul Bourke:<br/>
      * http://local.wasp.uwa.edu.au/~pbourke/geometry/lineline3d/
      * </p>
+     * @param l
+     * @return 
      */
     public LineIntersection closestLineTo(Line3D l) {
         Vec3D p43 = l.a.sub(l.b);
@@ -236,6 +240,14 @@ public class Line3D {
                 && (b.equals(l.b) || b.equals(l.a));
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 53 * hash + Objects.hashCode(this.a);
+        hash = 53 * hash + Objects.hashCode(this.b);
+        return hash;
+    }
+
     /**
      * Returns the line's axis-aligned bounding box.
      * 
@@ -270,17 +282,6 @@ public class Line3D {
         return a.equals(p) || b.equals(p);
     }
 
-    /**
-     * Computes a hash code ignoring the directionality of the line.
-     * 
-     * @return hash code
-     * 
-     * @see java.lang.Object#hashCode()
-     * @see #hashCodeWithDirection()
-     */
-    public int hashCode() {
-        return a.hashCode() + b.hashCode();
-    }
 
     /**
      * Computes the hash code for this instance taking directionality into
@@ -344,6 +345,7 @@ public class Line3D {
         return new Ray3D(a.copy(), getDirection());
     }
 
+    @Override
     public String toString() {
         return a.toString() + " -> " + b.toString();
     }
