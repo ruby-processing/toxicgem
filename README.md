@@ -1,8 +1,8 @@
 ## Using Toxiclibs jars in JRubyArt
-Current Gem Version 0.3.0.pre
+Current Gem Version 0.4.0
 ### Installing
 ```bash
-gem install toxiclibs --pre
+gem install toxiclibs
 ```
 
 ### NB: Also works with ruby-processing
