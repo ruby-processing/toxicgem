@@ -95,7 +95,7 @@ end
 
 class EvaluatingVolume < Volume::VolumetricSpace
   
-  attr_reader :upper_bound, :lut
+  attr_reader :upper_bound
   FREQ = Math::PI * 3.8
   
   def initialize(scal_vec, resX, resY, resZ, upper_limit)
