@@ -23,7 +23,7 @@ Here I have created create a gem to use Karsten Schmidts (aka toxi, @postspectac
 
 ### Licensing
 
-I should be clear that toxiclibs are the work of Karsten Schmidt:-
+I should be clear that the original toxiclibs is the work of Karsten Schmidt:-
 
 Copyright (c) 2010 Karsten Schmidt
  
