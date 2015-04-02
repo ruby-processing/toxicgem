@@ -8,6 +8,7 @@
 require 'toxiclibs'
 require_relative 'cluster'
 require_relative 'node'
+require 'forwardable'
 
 attr_reader :physics, :cluster, :f, :show_physics, :show_particles
 

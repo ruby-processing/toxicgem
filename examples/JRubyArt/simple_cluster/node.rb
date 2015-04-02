@@ -1,5 +1,3 @@
-require 'forwardable'
-
 # The Nature of Code
 # <http://www.shiffman.net/teaching/nature>
 # Spring 2010
