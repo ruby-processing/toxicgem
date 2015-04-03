@@ -1,5 +1,6 @@
 package toxi.geom.mesh2d;
 
+import java.util.Arrays;
 import toxi.geom.Vec2D;
 
 /*
