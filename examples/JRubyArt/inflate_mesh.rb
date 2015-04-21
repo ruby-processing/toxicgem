@@ -50,7 +50,7 @@ class InflateMesh < Processing::App
   end
 
   def init_physics
-    @box = Toxi::WETriangleMesh.new
+    @box = WETriangleMesh.new
     # create a simple start mesh
     # box.addMesh(Toxi::Cone.new(TVec3D.new(0, 0, 0), TVec3D.new(0, 1, 0), 10, 50, 100).to_mesh(4))
     box.add_mesh(AABB.new(TVec3D.new, 50).to_mesh)

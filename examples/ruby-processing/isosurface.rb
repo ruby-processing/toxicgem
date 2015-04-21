@@ -51,7 +51,7 @@ def setup
   @gfx = Gfx::ToxiclibsSupport.new(self)
   vol = EvaluatingVolume.new(TVec3D.new(400, 400, 400), RES, RES, RES, MAX_ISO)
   surface = Volume::HashIsoSurface.new(vol)
-  @mesh = Toxi::WETriangleMesh.new
+  @mesh = WETriangleMesh.new
   surface.compute_surface_mesh(mesh, ISO)
   @is_wire_frame = false
 end
@@ -75,7 +75,7 @@ def key_pressed
   when 'w', 'W'
     @is_wire_frame = !is_wire_frame
   when 'l', 'L'
-    Toxi::LaplacianSmooth.new.filter(mesh, 1)
+    LaplacianSmooth.new.filter(mesh, 1)
   when 's', 'S'
     save_frame('implicit.png')
   end
