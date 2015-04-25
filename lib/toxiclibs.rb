@@ -1,23 +1,31 @@
 if RUBY_PLATFORM == 'java'
   require 'toxiclibs.jar'
+  
+  def import_class_list(list, string)
+    list.each { |klass| java_import format(string, klass) }
+  end
 
   module Simulation
     include_package 'toxi.sim.automata'
     include_package 'toxi.sim.dla'
     erosion = %w(ErosionFunction TalusAngleErosion ThermalErosion)
-    erosion.each { |klass| java_import format('toxi.sim.erosion.%s', klass) }
+    erosion_format = 'toxi.sim.erosion.%s'
+    import_class_list(erosion, erosion_format)
     fluids = %w(FluidSolver2D FluidSolver3D)
-    fluids.each { |klass| java_import format('toxi.sim.fluids.%s', klass) }
+    fluids_format = 'toxi.sim.fluids.%s'
+    import_class_list(fluids, fluids_format)
     java_import 'toxi.sim.grayscott.GrayScott'
   end
 
   module Physics
     behavior2d = %w(AttractionBehavior2D ConstantForceBehavior2D GravityBehavior2D ParticleBehavior2D)
-    behavior2d.each { |klass| java_import format('toxi.physics2d.behaviors.%s', klass) }
+    behavior2d_format = 'toxi.physics2d.behaviors.%s'
+    import_class_list(behavior2d, behavior2d_format)
     include_package 'toxi.physics2d.constraints'
     include_package 'toxi.physics2d'
     behavior3d = %w(AttractionBehavior3D ConstantForceBehavior3D GravityBehavior3D ParticleBehavior3D)
-    behavior3d.each { |klass| java_import format('toxi.physics3d.behaviors.%s', klass) }
+    behavior3d_format = 'toxi.physics3d.behaviors.%s'
+    import_class_list(behavior3d, behavior3d_format)
     include_package 'toxi.physics3d.constraints'
     include_package 'toxi.physics3d'
   end
@@ -32,17 +40,20 @@ if RUBY_PLATFORM == 'java'
     include_package 'toxi.util.datatypes'
     java_import 'toxi.util.events.EventDispatcher'
     utils = %w{DateUtils FileSequenceDescriptor FileUtils}
-    utils.each { |klass| java_import format('toxi.util.%s', klass) }
+    utils_format = 'toxi.util.%s'
+    import_class_list(utils, utils_format)
     subdiv = %w(CentroidSubdiv DisplacementSubdivision DualDisplacementSubdivision
                 DualSubdivision EdgeLengthComparator FaceCountComparator
                 MidpointDisplacementSubdivision MidpointSubdiv MidpointSubdivision
                 NewSubdivStrategy NormalDisplacementSubdivision SubdivisionStrategy
                 TriSubdivision)
-    subdiv.each { |klass| java_import format('toxi.geom.mesh.subdiv.%s', klass) }
+    subdiv_format = 'toxi.geom.mesh.subdiv.%s'
+    import_class_list(subdiv, subdiv_format)
     nurbs = %w(BasicNurbsCurve BasicNurbsSurface ControlNet CurveCreator CurveUtils
                InterpolationException KnotVector NurbsCreator NurbsCurve NurbsMeshCreator
                NurbsSurface)
-    nurbs.each { |klass| java_import format('toxi.geom.nurbs.%s', klass) }
+    nurbs_format = 'toxi.geom.nurbs.%s'
+    import_class_list(nurbs, nurbs_format)
     include_package 'toxi.math'
     geom = %w(AABB Axis3D AxisAlignedCylinder BernsteinPolynomial BezierCurve2D
               BezierCurve3D BooleanShapeBuilder BoxIntersector Circle CircleIntersector
@@ -57,7 +68,8 @@ if RUBY_PLATFORM == 'java'
               SphereIntersectorReflector Spline2D Spline3D SutherlandHodgemanClipper
               Triangle2D Triangle3D TriangleIntersector Vec2D Vec3D Vec4D VecMathUtil
               XAxisCylinder YAxisCylinder ZAxisCylinder)
-    geom.each { |klass| java_import format('toxi.geom.%s', klass) }
+    geom_format = 'toxi.geom.%s'
+    import_class_list(geom, geom_format)
   end
 
   module Gfx
@@ -72,12 +84,14 @@ if RUBY_PLATFORM == 'java'
               IsoSurface MarchingCubesIndex MeshLatticeBuilder MeshVoxelizer
               MultiplyBrush PeakBrush ReplaceBrush RoundBrush VolumetricBrush
               VolumetricHashMap VolumetricSpace VolumetricSpaceArray)
-  volume.each { |klass| java_import format('toxi.volume.%s', klass) }
+  volume_format = 'toxi.volume.%s'
+  import_class_list(volume, volume_format)
   mesh = %w(BezierPatch BoxSelector DefaultSTLColorModel DefaultSelector Face
             LaplacianSmooth MaterialiseSTLColorModel Mesh3D MeshIntersector OBJWriter
             PLYWriter PlaneSelector STLColorModel STLReader STLWriter SphereFunction
             SphericalHarmonics SuperEllipsoid SurfaceFunction SurfaceMeshBuilder
             Terrain TriangleMesh Vertex VertexSelector WEFace WEMeshFilterStrategy
             WETriangleMesh WEVertex WingedEdge)
-  mesh.each { |klass| java_import format('toxi.geom.mesh.%s', klass) }
+  mesh_format = 'toxi.geom.mesh.%s'
+  import_class_list(mesh, mesh_format)
 end
