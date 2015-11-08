@@ -12,10 +12,13 @@ require 'forwardable'
 
 attr_reader :physics, :cluster, :f, :show_physics, :show_particles
 
-def setup
+def settings
   size(640, 360)
-  @f = createFont('Georgia', 12, true)
+end
 
+def setup
+  sketch_title 'Simple Cluster'
+  @f = createFont('Georgia', 12, true)
   @show_physics = true
   @show_particles = true
   @show_physics = true
@@ -23,7 +26,6 @@ def setup
   # Initialize the physics
   @physics = Physics::VerletPhysics2D.new
   @physics.set_world_bounds(Toxi::Rect.new(10, 10, width - 20, height - 20))
-
   # Spawn a new random graph
   @cluster = Cluster.new(8, 100, TVec2D.new(width / 2, height / 2))
 end
