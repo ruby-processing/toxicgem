@@ -38,7 +38,7 @@
 
 require 'toxiclibs'
 
-load_library :mesh_to_vbo
+require_relative 'library/mesh_to_vbo'
 
 RES = 64
 ISO = 0.2
@@ -46,8 +46,12 @@ MAX_ISO = 0.66
 
 attr_reader :mesh, :vbo, :curr_zoom, :implicit
 
-def setup
+def settings
   size(720,720, P3D)
+end
+
+def setup
+  sketch_title 'Implicit Surface'
   Processing::ArcBall.init(self)
   @vbo = MeshToVBO.new(self)
   @curr_zoom = 1
