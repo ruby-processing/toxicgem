@@ -16,7 +16,7 @@ Gem::Specification.new do |spec|
   spec.homepage = 'https://github.com/ruby-processing/toxiclibs'
   spec.files = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
   spec.files << 'lib/toxiclibs.jar'
-  spec.files << 'lib/args4j-2.0.11.jar' 
+  spec.files << 'lib/args4j-2.0.31.jar' 
   spec.require_paths = ['lib']
   spec.add_dependency 'jruby_art', '~> 1.0' 
   spec.add_development_dependency "rake", "~> 10.0"
