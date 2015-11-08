@@ -35,10 +35,7 @@
 # License along with this library if not, write to the Free Software
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #
-
 require 'toxiclibs'
-
-require_relative 'library/mesh_to_vbo'
 
 RES = 64
 ISO = 0.2
@@ -47,13 +44,13 @@ MAX_ISO = 0.66
 attr_reader :mesh, :vbo, :curr_zoom, :implicit
 
 def settings
-  size(720,720, P3D)
+  size(720, 720, P3D)
 end
 
 def setup
   sketch_title 'Implicit Surface'
   Processing::ArcBall.init(self)
-  @vbo = MeshToVBO.new(self)
+  @vbo = Gfx::MeshToVBO.new(self)
   @curr_zoom = 1
   vol = EvaluatingVolume.new(TVec3D.new(400,400,400), RES, RES, RES, MAX_ISO)
   surface = Volume::HashIsoSurface.new(vol)
@@ -61,7 +58,7 @@ def setup
   surface.compute_surface_mesh(mesh, ISO)
   @is_wire_frame = false
   no_stroke
-  @implicit = vbo.meshToVBO(mesh, true)
+  @implicit = vbo.mesh_to_shape(mesh, true)
   implicit.setFill(color(222, 222, 222))
   implicit.setAmbient(color(50, 50, 50))
   implicit.setShininess(color(10, 10, 10))
@@ -79,7 +76,7 @@ def key_pressed
   case key
   when 'l', 'L'
     LaplacianSmooth.new.filter(mesh, 1)
-    @implicit = vbo.meshToVBO(mesh, true)
+    @implicit = vbo.mesh_to_shape(mesh, true)
     # new mesh so need to set finish
     implicit.setFill(color(222, 222, 222))
     implicit.setAmbient(color(50, 50, 50))

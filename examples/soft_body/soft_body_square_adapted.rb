@@ -37,8 +37,12 @@ require_relative 'particle'
 
 attr_reader :b, :physics
 
+def settings
+  size 640, 360
+end
+
 def setup
-  size(640, 360)
+  sketch_title 'Soft Body Square'
   @physics = Physics::VerletPhysics2D.new
   physics.add_behavior(Physics::GravityBehavior2D.new(TVec2D.new(0, 0.1)))
   @b = Blanket.new physics

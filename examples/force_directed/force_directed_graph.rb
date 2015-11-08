@@ -21,70 +21,72 @@ require_relative 'node'
 # You should have received a copy of the GNU Lesser General Public
 # License along with this library if not, write to the Free Software
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
-class ForceDirectedGraph < Processing::App
-  attr_reader :physics, :clusters, :show_physics, :show_particles, :f
 
-  def setup
-    size(640, 360)
-    @f = create_font('Georgia', 12, true)
-    @show_physics = true
-    @show_particles = true
-    # Initialize the physics
-    @physics = Physics::VerletPhysics2D.new
-    physics.set_world_bounds(Toxi::Rect.new(10, 10, width - 20, height - 20))
-    # Spawn a new random graph
-    new_graph
-  end
+attr_reader :physics, :clusters, :show_physics, :show_particles, :f
 
+def settings
+  size(640, 360)
+end
+
+def setup
+  sketch_title 'Force Directed Graph'
+  @f = create_font('Georgia', 12, true)
+  @show_physics = true
+  @show_particles = true
+  # Initialize the physics
+  @physics = Physics::VerletPhysics2D.new
+  physics.set_world_bounds(Toxi::Rect.new(10, 10, width - 20, height - 20))
   # Spawn a new random graph
-  def new_graph
-    # Clear physics
-    physics.clear
-    center = TVec2D.new(width / 2, height / 2)
-    @clusters = (0..8).map { Cluster.new(physics, rand(3..8), rand(20..100), center) }
-    #	All clusters connect to all clusters
-    clusters.each_with_index do |ci, i|
-      clusters[i + 1..clusters.size - 1].each do |cj|
-        ci.connect(cj)
-      end
-    end
-  end
+  new_graph
+end
 
-  def draw
-    # Update the physics world
-    physics.update
-    background(255)
-    # Display all points
-    clusters.each(&:display) if show_particles
-    # If we want to see the physics
-    if show_physics
-      clusters.each_with_index do |ci, i|
-        ci.internal_connections self
-        # Cluster connections to other clusters
-        clusters[1 + i..clusters.size - 1].each do |cj|
-          ci.show_connections(self, cj)
-        end
-      end
-    end
-    # Instructions
-    fill(0)
-    text_font(f)
-    text("'p' to display or hide particles\n'c' to display or hide connections\n'n' for new graph", 10, 20)
-  end
-
-  # Key press commands
-  def key_pressed
-    case key
-    when 'c'
-      @show_physics = !show_physics
-      @show_particles = true unless show_physics
-    when 'p'
-      @show_particles = !show_particles
-      @show_physics = true unless show_particles
-    when 'n'
-      new_graph
+# Spawn a new random graph
+def new_graph
+  # Clear physics
+  physics.clear
+  center = TVec2D.new(width / 2, height / 2)
+  @clusters = (0..8).map { Cluster.new(physics, rand(3..8), rand(20..100), center) }
+  #	All clusters connect to all clusters
+  clusters.each_with_index do |ci, i|
+    clusters[i + 1..clusters.size - 1].each do |cj|
+      ci.connect(cj)
     end
   end
 end
 
-ForceDirectedGraph.new(title: 'Force directed graphs')
+def draw
+  # Update the physics world
+  physics.update
+  background(255)
+  # Display all points
+  clusters.each(&:display) if show_particles
+  # If we want to see the physics
+  if show_physics
+    clusters.each_with_index do |ci, i|
+      ci.internal_connections self
+      # Cluster connections to other clusters
+      clusters[1 + i..clusters.size - 1].each do |cj|
+        ci.show_connections(self, cj)
+      end
+    end
+  end
+  # Instructions
+  fill(0)
+  text_font(f)
+  text("'p' to display or hide particles\n'c' to display or hide connections\n'n' for new graph", 10, 20)
+end
+
+# Key press commands
+def key_pressed
+  case key
+  when 'c'
+    @show_physics = !show_physics
+    @show_particles = true unless show_physics
+  when 'p'
+    @show_particles = !show_particles
+    @show_physics = true unless show_particles
+  when 'n'
+    new_graph
+  end
+end
+

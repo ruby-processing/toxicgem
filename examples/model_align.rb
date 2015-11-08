@@ -1,20 +1,22 @@
 # This example demonstrates how to rotate a number of meshes
 # so that each points towards a common & user controlled focal point.
 #
-# Requires toxiclibs gem (NB: as a bare sketch needs to run with 'k9')
+# Requires toxiclibs-0.5.0+ gem
 #
 # (c) 2012 Karsten Schmidt / LGPL2 licensed
 #
 require 'toxiclibs'
 
-load_libraries :vecmath
-
 # container for mesh positions
 
 attr_reader :gfx, :positions
 
+def settings
+  size(640, 480, P3D)  
+end
+
 def setup
-  size(640,480,P3D)
+  sketch_title 'Model Align'
   Processing::ArcBall.init(self)
   @gfx = Gfx::ToxiclibsSupport.new(self)
   # compute mesh positions on circle in XZ plane
@@ -35,10 +37,8 @@ def draw
   # align the positive z-axis of mesh to point at focus
   # mesh needs to be located at world origin for it to work correctly
   # only once rotated, move it to actual position
-  positions.map { |p| gfx.mesh(m.copy.pointTowards(focus.sub(p), TVec3D::Z_AXIS).translate(p)) }
-  
+  positions.map { |p| gfx.mesh(m.copy.pointTowards(focus.sub(p), TVec3D::Z_AXIS).translate(p)) }  
   # draw connections from mesh centers to focal point
   stroke(0,255,255)
   positions.map { |p| gfx.line(p, focus) }
 end
-
