@@ -5,7 +5,7 @@
 gem install toxiclibs
 ```
 
-### NB: Also works with ruby-processing
+### NB: Use version 0.4 for ruby-processing
 
 Here I have created create a gem to use Karsten Schmidts (aka toxi, @postspectacular) toxiclibs jars in JRubyArt. To compile the gem follow the instructions for [JRubyArt][]. Most parts of toxiclibs API is exposed in the latest version, (but only a few examples are included) in principle it should be possible to make all available!!! For this demonstration I have used up to date source code for version 21, since [toxis final release][] may never materialise (he's probably got more interesting things to do). There are reported to be number of outstanding bugs with toxiclibs, if they affect you report it [here][] (or better fix them yourself and submit a pull request).
 
