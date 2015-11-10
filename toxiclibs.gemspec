@@ -14,7 +14,7 @@ Gem::Specification.new do |spec|
   expressions (available since jdk8). Also new since version 0.5.0 are 3D Mesh 
   to PShape and 3D mesh to Povray mesh2 utilities.
   EOS
-  spec.license = 'GPLv3'
+  spec.licenses = %w{MIT LGPL-3.0}
   spec.authors = %w{Karsten\ Schmidt Martin\ Prout}
   spec.email = 'martin_p@lineone.net'
   spec.homepage = 'https://github.com/ruby-processing/toxiclibs'
