@@ -15,7 +15,7 @@ Gem::Specification.new do |spec|
   to PShape and 3D mesh to Povray mesh2 utilities.
   EOS
   spec.license = 'GPLv3'
-  spec.authors = %w{Karsten/ Schmidt Martin/ Prout}
+  spec.authors = %w{Karsten\ Schmidt Martin\ Prout}
   spec.email = 'martin_p@lineone.net'
   spec.homepage = 'https://github.com/ruby-processing/toxiclibs'
   spec.files = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
