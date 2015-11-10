@@ -52,7 +52,7 @@ def setup
   Processing::ArcBall.init(self)
   @vbo = Gfx::MeshToVBO.new(self)
   @curr_zoom = 1
-  vol = EvaluatingVolume.new(TVec3D.new(400,400,400), RES, RES, RES, MAX_ISO)
+  vol = EvaluatingVolume.new(TVec3D.new(400, 400, 400), RES, RES, RES, MAX_ISO)
   surface = Volume::HashIsoSurface.new(vol)
   @mesh = WETriangleMesh.new
   surface.compute_surface_mesh(mesh, ISO)
@@ -84,6 +84,15 @@ def key_pressed
     implicit.setSpecular(color(50, 50, 50))
   when 's', 'S'
     save_frame("implicit.png")
+  when 'p', 'P'
+    no_loop
+    pm = Gfx::POVMesh.new(self)
+    file = java.io.File.new('implicit.inc')
+    pm.begin_save(file)
+    pm.set_texture(Gfx::Textures::WHITE)
+    pm.saveAsPOV(mesh, true)
+    pm.end_save
+    puts 'finisded'
   end
 end
 
@@ -94,6 +103,7 @@ def define_lights
   spot_light(30, 30, 30, 0, 40, 200, 0, -0.5, -0.5, PI / 2, 2)
 end
 
+# Custom evaluating Volume Class
 class EvaluatingVolume < Volume::VolumetricSpace
   
   attr_reader :upper_bound

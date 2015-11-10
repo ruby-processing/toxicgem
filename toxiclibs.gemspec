@@ -8,8 +8,12 @@ Gem::Specification.new do |spec|
   spec.version = Toxiclibs::VERSION
   spec.has_rdoc = true
   spec.extra_rdoc_files = %w{README.md LICENSE.md}
-  spec.summary = %q{Experimental gem for some toxiclibs}
-  spec.description = %q{A gem wrapper for some toxiclibs jars}
+  spec.summary = %q{Updated and extended toxiclibs libraries for JRubyArt}
+  spec.description =<<-EOS
+  Toxiclibs java libraries wrapped in a rubygem. Updated to use java lambda 
+  expressions (available since jdk8). Also new since version 0.5.0 are 3D Mesh 
+  to PShape and 3D mesh to Povray mesh2 utilities.
+  EOS
   spec.license = 'GPLv3'
   spec.authors = %w{Karsten/ Schmidt Martin/ Prout}
   spec.email = 'martin_p@lineone.net'
@@ -28,5 +32,3 @@ Gem::Specification.new do |spec|
   spec.requirements << 'maven = 3.3.3'
   spec.requirements << 'jruby_art = 1.0+'
 end
-
-

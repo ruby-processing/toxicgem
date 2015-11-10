@@ -42,7 +42,7 @@ public class POVWriter implements POVInterface {
     /**
      *
      */
-    public final String VERSION = "0.58";
+    public final String VERSION = "0.60";
     /**
      *
      */
@@ -72,7 +72,8 @@ public class POVWriter implements POVInterface {
 //    }
     public POVWriter(File meshObj) {
         this.opt = Textures.RAW;
-        spath = meshObj.getParent();
+        String path = meshObj.getAbsolutePath();
+        spath = path.replaceFirst(meshObj.getName(), "");
         try {
             this.povWriter = new PrintWriter(new BufferedWriter(new OutputStreamWriter(new FileOutputStream(meshObj), "UTF8")));
         } catch (IOException ex) {
@@ -415,7 +416,7 @@ public class POVWriter implements POVInterface {
         povWriter.append("}");
         povWriter.append(eol);
 
-        String outFile = spath + File.separator + "my_texture.inc";
+        String outFile = spath + "my_texture.inc";
         // if (declaredOpt.size() > 1) { // guard against only RAW
         try {
             PrintWriter pw;
