@@ -1,38 +1,47 @@
 require 'toxiclibs'
 
-attr_reader :gfx, :mesh, :spherical
+#######
+# After Paul Bourke see http://paulbourke.net/geometry/sphericalh/
+# radius =
+# sin(m0*phi)**m1 + cos(m2*phi)**m3 + sin(m4*theta)**m5 + cos(m6*theta)**m7
+# where phi = (0..PI) and theta = (0..TWO_PI)
+# As implemented by Karsten Schmidt aka toxi/postspectacular
+#######
 
-def setup  
+attr_reader :gfx, :mesh, :spherical, :param
+
+def setup
   sketch_title 'Spherical Harmonics Mesh Builder'
   ArcBall.init(self)
-  @mesh = randomize_mesh
-  @gfx = Gfx::MeshToVBO.new(self)
+  @param = [8, 4, 1, 5, 1, 4, 0, 0] # default function parameters (m0..m7)
+  @mesh = spherical_mesh(param)
+  @gfx = Gfx::MeshToVBO.new(self) # Mesh to vertex buffer object converter
   no_stroke
-  @spherical = gfx.mesh_to_shape(mesh, true)
+  @spherical = gfx.mesh_to_shape(mesh, true) # white
 end
 
 def draw
-  background(0)  
+  background(0)
   lights
   shininess(16)
-  directionalLight(255, 255, 255, 0, -1, 1)
+  directional_light(255, 255, 255, 0, -1, 1)
   specular(255)
-  fill(255)
-  noStroke  
   shape(spherical)
 end
 
-def keyPressed
-  if (key == 'r')
-    @mesh = randomize_mesh
-    no_stroke
-    @spherical = gfx.mesh_to_colored_shape(mesh, true)
-  end
+def key_pressed
+  return unless (key == 'r')
+  @mesh = spherical_mesh(random_parameters)
+  no_stroke
+  @spherical = gfx.mesh_to_colored_shape(mesh, true) # harmonic colors
 end
 
-def randomize_mesh
-  m = (0..8).map { rand(0..8) }
-  b = SurfaceMeshBuilder.new(SphericalHarmonics.new(m.to_java(:float)))
+def random_parameters
+  (0..8).map { rand(0..8) }
+end
+
+def spherical_mesh(param)
+  b = SurfaceMeshBuilder.new(SphericalHarmonics.new(param.to_java(:float)))
   b.create_mesh(nil, 80, 60)
 end
 
