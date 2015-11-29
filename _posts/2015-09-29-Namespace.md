@@ -17,7 +17,7 @@ th{
 }
 </style>
 
-|feature       |  Java / Processing        |  JRubyArt                      |
+|Description   |  Java / Processing        |  JRubyArt                      |
 |----------    |:-------------:            |------:                         |
 |2D vector     |Vec2D                      |TVec2D <sup>a</sup>             |
 |2D vector     |Vec3D                      |TVec3D <sup>a</sup>             |
@@ -35,7 +35,7 @@ th{
 
 <sup>c</sup>Using Toxi prefix to avoid possible namespace clash, see [toxiclibs.rb][library]
 
-<sup>d</sup>Using Gfx prefix to provide assess to `toxi.processing` package, see [toxiclibs.rb][library] commonly would be used to call `ToxiclibsSupport`
+<sup>d</sup>Using Gfx prefix to provide access to the `toxi.processing` package, see [toxiclibs.rb][library]. Most common usage would be to call `ToxiclibsSupport` see below:-
 
 {% highlight java %}
 ToxiclibsSupport gfx = new ToxiclibsSupport(this);
