@@ -15,7 +15,8 @@ import toxi.geom.mesh.TriangleMesh;
  * @author Martin Prout
  */
 public class MeshToVBO {
-
+    private int fillColor;
+    private int strokeColor;
     private final PApplet app;
     private final Matrix4x4 normalMap =
     new Matrix4x4().translateSelf(128, 128, 128).scaleSelf(127);
@@ -26,8 +27,17 @@ public class MeshToVBO {
      */
     public MeshToVBO(PApplet app) {
         this.app = app;
+        this.fillColor = -1;
     }
 
+    public void fillColor(int col) {
+        this.fillColor = col;
+    }
+    
+    public void strokeColor(int col) {
+        this.fillColor = col;
+    }
+    
     /**
      * Use default smooth (smooth = false) for cubes etc
      * @param mesh Toxiclibs mesh
@@ -37,6 +47,7 @@ public class MeshToVBO {
     public PShape meshToShape(TriangleMesh mesh, boolean smooth) {
         PShape retained = app.createShape();
         retained.beginShape(PConstants.TRIANGLE);
+        retained.fill(fillColor);
         if (smooth) {
             mesh.faces.stream().map((f) -> {
                 retained.normal(f.a.normal.x, f.a.normal.y, f.a.normal.z);
