@@ -146,7 +146,7 @@ public class Rect implements Shape2D {
         if (px < x || px > x + width) {
             return false;
         }
-        return (py >= y || py <= y + height);
+        return (py >= y && py <= y + height);
     }
 
     /**

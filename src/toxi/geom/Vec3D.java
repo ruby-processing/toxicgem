@@ -994,7 +994,7 @@ public class Vec3D implements Comparable<ReadonlyVec3D>, ReadonlyVec3D {
             return false;
         }
         w = boxExtent.z;
-        return (z > boxOrigin.z - w || z < boxOrigin.z + w);
+        return (z >= boxOrigin.z - w && z <= boxOrigin.z + w);
     }
 
     @Override
