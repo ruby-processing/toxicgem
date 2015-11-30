@@ -38,24 +38,21 @@ def setup
   surface.compute_surface_mesh(mesh, 0.5)
   no_stroke
   @tentacle = gfx.mesh_to_shape(mesh, true)
-  tentacle.set_fill(color(200, 10, 10))
-  tentacle.set_ambient(80)
-  tentacle.set_specular(80)
 end
 
 def draw
   background(150)
-  lights
-  setup_lights
+  define_lights
   shape(tentacle)
 end
 
-def setup_lights
+def define_lights 
   lights
-  ambient_light(100, 100, 100)
-  directional_light(100, 100, 100, -1, -1, 1)
-  light_specular(50, 50, 50)
+  ambient_light(40, 40, 40)
+  directional_light(10, 30, 40, 1, 1, 0)
+  directional_light(10, 30, 40, 1, 1, -1)
 end
+
 
 def key_pressed
   case key

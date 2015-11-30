@@ -12,7 +12,7 @@ require 'toxiclibs'
 attr_reader :gfx, :positions
 
 def settings
-  size(640, 480, P3D)  
+  size(640, 480, P3D)
 end
 
 def setup
@@ -28,7 +28,7 @@ def draw
   lights
   no_stroke
   # create manual focal point in XY plane
-  focus = TVec3D.new((mouse_x - width/2), (mouse_y - height/2), 0)
+  focus = TVec3D.new((mouse_x - width / 2), (mouse_y - height / 2), 0)
   # create mesh prototype to draw at all generated positions
   # the mesh is a simple box placed at the world origin
   m = AABB.new(25).to_mesh
@@ -37,8 +37,8 @@ def draw
   # align the positive z-axis of mesh to point at focus
   # mesh needs to be located at world origin for it to work correctly
   # only once rotated, move it to actual position
-  positions.map { |p| gfx.mesh(m.copy.pointTowards(focus.sub(p), TVec3D::Z_AXIS).translate(p)) }  
+  positions.map { |p| gfx.mesh(m.copy.pointTowards(focus.sub(p), TVec3D::Z_AXIS).translate(p)) }
   # draw connections from mesh centers to focal point
-  stroke(0,255,255)
+  stroke(0, 255, 255)
   positions.map { |p| gfx.line(p, focus) }
 end
