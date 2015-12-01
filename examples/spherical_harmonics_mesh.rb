@@ -33,7 +33,7 @@ def key_pressed
   return unless (key == 'r')
   @mesh = spherical_mesh(random_parameters)
   no_stroke
-  @spherical = gfx.mesh_to_colored_shape(mesh, true) # harmonic colors
+  @spherical = gfx.mesh_to_colored_shape(mesh) # harmonic colors
 end
 
 def random_parameters
