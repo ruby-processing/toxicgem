@@ -1,5 +1,7 @@
 ## Toxiclibs for JRubyArt
 
+![travis build](https://travis-ci.org/ruby-processing/toxicgem.svg)
+
 ### Installing
 ```bash
 gem install toxiclibs
