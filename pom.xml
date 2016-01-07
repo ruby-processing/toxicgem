@@ -55,9 +55,7 @@
     <dependency>
       <groupId>org.processing</groupId>
       <artifactId>core</artifactId>
-      <scope>system</scope>
       <version>3.0.1</version>
-      <systemPath>${processing.home}/core/library/core.jar</systemPath>
     </dependency>
   </dependencies>
   <properties>
@@ -67,10 +65,10 @@
     <!-- for Mac developers, non Archlinux and Windows can probably figure it out
     <processing.home>/Applications/Processing.app/Contents/Java</processing.home> 
     -->
-    <processing.home>/usr/share/processing</processing.home>
   </properties>
   <build>
     <sourceDirectory>src</sourceDirectory>
+    <defaultGoal>package</defaultGoal>
     <finalName>toxiclibs</finalName>
     <extensions>
       <extension>
