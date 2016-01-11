@@ -14,6 +14,8 @@ project 'toxiclibs' do
     roles 'developer' 
   end
 
+  license 'LGPL 2', 'http://www.gnu.org/licenses/lgpl-2.1-standalone.html'
+
   issue_management 'https://github.com/ruby-processing/toxiclibs/issues', 'Github'
 
   source_control( :url => 'https://github.com/ruby-processing/toxiclibs',
