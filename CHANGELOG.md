@@ -1,3 +1,4 @@
+**v0.7.0** Use polyglot maven build
 
 **v0.6.0** Some corrections to the Rect and Vec3D contains logic (mea culpa, caued by injudicious refactoring)
 
