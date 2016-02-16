@@ -25,5 +25,4 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
   spec.add_dependency 'jruby_art', '~> 1.0', '>= 1.0.1' 
   spec.add_development_dependency 'rake', '~> 10.4', '>= 10.4.2'
-  # spec.development_dependency 'maven', '~> 3.3', '>= 3.3.3'
 end

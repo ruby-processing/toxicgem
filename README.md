@@ -25,9 +25,7 @@ Here I have created create a gem to use Karsten Schmidts (aka toxi, @postspectac
 
 ### Licensing
 
-I should be clear that the original toxiclibs is the work of Karsten Schmidt:-
-
-Copyright (c) 2010 Karsten Schmidt
+I should be clear that the original toxiclibs is the work of Karsten Schmidt see [Copyright[]
  
 This demo & library is free software you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
@@ -41,3 +39,5 @@ version 2.1 of the License, or (at your option) any later version.
 [Toxiclibs Documentation]:http://toxiclibs.org/
 [Example Usage]:https://github.com/ruby-processing/toxicgem/tree/master/examples
 [here]:https://github.com/ruby-processing/toxiclibs/issues
+[Copyright]:https://github.com/ruby-processing/toxiclibs/COPYING.md
+
