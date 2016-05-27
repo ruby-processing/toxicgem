@@ -1,5 +1,7 @@
-require 'toxiclibs'
+require 'toxiclibs' # gem
 
+# click mouse on sketch several times and you will 
+# see the Toxi::Rect grow to include new data points
 attr_reader :points, :bounds, :gfx
 
 def settings

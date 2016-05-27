@@ -83,16 +83,16 @@ def key_pressed
     implicit.setShininess(color(10, 10, 10))
     implicit.setSpecular(color(50, 50, 50))
   when 's', 'S'
-    save_frame("implicit.png")
+    save_frame(data_path('implicit.png'))
   when 'p', 'P'
     no_loop
     pm = Gfx::POVMesh.new(self)
-    file = java.io.File.new('implicit.inc')
+    file = java.io.File.new(data_path('implicit.inc'))
     pm.begin_save(file)
     pm.set_texture(Gfx::Textures::WHITE)
     pm.saveAsPOV(mesh, true)
     pm.end_save
-    puts 'finisded'
+    puts 'finished'
   end
 end
 

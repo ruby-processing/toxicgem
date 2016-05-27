@@ -1,7 +1,6 @@
 load_library :geomerative
 require 'toxiclibs'
 include_package 'geomerative'
-
 attr_reader :font, :input, :physics
 
 def settings
@@ -13,7 +12,7 @@ def setup
   sketch_title 'Physics Type'
   @input = 'Hello!'
   RG.init(self)
-  fnt = RG.load_font('ReplicaBold.ttf') # file name
+  fnt = RG.load_font(data_path('ReplicaBold.ttf')) # file name
   RG.text_font(fnt, 330) # RFont object, size
   @font = RG.get_text(input) # String to RShape
   RG.set_polygonizer(RCommand::UNIFORMLENGTH)

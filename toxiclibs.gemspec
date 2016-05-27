@@ -11,18 +11,18 @@ Gem::Specification.new do |spec|
   spec.summary = %q{Updated and extended toxiclibs libraries for JRubyArt}
   spec.description =<<-EOS
   Toxiclibs java libraries wrapped in a rubygem. Updated to use joal-2.3.1
-  java lambda expressions (available since jdk8). Also new since version 
-  0.5.0 are 3D Mesh to PShape and 3D mesh to Povray mesh2 utilities.
+  java lambda expressions (available since jdk8). Latest version compiled 
+  and tested with JRubyArt-1.1 and processing-3.1.
   EOS
   spec.licenses = %w{MIT LGPL-3.0}
   spec.authors = %w{Karsten\ Schmidt Martin\ Prout}
-  spec.email = 'martin_p@lineone.net'
+  spec.email = 'mamba2928@yahoo.co.uk'
   spec.homepage = 'http://ruby-processing.github.io/toxicgem/'
   spec.files = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
   spec.files << 'lib/toxiclibs.jar'
   spec.files << 'lib/args4j-2.0.31.jar' 
   spec.files << 'lib/joal-2.3.1.jar' 
   spec.require_paths = ['lib']
-  spec.add_dependency 'jruby_art', '~> 1.0', '>= 1.0.1' 
-  spec.add_development_dependency 'rake', '~> 10.4', '>= 10.4.2'
+  spec.add_dependency 'jruby_art', '~> 1.1', '>= 1.1.0' 
+  spec.add_development_dependency 'rake', '~> 11.1', '>= 11.1.1'
 end

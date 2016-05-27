@@ -1,7 +1,7 @@
 project 'toxiclibs' do
 
   model_version '4.0.0'
-  id 'ruby-processing:toxiclibs:0.7.0'
+  id 'ruby-processing:toxiclibs:0.8.0'
   packaging 'jar'
 
   description 'toxiclibs-library for JRubyArt'
@@ -10,7 +10,7 @@ project 'toxiclibs' do
 
   developer 'monkstone' do
     name 'Martin Prout'
-    email 'martin_p@lineone.net'
+    email 'mamba2928@yahoo.co.uk'
     roles 'developer' 
   end
 
@@ -30,7 +30,7 @@ project 'toxiclibs' do
 
   jar 'org.jogamp.joal:joal-main:2.3.1'
   jar 'args4j:args4j:2.0.31'
-  jar 'org.processing:core:3.0.1'
+  jar 'org.processing:core:3.1'
 
   plugin( :compiler, '3.3',
           'source' =>  '1.8',

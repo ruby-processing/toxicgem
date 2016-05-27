@@ -48,12 +48,12 @@ def key_pressed
   when 'p', 'P'
     fileID = 'FTest'
     pm = Gfx::POVMesh.new(self)
-    file = java.io.File.new(sketchPath(fileID + '.inc'))
+    file = java.io.File.new(sketch_path(fileID + '.inc'))
     pm.begin_save(file)
     pm.set_texture(Gfx::Textures::CHROME)
     pm.saveAsPOV(mesh0.faceOutwards, false)
     pm.end_save 
   when 's', 'S'
-    save_frame('FTest.png')
+    save_frame(data_path('FTest.png'))
   end
 end

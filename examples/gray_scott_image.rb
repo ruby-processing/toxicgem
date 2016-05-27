@@ -33,8 +33,8 @@ require 'toxiclibs'
 # License along with this library if not, write to the Free Software
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #
-
 attr_reader :gs, :tone_map, :img
+CONTROL_KEY = %w(1 2 3 4 5 6 7 8 9).freeze
 
 def settings
   size 256, 256
@@ -43,32 +43,31 @@ end
 def setup
   sketch_title 'Gray Scott Image'
   @gs = Simulation::GrayScott.new width, height, true
-  @img = load_image 'ti_yong.png'
+  @img = load_image(data_path('ti_yong.png'))
   # create a duo-tone gradient map with 256 steps
   # NB: use '::' in place of '.' here for these java constants
-  @tone_map = Toxi::ToneMap.new(0,  0.33, Toxi::NamedColor::CRIMSON, Toxi::NamedColor::WHITE, 256)
+  @tone_map = Toxi::ToneMap.new(0, 0.33, Toxi::NamedColor::CRIMSON, Toxi::NamedColor::WHITE, 256)
 end
 
 def draw
   @gs.seed_image(img.pixels, img.width, img.height)
   @gs.set_rect(mouse_x, mouse_y, 20, 20) if mouse_pressed?
   load_pixels
-  10.times { @gs.update(1) }
+  10.times {@gs.update(1)}
   # read out the V result array
   # and use tone map to render colours
   gs.v.length.times do |i|
-    pixels[i]=tone_map.getARGBToneFor(gs.v[i])  # NB: don't camel case convert here
+    pixels[i] = tone_map.getARGBToneFor(gs.v[i]) # NB: don't camel case convert here
   end
   update_pixels
 end
 
 def key_pressed
-  control_key = %w(1 2 3 4 5 6 7 8 9)
   case key
-  when *control_key
+  when *CONTROL_KEY
     @gs.setF(0.02 + (key.to_i) * 0.001)
   when 's'
-    save_frame 'toxi.png'
+    save_frame(data_path('toxi.png')) # to data folder
   else
     @gs.reset
   end
