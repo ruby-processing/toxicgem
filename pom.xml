@@ -73,7 +73,7 @@ DO NOT MODIFIY - GENERATED CODE
     <plugins>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.3</version>
+        <version>3.5.1</version>
         <configuration>
           <source>1.8</source>
           <target>1.8</target>
@@ -81,7 +81,7 @@ DO NOT MODIFIY - GENERATED CODE
       </plugin>
       <plugin>
         <artifactId>maven-jar-plugin</artifactId>
-        <version>2.6</version>
+        <version>3.0.2</version>
         <configuration>
           <archive>
             <manifestFile>MANIFEST.MF</manifestFile>

@@ -32,10 +32,10 @@ project 'toxiclibs' do
   jar 'args4j:args4j:2.0.31'
   jar 'org.processing:core:3.1'
 
-  plugin( :compiler, '3.3',
+  plugin( :compiler, '3.5.1',
           'source' =>  '1.8',
           'target' =>  '1.8' )
-  plugin( :jar, '2.6',
+  plugin( :jar, '3.0.2',
           'archive' => {
             'manifestFile' =>  'MANIFEST.MF'
           } )
