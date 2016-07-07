@@ -11,7 +11,7 @@ end
 
 def setup
   sketch_title 'Tentacle'
-  @tex = load_image('mask.jpg')
+  @tex = load_image(data_path('mask.jpg'))
   ArcBall.init(self)
   @gfx = Gfx::MeshToVBO.new(self)
   volume = VolumetricSpaceArray.new(TVec3D.new(100, 200, 100), 100, 100, 100)
@@ -61,7 +61,7 @@ def key_pressed
     fileID = 'Tentacle'
     pm = Gfx::POVMesh.new(self)
     pm.begin_save(java.io.File.new(fileID + '.inc'))
-    pm.set_texture(Gfx::Textures::RED)  # red with Phong texture
+    pm.set_texture(Gfx::Textures::RED) # red with Phong texture
     pm.saveAsPOV(mesh, true)
     pm.end_save
     exit
