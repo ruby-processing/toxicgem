@@ -45,4 +45,4 @@ def mouse_pressed
 end
 {% endhighlight %}
 
-[namespace]:{{site.baseurl}}/namespace
+[namespace]:{{site.github.url}}/namespace

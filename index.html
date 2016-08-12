@@ -15,10 +15,10 @@ layout: default
 		 M200,195.391l-39.213-53.218l33.943-63.609L200,195.391z"/>
 </g>
 </svg>
-
+</section>
 <div class="home">
 
-  <h1 class="page-heading">Posts</h1>
+  <h1 class="page-heading">Articles</h1>
 
   <ul class="post-list">
     {% for post in site.posts %}
@@ -26,12 +26,12 @@ layout: default
         <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
 
         <h2>
-          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+          <a class="post-link" href="{{ post.url | prepend: site.github.url }}">{{ post.title }}</a>
         </h2>
       </li>
     {% endfor %}
   </ul>
 
-  <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
+  <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.github.url }}">via RSS</a></p>
 
 </div>
