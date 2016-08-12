@@ -3,7 +3,7 @@ layout: page
 title: About
 permalink: /about/
 ---
-###The java library
+### The java library ###
 
 [Toxiclibs][toxiclibs] is an independent, open source library collection for computational design tasks with Java & Processing developed by Karsten “toxi” Schmidt. The classes are purposefully kept fairly generic in order to maximize re-use in different contexts ranging from generative design, animation, interaction/interface design, data visualization to architecture and digital fabrication, use as teaching tool and more.
 
@@ -14,11 +14,11 @@ After over 3 years of ongoing (almost daily) development the collection consists
 
 The libraries have been designed to have no further dependencies in order to maximize reuse and flexibility. Even though these libraries have been mainly developed for use in Processing related projects, there is no explicit dependency on the monolithic PApplet or any other classes of the Processing toolkit. This is intentional & should be considered as a feature.
 
-###The toxiclibs gem
+### The toxiclibs gem ###
 
 The toxiclibs gem is a derived work based on the un-released version-22 of toxis libraries (code updated to java 7 syntax up to version 0.4, and therafter updated to use java 8 syntax). The current version will not work with versions of processing prior to processing-3.0 release.
 
-###Packages
+### Packages ###
 
 * <s>toxi.audio</s>
    * <s>JOAL based 3D spatial audio sound manager</s> work in progress
