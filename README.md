@@ -25,7 +25,7 @@ This gem provides Karsten Schmidts (aka toxi, @postspectacular) toxiclibs jars f
 
 ### Licensing
 
-I should be clear that the original toxiclibs is the work of Karsten Schmidt see [Copyright[]
+I should be clear that the original toxiclibs is the work of Karsten Schmidt see [Copyright][]
  
 This demo & library is free software you can redistribute it and/or
 modify it under the terms of the GNU Lesser General Public
