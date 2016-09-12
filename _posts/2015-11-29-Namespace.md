@@ -3,7 +3,7 @@ layout: post
 title:  "Calling Toxiclibs from JRubyArt"
 date:   2015-11-29 06:26:13
 categories: jekyll update
-permalink: namespace
+permalink: /namespace/
 ---
 
 <style>
