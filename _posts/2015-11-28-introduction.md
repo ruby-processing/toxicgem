@@ -2,7 +2,7 @@
 layout: post
 title:  "Introducing the Toxiclibs Gem"
 date:   2015-11-28 07:52:09 +0000
-categories: jekyll update
+categories: toxiclibs update
 ---
 ### Toxiclibs for JRubyArt
 

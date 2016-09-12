@@ -2,7 +2,7 @@
 layout: post
 title:  "Getting Started"
 date:   2015-09-29 06:26:13
-categories: jekyll update
+categories: toxiclibs update
 ---
 
 ### Toxiclibs geometry introducing Gfx, TVec2D and Toxi::Rect  
