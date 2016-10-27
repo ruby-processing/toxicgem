@@ -1,6 +1,6 @@
 if RUBY_PLATFORM == 'java'
   require 'toxiclibs.jar'
-  
+
   def import_class_list(list, string)
     list.each { |klass| java_import format(string, klass) }
   end
@@ -55,6 +55,9 @@ if RUBY_PLATFORM == 'java'
     nurbs_format = 'toxi.geom.nurbs.%s'
     import_class_list(nurbs, nurbs_format)
     include_package 'toxi.math'
+    noise = %w(SimplexNoise PerlinNoise)
+    noise_format = 'toxi.math.noise.%s'
+    import_class_list(noise, noise_format)
     geom = %w(AABB Axis3D AxisAlignedCylinder BernsteinPolynomial BezierCurve2D
               BezierCurve3D BooleanShapeBuilder BoxIntersector Circle CircleIntersector
               Cone ConvexPolygonClipper CoordinateExtractor Ellipse GMatrix GVector
