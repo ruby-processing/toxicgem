@@ -30,7 +30,7 @@ project 'toxiclibs' do
 
   jar 'org.jogamp.joal:joal-main:2.3.1'
   jar 'args4j:args4j:2.0.31'
-  jar 'org.processing:core:3.1.1'
+  jar 'org.processing:core:3.2.1'
 
   plugin( :compiler, '3.5.1',
           'source' =>  '1.8',
