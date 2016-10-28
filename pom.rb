@@ -1,7 +1,7 @@
 project 'toxiclibs' do
 
   model_version '4.0.0'
-  id 'ruby-processing:toxiclibs:0.9.0'
+  id 'ruby-processing:toxiclibs:0.9.1'
   packaging 'jar'
 
   description 'toxiclibs-library for JRubyArt'

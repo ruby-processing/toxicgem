@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.extra_rdoc_files = %w{README.md LICENSE.md}
   spec.summary = %q{Updated and extended toxiclibs libraries for JRubyArt}
   spec.description =<<-EOS
-  Toxiclibs java libraries wrapped in a rubygem. Compiled and tested with JRubyArt-1.2.0 and processing-3.1.1
+  Toxiclibs java libraries wrapped in a rubygem. Compiled and tested with JRubyArt-1.2.5 and processing-3.2.1
   EOS
   spec.licenses = %w{MIT LGPL-3.0}
   spec.authors = %w{Karsten\ Schmidt Martin\ Prout}
@@ -22,5 +22,5 @@ Gem::Specification.new do |spec|
   spec.files << 'lib/joal-2.3.1.jar' 
   spec.require_paths = ['lib']
   spec.add_dependency 'jruby_art', '~> 1.2'
-  spec.add_development_dependency 'rake', '~> 11.1', '>= 11.1.1'
+  spec.add_development_dependency 'rake', '~> 11.2', '>= 11.2.2'
 end

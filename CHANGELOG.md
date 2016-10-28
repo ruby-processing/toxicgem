@@ -1,4 +1,6 @@
 
+**v0.9.1** Make it easier to load PerlinNoise and SimplexNoise
+
 **v0.9.0** Updated maven artifacts, somewhat arbitarily require JRubyArt-1.2+
 
 **v0.8.0** Use `data_path`
