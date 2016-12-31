@@ -7,9 +7,9 @@
 gem install toxiclibs
 ```
 
-### NB: Use version 0.4 for ruby-processing, and 0.8 prior to JRubyArt-1.2.0
+### NB: Use version 0.4 for ruby-processing, and 0.9.1 for propane and JRubyArt
 
-This gem provides Karsten Schmidts (aka toxi, @postspectacular) toxiclibs jars for JRubyArt. To compile the gem follow the instructions for [JRubyArt][]. Most parts of toxiclibs API is exposed in the latest version, (but only a few examples are included) in principle it should be possible to make all available!!! For this demonstration I have used up to date source code for version 21, since [toxis final release][] may never materialise (he's probably got more interesting things to do). There are reported to be number of outstanding bugs with toxiclibs, if they affect you report it [here][] (or better fix them yourself and submit a pull request). Version 0.9.0+ features java code updated to use java lambda (jdk8) and was compiled against processing-3.1.1 core.jar. 
+This gem provides Karsten Schmidts (aka toxi, @postspectacular) toxiclibs jars for JRubyArt. To compile the gem follow the instructions for [JRubyArt][]. Most parts of toxiclibs API is exposed in the latest version, (but only a few examples are included) in principle it should be possible to make all available!!! For this demonstration I have used up to date source code for version 21, since [toxis final release][] has not yet been released (although [Dan Shiffman][] is attempting to get it released for processing-3.0+). There are reported to be number of outstanding bugs with toxiclibs, if they affect you report it [here][] (or better fix them yourself and submit a pull request). Version 0.9.1 features java code updated to use java lambda (jdk8) and was compiled against processing-3.2.1 core.jar. 
 
 ![grayscott image](http://4.bp.blogspot.com/-d4MiL4_0Njk/VFJMv6VUicI/AAAAAAAAEgY/fFAfrXDxNXM/s400/grayscott.png)
 
@@ -40,4 +40,4 @@ version 2.1 of the License, or (at your option) any later version.
 [Example Usage]:https://github.com/ruby-processing/toxicgem/tree/master/examples
 [here]:https://github.com/ruby-processing/toxiclibs/issues
 [Copyright]:https://github.com/ruby-processing/toxiclibs/COPYING.md
-
+[Dan Shiffman]:https://github.com/shiffman/toxiclibs/tree/p3-update
