@@ -1,6 +1,7 @@
 ## Toxiclibs for JRubyArt
 
 ![travis build](https://travis-ci.org/ruby-processing/toxicgem.svg)
+[![Gem Version](https://badge.fury.io/rb/toxicgem.svg)](http://badge.fury.io/rb/toxicgem)
 
 ### Installing
 ```bash
