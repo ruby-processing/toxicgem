@@ -1,25 +1,25 @@
 /*
- *   __               .__       .__  ._____.           
+ *   __               .__       .__  ._____.
  * _/  |_  _______  __|__| ____ |  | |__\_ |__   ______
  * \   __\/  _ \  \/  /  |/ ___\|  | |  || __ \ /  ___/
- *  |  | (  <_> >    <|  \  \___|  |_|  || \_\ \\___ \ 
+ *  |  | (  <_> >    <|  \  \___|  |_|  || \_\ \\___ \
  *  |__|  \____/__/\_ \__|\___  >____/__||___  /____  >
- *                   \/       \/             \/     \/ 
+ *                   \/       \/             \/     \/
  *
  * Copyright (c) 2006-2011 Karsten Schmidt
- * 
+ *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
  * version 2.1 of the License, or (at your option) any later version.
- * 
+ *
  * http://creativecommons.org/licenses/LGPL/2.1/
- * 
+ *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * Lesser General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
@@ -46,13 +46,13 @@ public class Matrix4x4 {
      * the row permutations resulting from partial pivoting. The output
      * parameter "even_row_xchg" is 1 when the number of row exchanges is even,
      * or -1 otherwise. Assumes data type is always double.
-     * 
+     *
      * This function is similar to luDecomposition, except that it is tuned
      * specifically for 4x4 matrices.
-     * 
+     *
      * Reference: Press, Flannery, Teukolsky, Vetterling,
      * _Numerical_Recipes_in_C_, Cambridge University Press, 1988, pp 40-45.
-     * 
+     *
      * @param matrix0
      * @param row_perm
      * @param width
@@ -253,7 +253,7 @@ public class Matrix4x4 {
     /**
      * Initialising constructor from a 1d array. Assumes row-major ordering
      * (column index increases faster).
-     * 
+     *
      * @param array
      */
     public Matrix4x4(double[] array) {
@@ -346,7 +346,7 @@ public class Matrix4x4 {
 
     /**
      * Creates a copy of the given vector, transformed by this matrix.
-     * 
+     *
      * @param v
      * @return transformed vector
      */
@@ -461,7 +461,7 @@ public class Matrix4x4 {
      * Matrix Inversion using Cramer's Method Computes Adjoint matrix divided by
      * determinant Code modified from
      * http://www.intel.com/design/pentiumiii/sml/24504301.pdf
-     * 
+     *
      * @return itself
      */
     public Matrix4x4 invert() {
@@ -585,11 +585,11 @@ public class Matrix4x4 {
         return set(s.x, s.y, s.z, -s.dot(eye), t.x, t.y, t.z, -t.dot(eye), f.x,
                 f.y, f.z, -f.dot(eye), 0, 0, 0, 1);
     }
-    
+
     /**
-     * 
+     *
      * @param factor
-     * @return 
+     * @return
      */
 
     public Matrix4x4 multiply(double factor) {
@@ -598,7 +598,7 @@ public class Matrix4x4 {
 
     /**
      * Matrix-Matrix Right-multiplication.
-     * 
+     *
      * @param mat
      * @return product as new matrix
      */
@@ -608,7 +608,7 @@ public class Matrix4x4 {
 
     /**
      * In-place matrix-scalar multiplication.
-     * 
+     *
      * @param factor
      * @return product applied to this matrix.
      */
@@ -649,7 +649,7 @@ public class Matrix4x4 {
 
     /**
      * Applies rotation about arbitrary axis to matrix
-     * 
+     *
      * @param axis
      * @param theta
      * @return rotation applied to this matrix
@@ -672,7 +672,7 @@ public class Matrix4x4 {
 
     /**
      * Applies rotation about X to this matrix.
-     * 
+     *
      * @param theta
      *            rotation angle in radians
      * @return itself
@@ -687,7 +687,7 @@ public class Matrix4x4 {
 
     /**
      * Applies rotation about Y to this matrix.
-     * 
+     *
      * @param theta
      *            rotation angle in radians
      * @return itself
@@ -945,7 +945,7 @@ public class Matrix4x4 {
 
     /**
      * Copies all matrix elements into an linear array.
-     * 
+     *
      * @param result
      *            array (or null to create a new one)
      * @return matrix as 16 element array
@@ -981,7 +981,7 @@ public class Matrix4x4 {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see java.lang.Object#toString()
      */
 
@@ -989,17 +989,20 @@ public class Matrix4x4 {
      *
      * @return
      */
-    
-    @Override
-    public String toString() {
-        return "| " + matrix[0][0] + " " + matrix[0][1] + " " + matrix[0][2]
-                + " " + matrix[0][3] + " |\n" + "| " + matrix[1][0] + " "
-                + matrix[1][1] + " " + matrix[1][2] + " " + matrix[1][3]
-                + " |\n" + "| " + matrix[2][0] + " " + matrix[2][1] + " "
-                + matrix[2][2] + " " + matrix[2][3] + " |\n" + "| "
-                + matrix[3][0] + " " + matrix[3][1] + " " + matrix[3][2] + " "
-                + matrix[3][3] + " |";
-    }
+
+     @Override
+     public String toString() {
+       return String.join("|\n",
+       String.format("| %d %d %d %d ",
+       matrix[0][0], matrix[0][1], matrix[0][2], matrix[0][3]),
+       String.format("| %d %d %d %d ",
+       matrix[1][0], matrix[1][1], matrix[1][2], matrix[1][3]),
+       String.format("| %d %d %d %d ",
+       matrix[2][0], matrix[2][1],  matrix[2][2], matrix[2][3]),
+       String.format("| %d %d %d %d ",
+       matrix[3][0], matrix[3][1], matrix[3][2], matrix[3][3]))
+       + " |";
+     }
 
     /**
      *
@@ -1064,7 +1067,7 @@ public class Matrix4x4 {
     /**
      * Converts the matrix (in-place) between column-major to row-major order
      * (and vice versa).
-     * 
+     *
      * @return itself
      */
     public Matrix4x4 transpose() {
