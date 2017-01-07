@@ -73,6 +73,7 @@ public abstract class AxisAlignedCylinder implements Shape3D {
      * @param p
      * @return true, if inside
      */
+    @Override
     public abstract boolean containsPoint(ReadonlyVec3D p);
 
     /**

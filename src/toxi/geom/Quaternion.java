@@ -1,30 +1,29 @@
 /*
- *   __               .__       .__  ._____.           
+ *   __               .__       .__  ._____.
  * _/  |_  _______  __|__| ____ |  | |__\_ |__   ______
  * \   __\/  _ \  \/  /  |/ ___\|  | |  || __ \ /  ___/
- *  |  | (  <_> >    <|  \  \___|  |_|  || \_\ \\___ \ 
+ *  |  | (  <_> >    <|  \  \___|  |_|  || \_\ \\___ \
  *  |__|  \____/__/\_ \__|\___  >____/__||___  /____  >
- *                   \/       \/             \/     \/ 
+ *                   \/       \/             \/     \/
  *
  * Copyright (c) 2006-2011 Karsten Schmidt
- * 
+ *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
  * version 2.1 of the License, or (at your option) any later version.
- * 
+ *
  * http://creativecommons.org/licenses/LGPL/2.1/
- * 
+ *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * Lesser General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
  */
-
 package toxi.geom;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -47,12 +46,10 @@ public class Quaternion {
 
     /**
      * Creates a Quaternion from a axis and a angle.
-     * 
-     * @param axis
-     *            axis vector (will be normalized)
-     * @param angle
-     *            angle in radians.
-     * 
+     *
+     * @param axis axis vector (will be normalized)
+     * @param angle angle in radians.
+     *
      * @return new quaternion
      */
     public static Quaternion createFromAxisAngle(ReadonlyVec3D axis, float angle) {
@@ -65,14 +62,11 @@ public class Quaternion {
 
     /**
      * Creates a Quaternion from Euler angles.
-     * 
-     * @param pitch
-     *            X-angle in radians.
-     * @param yaw
-     *            Y-angle in radians.
-     * @param roll
-     *            Z-angle in radians.
-     * 
+     *
+     * @param pitch X-angle in radians.
+     * @param yaw Y-angle in radians.
+     * @param roll Z-angle in radians.
+     *
      * @return new quaternion
      */
     public static Quaternion createFromEuler(float pitch, float yaw, float roll) {
@@ -110,7 +104,6 @@ public class Quaternion {
         // x =c1c2*s3 + s1s2*c3;
         // y =s1*c2*c3 + c1*s2*s3;
         // z =c1*s2*c3 - s1*c2*s3;
-
         return q;
     }
 
@@ -118,9 +111,8 @@ public class Quaternion {
      * Creates a quaternion from a rotation matrix. The algorithm used is from
      * Allan and Mark Watt's "Advanced Animation and Rendering Techniques" (ACM
      * Press 1992).
-     * 
-     * @param m
-     *            rotation matrix
+     *
+     * @param m rotation matrix
      * @return quaternion
      */
     public static Quaternion createFromMatrix(Matrix4x4 m) {
@@ -135,8 +127,8 @@ public class Quaternion {
             q[2] = (m.matrix[1][0] - m.matrix[0][1]) * s;
             q[3] = 0.25 / s;
         } else {
-            int[] nxt = new int[] {
-                    1, 2, 0
+            int[] nxt = new int[]{
+                1, 2, 0
             };
             int i = 0, j = 0, k = 0;
 
@@ -167,7 +159,7 @@ public class Quaternion {
     /**
      * Constructs a quaternion that rotates the vector given by the "forward"
      * param into the direction given by the "dir" param.
-     * 
+     *
      * @param dir
      * @param forward
      * @return quaternion
@@ -183,25 +175,21 @@ public class Quaternion {
 
     @XmlAttribute(required = true)
     public float x,
-
-    /**
-     *
-     */
-
-    /**
-     *
-     */
-    y,
-
-    /**
-     *
-     */
-    z,
-
-    /**
-     *
-     */
-    w;
+            /**
+             *
+             */
+            /**
+             *
+             */
+            y,
+            /**
+             *
+             */
+            z,
+            /**
+             *
+             */
+            w;
 
     /**
      *
@@ -296,7 +284,7 @@ public class Quaternion {
 
     /**
      * Computes the dot product with the given quaternion.
-     * 
+     *
      * @param q
      * @return dot product
      */
@@ -307,7 +295,7 @@ public class Quaternion {
     /**
      * Computes this quaternion's conjugate, defined as the same w around the
      * inverted axis.
-     * 
+     *
      * @return new conjugate quaternion
      */
     public Quaternion getConjugate() {
@@ -330,7 +318,7 @@ public class Quaternion {
 
     /**
      * Computes normalized version of this quaternion.
-     * 
+     *
      * @return new normalized quaternion
      */
     public Quaternion getNormalized() {
@@ -341,7 +329,7 @@ public class Quaternion {
      *
      * @return
      */
-    public Quaternion identity() {
+    public final Quaternion identity() {
         w = 1.0f;
         x = 0.0f;
         y = 0.0f;
@@ -353,11 +341,9 @@ public class Quaternion {
      * Spherical interpolation to target quaternion (code ported from <a href=
      * "http://www.gamasutra.com/view/feature/3278/rotating_objects_using_quaternions.php"
      * >GamaSutra</a>)
-     * 
-     * @param target
-     *            quaternion
-     * @param t
-     *            interpolation factor (0..1)
+     *
+     * @param target quaternion
+     * @param t interpolation factor (0..1)
      * @return new interpolated quat
      */
     public Quaternion interpolateTo(Quaternion target, float t) {
@@ -379,11 +365,9 @@ public class Quaternion {
      * Spherical interpolation to target quaternion (code ported from <a href=
      * "http://www.gamasutra.com/view/feature/3278/rotating_objects_using_quaternions.php"
      * >GamaSutra</a>)
-     * 
-     * @param target
-     *            quaternion
-     * @param t
-     *            interpolation factor (0..1)
+     *
+     * @param target quaternion
+     * @param t interpolation factor (0..1)
      * @return new interpolated quat
      */
     public Quaternion interpolateToSelf(Quaternion target, double t) {
@@ -417,7 +401,7 @@ public class Quaternion {
      * Uses spherical interpolation to approach the target quaternion. The
      * interpolation factor is manipulated by the chosen
      * {@link InterpolateStrategy} first.
-     * 
+     *
      * @param target
      * @param t
      * @param is
@@ -559,15 +543,15 @@ public class Quaternion {
      * @return
      */
     public float[] toArray() {
-        return new float[] {
-                w, x, y, z
+        return new float[]{
+            w, x, y, z
         };
     }
 
     /**
      * Converts the quaternion into a float array consisting of: rotation angle
      * in radians, rotation axis x,y,z
-     * 
+     *
      * @return 4-element float array
      */
     public float[] toAxisAngle() {
@@ -589,7 +573,7 @@ public class Quaternion {
      * Converts the quat to a 4x4 rotation matrix (in row-major format). Assumes
      * the quat is currently normalized (if not, you'll need to call
      * {@link #normalize()} first).
-     * 
+     *
      * @return result matrix
      */
     public Matrix4x4 toMatrix4x4() {
@@ -633,9 +617,6 @@ public class Quaternion {
      */
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder(48);
-        sb.append("{axis: [").append(x).append(",").append(y).append(",")
-                .append(z).append("], w: ").append(w).append("}");
-        return sb.toString();
+        return String.format("{axis: [%f, %f, %f], w: %f}", x, y, z, w);
     }
 }

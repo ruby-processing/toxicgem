@@ -24,17 +24,14 @@ public class BooleanShapeBuilder {
          *
          */
         UNION,
-
         /**
          *
          */
         INTERSECTION,
-
         /**
          *
          */
         DIFFERENCE,
-
         /**
          *
          */
@@ -102,13 +99,14 @@ public class BooleanShapeBuilder {
      * @return
      */
     public List<Polygon2D> computeShapes() {
-        List<Polygon2D> shapes = new ArrayList<Polygon2D>();
+        List<Polygon2D> shapes = new ArrayList<>();
         PathIterator i = area.getPathIterator(null);
         float[] buf = new float[6];
         Vec2D prev = new Vec2D();
         Polygon2D s = null;
         while (!i.isDone()) {
             int id = i.currentSegment(buf);
+
             switch (id) {
                 case PathIterator.SEG_MOVETO:
                     s = new Polygon2D();
@@ -118,15 +116,19 @@ public class BooleanShapeBuilder {
                     break;
                 case PathIterator.SEG_LINETO:
                     prev.set(buf[0], buf[1]);
-                    s.add(prev.copy());
+                    if (s != null) {
+                        s.add(prev.copy());
+                    }
                     break;
                 case PathIterator.SEG_CUBICTO:
                     Vec2D pa = new Vec2D(buf[0], buf[1]);
                     Vec2D pb = new Vec2D(buf[2], buf[3]);
                     Vec2D pc = new Vec2D(buf[4], buf[5]);
                     for (int t = 0; t <= bezierRes; t++) {
-                        s.add(BezierCurve2D.computePointInSegment(prev, pa, pb,
-                                pc, (float) t / bezierRes));
+                        if (s != null) {
+                            s.add(BezierCurve2D.computePointInSegment(prev, pa, 
+                                    pb, pc, (float) t / bezierRes));
+                        }
                     }
                     prev.set(pc);
                     break;

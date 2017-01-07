@@ -55,7 +55,7 @@ public class BezierCurve2D {
      *
      */
     public BezierCurve2D() {
-        points = new ArrayList<Vec2D>();
+        points = new ArrayList<>();
     }
 
     /**

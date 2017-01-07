@@ -28,7 +28,6 @@
  * $Date: 2008-02-28 20:18:51 +0000 (Thu, 28 Feb 2008) $
  * $State$
  */
-
 package toxi.geom;
 
 import toxi.math.MathUtils;
@@ -235,38 +234,22 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
     /**
      * Constructs and initializes a Matrix4f from the specified 16 values.
      *
-     * @param m00
-     *            the [0][0] element
-     * @param m01
-     *            the [0][1] element
-     * @param m02
-     *            the [0][2] element
-     * @param m03
-     *            the [0][3] element
-     * @param m10
-     *            the [1][0] element
-     * @param m11
-     *            the [1][1] element
-     * @param m12
-     *            the [1][2] element
-     * @param m13
-     *            the [1][3] element
-     * @param m20
-     *            the [2][0] element
-     * @param m21
-     *            the [2][1] element
-     * @param m22
-     *            the [2][2] element
-     * @param m23
-     *            the [2][3] element
-     * @param m30
-     *            the [3][0] element
-     * @param m31
-     *            the [3][1] element
-     * @param m32
-     *            the [3][2] element
-     * @param m33
-     *            the [3][3] element
+     * @param m00 the [0][0] element
+     * @param m01 the [0][1] element
+     * @param m02 the [0][2] element
+     * @param m03 the [0][3] element
+     * @param m10 the [1][0] element
+     * @param m11 the [1][1] element
+     * @param m12 the [1][2] element
+     * @param m13 the [1][3] element
+     * @param m20 the [2][0] element
+     * @param m21 the [2][1] element
+     * @param m22 the [2][2] element
+     * @param m23 the [2][3] element
+     * @param m30 the [3][0] element
+     * @param m31 the [3][1] element
+     * @param m32 the [3][2] element
+     * @param m33 the [3][3] element
      */
     public Matrix4f(float m00, float m01, float m02, float m03, float m10,
             float m11, float m12, float m13, float m20, float m21, float m22,
@@ -297,8 +280,7 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
      * Constructs and initializes a Matrix4f from the specified 16 element
      * array. this.m00 =v[0], this.m01=v[1], etc.
      *
-     * @param v
-     *            the array of length 16 containing in order
+     * @param v the array of length 16 containing in order
      */
     public Matrix4f(float[] v) {
         this.m00 = v[0];
@@ -329,12 +311,9 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
      * rotational components of the matrix (upper 3x3) and not to the
      * translational components of the matrix.
      *
-     * @param m1
-     *            the rotation matrix representing the rotational components
-     * @param t1
-     *            the translational components of the matrix
-     * @param s
-     *            the scale value applied to the rotational components
+     * @param m1 the rotation matrix representing the rotational components
+     * @param t1 the translational components of the matrix
+     * @param s the scale value applied to the rotational components
      */
     public Matrix4f(Matrix3d m1, Vec3D t1, float s) {
         this.m00 = (float) (m1.m00 * s);
@@ -362,8 +341,7 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
     /**
      * Constructs a new matrix with the same values as the Matrix4f parameter.
      *
-     * @param m1
-     *            the source matrix
+     * @param m1 the source matrix
      */
     public Matrix4f(Matrix4f m1) {
         this.m00 = m1.m00;
@@ -393,12 +371,9 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
      * and scale values; the scale is applied only to the rotational components
      * of the matrix (upper 3x3) and not to the translational components.
      *
-     * @param q1
-     *            the quaternion value representing the rotational component
-     * @param t1
-     *            the translational component of the matrix
-     * @param s
-     *            the scale value applied to the rotational components
+     * @param q1 the quaternion value representing the rotational component
+     * @param t1 the translational component of the matrix
+     * @param s the scale value applied to the rotational components
      */
     public Matrix4f(Quaternion q1, Vec3D t1, float s) {
         m00 = (float) (s * (1.0 - 2.0 * q1.y * q1.y - 2.0 * q1.z * q1.z));
@@ -427,8 +402,7 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
     /**
      * Adds a scalar to each component of this matrix.
      *
-     * @param scalar
-     *            the scalar adder
+     * @param scalar the scalar adder
      */
     public final void add(float scalar) {
         m00 += scalar;
@@ -453,10 +427,8 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
      * Adds a scalar to each component of the matrix m1 and places the result
      * into this. Matrix m1 is not modified.
      *
-     * @param scalar
-     *            the scalar adder
-     * @param m1
-     *            the original matrix values
+     * @param scalar the scalar adder
+     * @param m1 the original matrix values
      */
     public final void add(float scalar, Matrix4f m1) {
         this.m00 = m1.m00 + scalar;
@@ -480,8 +452,7 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
     /**
      * Sets the value of this matrix to the sum of itself and matrix m1.
      *
-     * @param m1
-     *            the other matrix
+     * @param m1 the other matrix
      */
     public final void add(Matrix4f m1) {
         this.m00 += m1.m00;
@@ -508,10 +479,8 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
     /**
      * Sets the value of this matrix to the matrix sum of matrices m1 and m2.
      *
-     * @param m1
-     *            the first matrix
-     * @param m2
-     *            the second matrix
+     * @param m1 the first matrix
+     * @param m2 the second matrix
      */
     public final void add(Matrix4f m1, Matrix4f m2) {
         this.m00 = m1.m00 + m2.m00;
@@ -539,8 +508,7 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
      * Creates a new object of the same class as this object.
      *
      * @return a clone of this instance.
-     * @exception OutOfMemoryError
-     *                if there is not enough memory.
+     * @exception OutOfMemoryError if there is not enough memory.
      * @see java.lang.Cloneable
      * @since vecmath 1.3
      */
@@ -555,7 +523,6 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
 //
 //        return m1;
 //    }
-
     /**
      * Computes the determinate of this matrix.
      *
@@ -565,19 +532,18 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
         float det;
 
         // cofactor exapainsion along first row
-
         det = m00
                 * (m11 * m22 * m33 + m12 * m23 * m31 + m13 * m21 * m32 - m13
-                        * m22 * m31 - m11 * m23 * m32 - m12 * m21 * m33);
+                * m22 * m31 - m11 * m23 * m32 - m12 * m21 * m33);
         det -= m01
                 * (m10 * m22 * m33 + m12 * m23 * m30 + m13 * m20 * m32 - m13
-                        * m22 * m30 - m10 * m23 * m32 - m12 * m20 * m33);
+                * m22 * m30 - m10 * m23 * m32 - m12 * m20 * m33);
         det += m02
                 * (m10 * m21 * m33 + m11 * m23 * m30 + m13 * m20 * m31 - m13
-                        * m21 * m30 - m10 * m23 * m31 - m11 * m20 * m33);
+                * m21 * m30 - m10 * m23 * m31 - m11 * m20 * m33);
         det -= m03
                 * (m10 * m21 * m32 + m11 * m22 * m30 + m12 * m20 * m31 - m12
-                        * m21 * m30 - m10 * m22 * m31 - m11 * m20 * m32);
+                * m21 * m30 - m10 * m22 * m31 - m11 * m20 * m32);
 
         return (det);
     }
@@ -588,10 +554,8 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
      * The L-infinite distance is equal to MAX[i=0,1,2,3 ; j=0,1,2,3 ;
      * abs(this.m(i,j) - m1.m(i,j)]
      *
-     * @param m1
-     *            the matrix to be compared to this matrix
-     * @param epsilon
-     *            the threshold value
+     * @param m1 the matrix to be compared to this matrix
+     * @param epsilon the threshold value
      * @return
      */
     public boolean epsilonEquals(Matrix4f m1, float epsilon) {
@@ -658,8 +622,7 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
      * Returns true if all of the data members of Matrix4f m1 are equal to the
      * corresponding data members in this Matrix4f.
      *
-     * @param m1
-     *            the matrix with which the comparison is made.
+     * @param m1 the matrix with which the comparison is made.
      * @return true or false
      */
     public boolean equals(Matrix4f m1) {
@@ -683,8 +646,7 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
      * members of t1 are equal to the corresponding data members in this
      * Matrix4f.
      *
-     * @param t1
-     *            the matrix with which the comparison is made.
+     * @param t1 the matrix with which the comparison is made.
      * @return true or false
      */
     @Override
@@ -734,8 +696,7 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
      * normalized rotational component; the values are placed into the Matrix3d
      * parameter.
      *
-     * @param m1
-     *            matrix into which the rotational component is placed
+     * @param m1 matrix into which the rotational component is placed
      */
     public final void get(Matrix3d m1) {
 
@@ -763,10 +724,8 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
      * a 3x3 matrix, the translation, and the scale. None of the matrix values
      * are modified.
      *
-     * @param m1
-     *            the normalized matrix representing the rotation
-     * @param t1
-     *            the translation component
+     * @param m1 the normalized matrix representing the rotation
+     * @param t1 the translation component
      * @return the scale component of this transform
      */
     public final double get(Matrix3d m1, Vec3D t1) {
@@ -799,8 +758,7 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
      * normalized rotational component; the values are placed into the Quat4f
      * parameter.
      *
-     * @param q1
-     *            quaternion into which the rotation component is placed
+     * @param q1 quaternion into which the rotation component is placed
      */
     public final void get(Quaternion q1) {
         double[] tmp_rot = new double[9]; // scratch matrix
@@ -845,8 +803,7 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
     /**
      * Retrieves the translational components of this matrix.
      *
-     * @param trans
-     *            the vector that will receive the translational component
+     * @param trans the vector that will receive the translational component
      */
     public final void get(Vec3D trans) {
         trans.x = m03;
@@ -858,34 +815,37 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
      * Copies the matrix values in the specified column into the array
      * parameter.
      *
-     * @param column
-     *            the matrix column
-     * @param v
-     *            the array into which the matrix row values will be copied
+     * @param column the matrix column
+     * @param v the array into which the matrix row values will be copied
      */
     public final void getColumn(int column, float v[]) {
-        if (column == 0) {
-            v[0] = m00;
-            v[1] = m10;
-            v[2] = m20;
-            v[3] = m30;
-        } else if (column == 1) {
-            v[0] = m01;
-            v[1] = m11;
-            v[2] = m21;
-            v[3] = m31;
-        } else if (column == 2) {
-            v[0] = m02;
-            v[1] = m12;
-            v[2] = m22;
-            v[3] = m32;
-        } else if (column == 3) {
-            v[0] = m03;
-            v[1] = m13;
-            v[2] = m23;
-            v[3] = m33;
-        } else {
-            throw new ArrayIndexOutOfBoundsException();
+        switch (column) {
+            case 0:
+                v[0] = m00;
+                v[1] = m10;
+                v[2] = m20;
+                v[3] = m30;
+                break;
+            case 1:
+                v[0] = m01;
+                v[1] = m11;
+                v[2] = m21;
+                v[3] = m31;
+                break;
+            case 2:
+                v[0] = m02;
+                v[1] = m12;
+                v[2] = m22;
+                v[3] = m32;
+                break;
+            case 3:
+                v[0] = m03;
+                v[1] = m13;
+                v[2] = m23;
+                v[3] = m33;
+                break;
+            default:
+                throw new ArrayIndexOutOfBoundsException();
         }
 
     }
@@ -894,34 +854,37 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
      * Copies the matrix values in the specified column into the vector
      * parameter.
      *
-     * @param column
-     *            the matrix column
-     * @param v
-     *            the vector into which the matrix row values will be copied
+     * @param column the matrix column
+     * @param v the vector into which the matrix row values will be copied
      */
     public final void getColumn(int column, Vec4D v) {
-        if (column == 0) {
-            v.x = m00;
-            v.y = m10;
-            v.z = m20;
-            v.w = m30;
-        } else if (column == 1) {
-            v.x = m01;
-            v.y = m11;
-            v.z = m21;
-            v.w = m31;
-        } else if (column == 2) {
-            v.x = m02;
-            v.y = m12;
-            v.z = m22;
-            v.w = m32;
-        } else if (column == 3) {
-            v.x = m03;
-            v.y = m13;
-            v.z = m23;
-            v.w = m33;
-        } else {
-            throw new ArrayIndexOutOfBoundsException();
+        switch (column) {
+            case 0:
+                v.x = m00;
+                v.y = m10;
+                v.z = m20;
+                v.w = m30;
+                break;
+            case 1:
+                v.x = m01;
+                v.y = m11;
+                v.z = m21;
+                v.w = m31;
+                break;
+            case 2:
+                v.x = m02;
+                v.y = m12;
+                v.z = m22;
+                v.w = m32;
+                break;
+            case 3:
+                v.x = m03;
+                v.y = m13;
+                v.z = m23;
+                v.w = m33;
+                break;
+            default:
+                throw new ArrayIndexOutOfBoundsException();
         }
 
     }
@@ -929,10 +892,8 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
     /**
      * Retrieves the value at the specified row and column of this matrix.
      *
-     * @param row
-     *            the row number to be retrieved (zero indexed)
-     * @param column
-     *            the column number to be retrieved (zero indexed)
+     * @param row the row number to be retrieved (zero indexed)
+     * @param column the column number to be retrieved (zero indexed)
      * @return the value at the indexed element
      */
     public final float getElement(int row, int column) {
@@ -1182,8 +1143,7 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
      * Gets the upper 3x3 values of this matrix and places them into the matrix
      * m1.
      *
-     * @param m1
-     *            the matrix that will hold the values
+     * @param m1 the matrix that will hold the values
      */
     public final void getRotationScale(Matrix3d m1) {
         m1.m00 = m00;
@@ -1200,34 +1160,37 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
     /**
      * Copies the matrix values in the specified row into the array parameter.
      *
-     * @param row
-     *            the matrix row
-     * @param v
-     *            the array into which the matrix row values will be copied
+     * @param row the matrix row
+     * @param v the array into which the matrix row values will be copied
      */
     public final void getRow(int row, float v[]) {
-        if (row == 0) {
-            v[0] = m00;
-            v[1] = m01;
-            v[2] = m02;
-            v[3] = m03;
-        } else if (row == 1) {
-            v[0] = m10;
-            v[1] = m11;
-            v[2] = m12;
-            v[3] = m13;
-        } else if (row == 2) {
-            v[0] = m20;
-            v[1] = m21;
-            v[2] = m22;
-            v[3] = m23;
-        } else if (row == 3) {
-            v[0] = m30;
-            v[1] = m31;
-            v[2] = m32;
-            v[3] = m33;
-        } else {
-            throw new ArrayIndexOutOfBoundsException();
+        switch (row) {
+            case 0:
+                v[0] = m00;
+                v[1] = m01;
+                v[2] = m02;
+                v[3] = m03;
+                break;
+            case 1:
+                v[0] = m10;
+                v[1] = m11;
+                v[2] = m12;
+                v[3] = m13;
+                break;
+            case 2:
+                v[0] = m20;
+                v[1] = m21;
+                v[2] = m22;
+                v[3] = m23;
+                break;
+            case 3:
+                v[0] = m30;
+                v[1] = m31;
+                v[2] = m32;
+                v[3] = m33;
+                break;
+            default:
+                throw new ArrayIndexOutOfBoundsException();
         }
 
     }
@@ -1235,34 +1198,37 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
     /**
      * Copies the matrix values in the specified row into the vector parameter.
      *
-     * @param row
-     *            the matrix row
-     * @param v
-     *            the vector into which the matrix row values will be copied
+     * @param row the matrix row
+     * @param v the vector into which the matrix row values will be copied
      */
     public final void getRow(int row, Vec4D v) {
-        if (row == 0) {
-            v.x = m00;
-            v.y = m01;
-            v.z = m02;
-            v.w = m03;
-        } else if (row == 1) {
-            v.x = m10;
-            v.y = m11;
-            v.z = m12;
-            v.w = m13;
-        } else if (row == 2) {
-            v.x = m20;
-            v.y = m21;
-            v.z = m22;
-            v.w = m23;
-        } else if (row == 3) {
-            v.x = m30;
-            v.y = m31;
-            v.z = m32;
-            v.w = m33;
-        } else {
-            throw new ArrayIndexOutOfBoundsException();
+        switch (row) {
+            case 0:
+                v.x = m00;
+                v.y = m01;
+                v.z = m02;
+                v.w = m03;
+                break;
+            case 1:
+                v.x = m10;
+                v.y = m11;
+                v.z = m12;
+                v.w = m13;
+                break;
+            case 2:
+                v.x = m20;
+                v.y = m21;
+                v.z = m22;
+                v.w = m23;
+                break;
+            case 3:
+                v.x = m30;
+                v.y = m31;
+                v.z = m32;
+                v.w = m33;
+                break;
+            default:
+                throw new ArrayIndexOutOfBoundsException();
         }
 
     }
@@ -1310,26 +1276,25 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
      */
     // @Override
     // public int hashCode() {
-        // long bits = 1L;
-        // bits = 31L * bits + VecMathUtil.floatToIntBits(m00);
-        // bits = 31L * bits + VecMathUtil.floatToIntBits(m01);
-        // bits = 31L * bits + VecMathUtil.floatToIntBits(m02);
-        // bits = 31L * bits + VecMathUtil.floatToIntBits(m03);
-        // bits = 31L * bits + VecMathUtil.floatToIntBits(m10);
-        // bits = 31L * bits + VecMathUtil.floatToIntBits(m11);
-        // bits = 31L * bits + VecMathUtil.floatToIntBits(m12);
-        // bits = 31L * bits + VecMathUtil.floatToIntBits(m13);
-        // bits = 31L * bits + VecMathUtil.floatToIntBits(m20);
-        // bits = 31L * bits + VecMathUtil.floatToIntBits(m21);
-        // bits = 31L * bits + VecMathUtil.floatToIntBits(m22);
-        // bits = 31L * bits + VecMathUtil.floatToIntBits(m23);
-        // bits = 31L * bits + VecMathUtil.floatToIntBits(m30);
-        // bits = 31L * bits + VecMathUtil.floatToIntBits(m31);
-        // bits = 31L * bits + VecMathUtil.floatToIntBits(m32);
-        // bits = 31L * bits + VecMathUtil.floatToIntBits(m33);
-        // return (int) (bits ^ (bits >> 32));
+    // long bits = 1L;
+    // bits = 31L * bits + VecMathUtil.floatToIntBits(m00);
+    // bits = 31L * bits + VecMathUtil.floatToIntBits(m01);
+    // bits = 31L * bits + VecMathUtil.floatToIntBits(m02);
+    // bits = 31L * bits + VecMathUtil.floatToIntBits(m03);
+    // bits = 31L * bits + VecMathUtil.floatToIntBits(m10);
+    // bits = 31L * bits + VecMathUtil.floatToIntBits(m11);
+    // bits = 31L * bits + VecMathUtil.floatToIntBits(m12);
+    // bits = 31L * bits + VecMathUtil.floatToIntBits(m13);
+    // bits = 31L * bits + VecMathUtil.floatToIntBits(m20);
+    // bits = 31L * bits + VecMathUtil.floatToIntBits(m21);
+    // bits = 31L * bits + VecMathUtil.floatToIntBits(m22);
+    // bits = 31L * bits + VecMathUtil.floatToIntBits(m23);
+    // bits = 31L * bits + VecMathUtil.floatToIntBits(m30);
+    // bits = 31L * bits + VecMathUtil.floatToIntBits(m31);
+    // bits = 31L * bits + VecMathUtil.floatToIntBits(m32);
+    // bits = 31L * bits + VecMathUtil.floatToIntBits(m33);
+    // return (int) (bits ^ (bits >> 32));
     // }
-
     /**
      * Inverts this matrix in place.
      */
@@ -1341,8 +1306,7 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
      * Sets the value of this matrix to the matrix inverse of the passed (user
      * declared) matrix m1.
      *
-     * @param m1
-     *            the matrix to be inverted
+     * @param m1 the matrix to be inverted
      */
     public final void invert(Matrix4f m1) {
 
@@ -1365,7 +1329,6 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
 
         // Use LU decomposition and backsubstitution code specifically
         // for floating-point 4x4 matrices.
-
         // Copy source matrix to t1tmp
         temp[0] = m1.m00;
         temp[1] = m1.m01;
@@ -1428,8 +1391,7 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
     /**
      * Multiplies each element of this matrix by a scalar.
      *
-     * @param scalar
-     *            the scalar multiplier.
+     * @param scalar the scalar multiplier.
      */
     public final void mul(float scalar) {
         m00 *= scalar;
@@ -1454,10 +1416,8 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
      * Multiplies each element of matrix m1 by a scalar and places the result
      * into this. Matrix m1 is not modified.
      *
-     * @param scalar
-     *            the scalar multiplier.
-     * @param m1
-     *            the original matrix.
+     * @param scalar the scalar multiplier.
+     * @param m1 the original matrix.
      */
     public final void mul(float scalar, Matrix4f m1) {
         this.m00 = m1.m00 * scalar;
@@ -1482,15 +1442,14 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
      * Sets the value of this matrix to the result of multiplying itself with
      * matrix m1.
      *
-     * @param m1
-     *            the other matrix
+     * @param m1 the other matrix
      */
     public final void mul(Matrix4f m1) {
         float mm00, mm01, mm02, mm03, mm10, mm11, mm12, mm13, mm20, mm21, mm22, mm23, mm30, mm31, mm32, mm33; // vars
-                                                                                              // for
-                                                                                              // temp
-                                                                                              // result
-                                                                                              // matrix
+        // for
+        // temp
+        // result
+        // matrix
 
         mm00 = this.m00 * m1.m00 + this.m01 * m1.m10 + this.m02 * m1.m20
                 + this.m03 * m1.m30;
@@ -1550,10 +1509,8 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
      * Sets the value of this matrix to the result of multiplying the two
      * argument matrices together.
      *
-     * @param m1
-     *            the first matrix
-     * @param m2
-     *            the second matrix
+     * @param m1 the first matrix
+     * @param m2 the second matrix
      */
     public final void mul(Matrix4f m1, Matrix4f m2) {
         if (this != m1 && this != m2) {
@@ -1595,10 +1552,10 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
                     + m1.m33 * m2.m33;
         } else {
             float mm00, mm01, mm02, mm03, mm10, mm11, mm12, mm13, mm20, mm21, mm22, mm23, mm30, mm31, mm32, mm33; // vars
-                                                                                                  // for
-                                                                                                  // temp
-                                                                                                  // result
-                                                                                                  // matrix
+            // for
+            // temp
+            // result
+            // matrix
             mm00 = m1.m00 * m2.m00 + m1.m01 * m2.m10 + m1.m02 * m2.m20 + m1.m03
                     * m2.m30;
             mm01 = m1.m00 * m2.m01 + m1.m01 * m2.m11 + m1.m02 * m2.m21 + m1.m03
@@ -1658,10 +1615,8 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
      * Multiplies the transpose of matrix m1 times the transpose of matrix m2,
      * and places the result into this.
      *
-     * @param m1
-     *            the matrix on the left hand side of the multiplication
-     * @param m2
-     *            the matrix on the right hand side of the multiplication
+     * @param m1 the matrix on the left hand side of the multiplication
+     * @param m2 the matrix on the right hand side of the multiplication
      */
     public final void mulTransposeBoth(Matrix4f m1, Matrix4f m2) {
         if (this != m1 && this != m2) {
@@ -1702,11 +1657,11 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
                     + m1.m33 * m2.m33;
         } else {
             float mm00, mm01, mm02, mm03, mm10, mm11, mm12, mm13, mm20, mm21, mm22, mm23, // vars
-                                                                              // for
-                                                                              // temp
-                                                                              // result
-                                                                              // matrix
-            mm30, mm31, mm32, mm33;
+                    // for
+                    // temp
+                    // result
+                    // matrix
+                    mm30, mm31, mm32, mm33;
 
             mm00 = m1.m00 * m2.m00 + m1.m10 * m2.m01 + m1.m20 * m2.m02 + m1.m30
                     * m2.m03;
@@ -1768,10 +1723,8 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
      * Multiplies the transpose of matrix m1 times matrix m2, and places the
      * result into this.
      *
-     * @param m1
-     *            the matrix on the left hand side of the multiplication
-     * @param m2
-     *            the matrix on the right hand side of the multiplication
+     * @param m1 the matrix on the left hand side of the multiplication
+     * @param m2 the matrix on the right hand side of the multiplication
      */
     public final void mulTransposeLeft(Matrix4f m1, Matrix4f m2) {
         if (this != m1 && this != m2) {
@@ -1812,11 +1765,11 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
                     + m1.m33 * m2.m33;
         } else {
             float mm00, mm01, mm02, mm03, mm10, mm11, mm12, mm13, mm20, mm21, mm22, mm23, // vars
-                                                                              // for
-                                                                              // temp
-                                                                              // result
-                                                                              // matrix
-            mm30, mm31, mm32, mm33;
+                    // for
+                    // temp
+                    // result
+                    // matrix
+                    mm30, mm31, mm32, mm33;
 
             mm00 = m1.m00 * m2.m00 + m1.m10 * m2.m10 + m1.m20 * m2.m20 + m1.m30
                     * m2.m30;
@@ -1878,10 +1831,8 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
      * Multiplies matrix m1 times the transpose of matrix m2, and places the
      * result into this.
      *
-     * @param m1
-     *            the matrix on the left hand side of the multiplication
-     * @param m2
-     *            the matrix on the right hand side of the multiplication
+     * @param m1 the matrix on the left hand side of the multiplication
+     * @param m2 the matrix on the right hand side of the multiplication
      */
     public final void mulTransposeRight(Matrix4f m1, Matrix4f m2) {
         if (this != m1 && this != m2) {
@@ -1922,11 +1873,11 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
                     + m1.m33 * m2.m33;
         } else {
             float mm00, mm01, mm02, mm03, mm10, mm11, mm12, mm13, mm20, mm21, mm22, mm23, // vars
-                                                                              // for
-                                                                              // temp
-                                                                              // result
-                                                                              // matrix
-            mm30, mm31, mm32, mm33;
+                    // for
+                    // temp
+                    // result
+                    // matrix
+                    mm30, mm31, mm32, mm33;
 
             mm00 = m1.m00 * m2.m00 + m1.m01 * m2.m01 + m1.m02 * m2.m02 + m1.m03
                     * m2.m03;
@@ -2010,8 +1961,7 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
      * Sets the value of this matrix equal to the negation of of the Matrix4f
      * parameter.
      *
-     * @param m1
-     *            the source matrix
+     * @param m1 the source matrix
      */
     public final void negate(Matrix4f m1) {
         this.m00 = -m1.m00;
@@ -2036,8 +1986,7 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
      * Sets the value of this matrix to a counter clockwise rotation about the x
      * axis.
      *
-     * @param angle
-     *            the angle to rotate about the X axis in radians
+     * @param angle the angle to rotate about the X axis in radians
      */
     public final void rotX(float angle) {
         float sinAngle, cosAngle;
@@ -2070,8 +2019,7 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
      * Sets the value of this matrix to a counter clockwise rotation about the y
      * axis.
      *
-     * @param angle
-     *            the angle to rotate about the Y axis in radians
+     * @param angle the angle to rotate about the Y axis in radians
      */
     public final void rotY(float angle) {
         float sinAngle, cosAngle;
@@ -2104,8 +2052,7 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
      * Sets the value of this matrix to a counter clockwise rotation about the z
      * axis.
      *
-     * @param angle
-     *            the angle to rotate about the Z axis in radians
+     * @param angle the angle to rotate about the Z axis in radians
      */
     public final void rotZ(float angle) {
         float sinAngle, cosAngle;
@@ -2138,8 +2085,7 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
      * Sets the value of this matrix to a scale matrix with the the passed scale
      * amount.
      *
-     * @param scale
-     *            the scale factor for the matrix
+     * @param scale the scale factor for the matrix
      */
     public final void set(float scale) {
         this.m00 = scale;
@@ -2168,10 +2114,8 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
      * scale is not applied to the translation and all of the matrix values are
      * modified.
      *
-     * @param scale
-     *            the scale factor for the matrix
-     * @param t1
-     *            the translation amount
+     * @param scale the scale factor for the matrix
+     * @param t1 the translation amount
      */
     public final void set(float scale, Vec3D t1) {
         this.m00 = scale;
@@ -2200,8 +2144,7 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
      * (ie, the first four elements of the array will be copied into the first
      * row of this matrix, etc.).
      *
-     * @param m
-     *            the single precision array of length 16
+     * @param m the single precision array of length 16
      */
     public final void set(float[] m) {
         m00 = m[0];
@@ -2228,8 +2171,7 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
      * this matrix are initialized as if this were an identity matrix (i.e.,
      * affine matrix with no translational component).
      *
-     * @param m1
-     *            the double-precision 3x3 matrix
+     * @param m1 the double-precision 3x3 matrix
      */
     public final void set(Matrix3d m1) {
         m00 = (float) m1.m00;
@@ -2255,12 +2197,9 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
      * matrix m1, the translation t1, and the scale factor. The translation is
      * not modified by the scale.
      *
-     * @param m1
-     *            the rotation component
-     * @param t1
-     *            the translation component
-     * @param scale
-     *            the scale factor
+     * @param m1 the rotation component
+     * @param t1 the translation component
+     * @param scale the scale factor
      */
     public final void set(Matrix3d m1, Vec3D t1, double scale) {
         this.m00 = (float) (m1.m00 * scale);
@@ -2287,8 +2226,7 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
     /**
      * Sets the value of this matrix to a copy of the passed matrix m1.
      *
-     * @param m1
-     *            the matrix to be copied
+     * @param m1 the matrix to be copied
      */
     public final void set(Matrix4f m1) {
         this.m00 = m1.m00;
@@ -2316,8 +2254,7 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
      * Sets the value of this matrix to the matrix conversion of the single
      * precision quaternion argument.
      *
-     * @param q1
-     *            the quaternion to be converted
+     * @param q1 the quaternion to be converted
      */
     public final void set(Quaternion q1) {
         this.m00 = (1.0f - 2.0f * q1.y * q1.y - 2.0f * q1.z * q1.z);
@@ -2346,12 +2283,9 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
      * Sets the value of this matrix from the rotation expressed by the
      * quaternion q1, the translation t1, and the scale s.
      *
-     * @param q1
-     *            the rotation expressed as a quaternion
-     * @param t1
-     *            the translation
-     * @param s
-     *            the scale value
+     * @param q1 the rotation expressed as a quaternion
+     * @param t1 the translation
+     * @param s the scale value
      */
     public final void set(Quaternion q1, Vec3D t1, double s) {
         this.m00 = (float) (s * (1.0 - 2.0 * q1.y * q1.y - 2.0 * q1.z * q1.z));
@@ -2380,12 +2314,9 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
      * Sets the value of this matrix from the rotation expressed by the
      * quaternion q1, the translation t1, and the scale s.
      *
-     * @param q1
-     *            the rotation expressed as a quaternion
-     * @param t1
-     *            the translation
-     * @param s
-     *            the scale value
+     * @param q1 the rotation expressed as a quaternion
+     * @param t1 the translation
+     * @param s the scale value
      */
     public final void set(Quaternion q1, Vec3D t1, float s) {
         this.m00 = (s * (1.0f - 2.0f * q1.y * q1.y - 2.0f * q1.z * q1.z));
@@ -2414,8 +2345,7 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
      * Sets the value of this matrix to a translate matrix with the passed
      * translation value.
      *
-     * @param v1
-     *            the translation amount
+     * @param v1 the translation amount
      */
     public final void set(Vec3D v1) {
         this.m00 = (float) 1.0;
@@ -2444,10 +2374,8 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
      * translation is scaled by the scale factor and all of the matrix values
      * are modified.
      *
-     * @param t1
-     *            the translation amount
-     * @param scale
-     *            the scale factor for the matrix
+     * @param t1 the translation amount
+     * @param scale the scale factor for the matrix
      */
     public final void set(Vec3D t1, float scale) {
         this.m00 = scale;
@@ -2474,10 +2402,8 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
     /**
      * Sets the specified column of this matrix4f to the four values provided.
      *
-     * @param column
-     *            the column number to be modified (zero indexed)
-     * @param v
-     *            the replacement column
+     * @param column the column number to be modified (zero indexed)
+     * @param v the replacement column
      */
     public final void setColumn(int column, float v[]) {
         switch (column) {
@@ -2517,16 +2443,11 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
     /**
      * Sets the specified column of this matrix4f to the four values provided.
      *
-     * @param column
-     *            the column number to be modified (zero indexed)
-     * @param x
-     *            the first row element
-     * @param y
-     *            the second row element
-     * @param z
-     *            the third row element
-     * @param w
-     *            the fourth row element
+     * @param column the column number to be modified (zero indexed)
+     * @param x the first row element
+     * @param y the second row element
+     * @param z the third row element
+     * @param w the fourth row element
      */
     public final void setColumn(int column, float x, float y, float z, float w) {
         switch (column) {
@@ -2566,10 +2487,8 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
     /**
      * Sets the specified column of this matrix4f to the vector provided.
      *
-     * @param column
-     *            the column number to be modified (zero indexed)
-     * @param v
-     *            the replacement column
+     * @param column the column number to be modified (zero indexed)
+     * @param v the replacement column
      */
     public final void setColumn(int column, Vec4D v) {
         switch (column) {
@@ -2609,12 +2528,9 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
     /**
      * Sets the specified element of this matrix4f to the value provided.
      *
-     * @param row
-     *            the row number to be modified (zero indexed)
-     * @param column
-     *            the column number to be modified (zero indexed)
-     * @param value
-     *            the new value
+     * @param row the row number to be modified (zero indexed)
+     * @param column the column number to be modified (zero indexed)
+     * @param value the new value
      */
     public final void setElement(int row, int column, float value) {
         switch (row) {
@@ -2727,8 +2643,7 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
     /**
      * Set the first matrix element in the first row.
      *
-     * @param m00
-     *            The m00 to set.
+     * @param m00 The m00 to set.
      *
      * @since vecmath 1.5
      */
@@ -2739,8 +2654,7 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
     /**
      * Set the second matrix element in the first row.
      *
-     * @param m01
-     *            The m01 to set.
+     * @param m01 The m01 to set.
      *
      * @since vecmath 1.5
      */
@@ -2751,8 +2665,7 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
     /**
      * Set the third matrix element in the first row.
      *
-     * @param m02
-     *            The m02 to set.
+     * @param m02 The m02 to set.
      *
      * @since vecmath 1.5
      */
@@ -2763,8 +2676,7 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
     /**
      * Set the fourth element of the first row.
      *
-     * @param m03
-     *            The m03 to set.
+     * @param m03 The m03 to set.
      *
      * @since vecmath 1.5
      */
@@ -2775,8 +2687,7 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
     /**
      * Set first matrix element in the second row.
      *
-     * @param m10
-     *            The m10 to set.
+     * @param m10 The m10 to set.
      *
      * @since vecmath 1.5
      */
@@ -2787,8 +2698,7 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
     /**
      * Set the second matrix element in the second row.
      *
-     * @param m11
-     *            The m11 to set.
+     * @param m11 The m11 to set.
      *
      * @since vecmath 1.5
      */
@@ -2799,8 +2709,7 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
     /**
      * Set the third matrix element in the second row.
      *
-     * @param m12
-     *            The m12 to set.
+     * @param m12 The m12 to set.
      *
      * @since vecmath 1.5
      */
@@ -2811,8 +2720,7 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
     /**
      * Set the fourth element of the second row.
      *
-     * @param m13
-     *            The m13 to set.
+     * @param m13 The m13 to set.
      *
      * @since vecmath 1.5
      */
@@ -2823,8 +2731,7 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
     /**
      * Set the first matrix element in the third row.
      *
-     * @param m20
-     *            The m20 to set.
+     * @param m20 The m20 to set.
      *
      * @since vecmath 1.5
      */
@@ -2835,8 +2742,7 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
     /**
      * Set the second matrix element in the third row.
      *
-     * @param m21
-     *            The m21 to set.
+     * @param m21 The m21 to set.
      *
      * @since vecmath 1.5
      */
@@ -2847,8 +2753,7 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
     /**
      * Set the third matrix element in the third row.
      *
-     * @param m22
-     *            The m22 to set.
+     * @param m22 The m22 to set.
      *
      * @since vecmath 1.5
      */
@@ -2859,8 +2764,7 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
     /**
      * Set the fourth element of the third row.
      *
-     * @param m23
-     *            The m23 to set.
+     * @param m23 The m23 to set.
      *
      * @since vecmath 1.5
      */
@@ -2871,8 +2775,7 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
     /**
      * Set the first element of the fourth row.
      *
-     * @param m30
-     *            The m30 to set.
+     * @param m30 The m30 to set.
      *
      *
      * @since vecmath 1.5
@@ -2884,8 +2787,7 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
     /**
      * Set the second element of the fourth row.
      *
-     * @param m31
-     *            The m31 to set.
+     * @param m31 The m31 to set.
      *
      * @since vecmath 1.5
      */
@@ -2896,8 +2798,7 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
     /**
      * Set the third element of the fourth row.
      *
-     * @param m32
-     *            The m32 to set.
+     * @param m32 The m32 to set.
      *
      *
      * @since vecmath 1.5
@@ -2909,8 +2810,7 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
     /**
      * Set the fourth element of the fourth row.
      *
-     * @param m33
-     *            The m33 to set.
+     * @param m33 The m33 to set.
      *
      * @since vecmath 1.5
      */
@@ -2926,8 +2826,7 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
      * object's upper 3x3 matrix components are replaced by the passed rotation
      * components, and then the scale is reapplied to the rotational components.
      *
-     * @param m1
-     *            double precision 3x3 matrix
+     * @param m1 double precision 3x3 matrix
      */
     public final void setRotation(Matrix3d m1) {
         double[] tmp_rot = new double[9];
@@ -2957,8 +2856,7 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
      * upper 3x3 matrix components are replaced by the matrix equivalent of the
      * quaternion, and then the scale is reapplied to the rotational components.
      *
-     * @param q1
-     *            the quaternion that specifies the rotation
+     * @param q1 the quaternion that specifies the rotation
      */
     public final void setRotation(Quaternion q1) {
         double[] tmp_rot = new double[9]; // scratch matrix
@@ -2983,8 +2881,7 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
      * Replaces the upper 3x3 matrix values of this matrix with the values in
      * the matrix m1.
      *
-     * @param m1
-     *            the matrix that will be the new upper 3x3
+     * @param m1 the matrix that will be the new upper 3x3
      */
     public final void setRotationScale(Matrix3d m1) {
         m00 = (float) m1.m00;
@@ -3002,10 +2899,8 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
      * Sets the specified row of this matrix4f to the four values provided in
      * the passed array.
      *
-     * @param row
-     *            the row number to be modified (zero indexed)
-     * @param v
-     *            the replacement row
+     * @param row the row number to be modified (zero indexed)
+     * @param v the replacement row
      */
     public final void setRow(int row, float v[]) {
         switch (row) {
@@ -3045,16 +2940,11 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
     /**
      * Sets the specified row of this matrix4f to the four values provided.
      *
-     * @param row
-     *            the row number to be modified (zero indexed)
-     * @param x
-     *            the first column element
-     * @param y
-     *            the second column element
-     * @param z
-     *            the third column element
-     * @param w
-     *            the fourth column element
+     * @param row the row number to be modified (zero indexed)
+     * @param x the first column element
+     * @param y the second column element
+     * @param z the third column element
+     * @param w the fourth column element
      */
     public final void setRow(int row, float x, float y, float z, float w) {
         switch (row) {
@@ -3094,10 +2984,8 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
     /**
      * Sets the specified row of this matrix4f to the Vector provided.
      *
-     * @param row
-     *            the row number to be modified (zero indexed)
-     * @param v
-     *            the replacement row
+     * @param row the row number to be modified (zero indexed)
+     * @param v the replacement row
      */
     public final void setRow(int row, Vec4D v) {
         switch (row) {
@@ -3139,8 +3027,7 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
      * current scale (by doing an SVD) from the rotational component and
      * multiplying by the new scale.
      *
-     * @param scale
-     *            the new scale amount
+     * @param scale the new scale amount
      */
     public final void setScale(float scale) {
 
@@ -3166,8 +3053,7 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
      * Modifies the translational components of this matrix to the values of the
      * Vector3f argument; the other values of this matrix are not modified.
      *
-     * @param trans
-     *            the translational component
+     * @param trans the translational component
      */
     public final void setTranslation(Vec3D trans) {
         m03 = trans.x;
@@ -3201,8 +3087,7 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
      * Sets this matrix to the matrix difference of itself and matrix m1 (this =
      * this - m1).
      *
-     * @param m1
-     *            the other matrix
+     * @param m1 the other matrix
      */
     public final void sub(Matrix4f m1) {
         this.m00 -= m1.m00;
@@ -3230,10 +3115,8 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
      * Performs an element-by-element subtraction of matrix m2 from matrix m1
      * and places the result into matrix this (this = m2 - m1).
      *
-     * @param m1
-     *            the first matrix
-     * @param m2
-     *            the second matrix
+     * @param m1 the first matrix
+     * @param m2 the second matrix
      */
     public final void sub(Matrix4f m1, Matrix4f m2) {
         this.m00 = m1.m00 - m2.m00;
@@ -3265,15 +3148,15 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
     @Override
     public String toString() {
         return String.join("\n",
-          String.format("%d, %d, %d, %d",
-            this.m00, this.m01, this.m02, this.m03),
-          String.format("%d, %d, %d, %d",
-            this.m10, this.m11, this.m12, this.m13),
-          String.format("%d, %d, %d, %d",
-            this.m20, this.m21, this.m22, this.m23),
-          String.format("%d, %d, %d, %d",
-            this.m30, this.m31, this.m32, this.m33),
-          ""
+                String.format("%d, %d, %d, %d",
+                        this.m00, this.m01, this.m02, this.m03),
+                String.format("%d, %d, %d, %d",
+                        this.m10, this.m11, this.m12, this.m13),
+                String.format("%d, %d, %d, %d",
+                        this.m20, this.m21, this.m22, this.m23),
+                String.format("%d, %d, %d, %d",
+                        this.m30, this.m31, this.m32, this.m33),
+                ""
         );
     }
 
@@ -3281,8 +3164,7 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
      * Transform the vector vec using this Transform and place the result back
      * into vec.
      *
-     * @param vec
-     *            the single precision vector to be transformed
+     * @param vec the single precision vector to be transformed
      */
     public final void transform(Vec4D vec) {
         float x, y, z;
@@ -3300,10 +3182,8 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
      * Transform the vector vec using this Matrix4f and place the result into
      * vecOut.
      *
-     * @param vec
-     *            the single precision vector to be transformed
-     * @param vecOut
-     *            the vector into which the transformed values are placed
+     * @param vec the single precision vector to be transformed
+     * @param vecOut the vector into which the transformed values are placed
      */
     public final void transform(Vec4D vec, Vec4D vecOut) {
         float x, y, z;
@@ -3321,8 +3201,7 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
      * back into point. The fourth element of the point input paramter is
      * assumed to be one.
      *
-     * @param point
-     *            the input point to be transformed.
+     * @param point the input point to be transformed.
      */
     public final void transformOne(Vec3D point) {
         float x, y;
@@ -3338,10 +3217,8 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
      * into pointOut. The fourth element of the point input paramter is assumed
      * to be one.
      *
-     * @param point
-     *            the input point to be transformed.
-     * @param pointOut
-     *            the transformed point
+     * @param point the input point to be transformed.
+     * @param pointOut the transformed point
      */
     public final void transformOne(Vec3D point, Vec3D pointOut) {
         float x, y;
@@ -3356,8 +3233,7 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
      * Transforms the normal parameter by this transform and places the value
      * back into normal. The fourth element of the normal is assumed to be zero.
      *
-     * @param normal
-     *            the input normal to be transformed.
+     * @param normal the input normal to be transformed.
      */
     public final void transformZero(Vec3D normal) {
         float x, y;
@@ -3373,10 +3249,8 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
      * Transforms the normal parameter by this Matrix4f and places the value
      * into normalOut. The fourth element of the normal is assumed to be zero.
      *
-     * @param normal
-     *            the input normal to be transformed.
-     * @param normalOut
-     *            the transformed normal
+     * @param normal the input normal to be transformed.
+     * @param normalOut the transformed normal
      */
     public final void transformZero(Vec3D normal, Vec3D normalOut) {
         float x, y;
@@ -3421,8 +3295,7 @@ public class Matrix4f implements java.io.Serializable, Cloneable {
     /**
      * Sets the value of this matrix to the transpose of the argument matrix.
      *
-     * @param m1
-     *            the matrix to be transposed
+     * @param m1 the matrix to be transposed
      */
     public final void transpose(Matrix4f m1) {
         if (this != m1) {

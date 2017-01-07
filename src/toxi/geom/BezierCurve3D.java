@@ -56,7 +56,7 @@ public class BezierCurve3D {
      *
      */
     public BezierCurve3D() {
-        points = new ArrayList<Vec3D>();
+        points = new ArrayList<>();
     }
 
     /**

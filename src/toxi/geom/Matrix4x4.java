@@ -24,7 +24,6 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
  */
-
 package toxi.geom;
 
 import toxi.math.MathUtils;
@@ -452,8 +451,8 @@ public class Matrix4x4 {
     }
 
     private void init() {
-        matrix = new double[][] {
-                new double[4], new double[4], new double[4], new double[4]
+        matrix = new double[][]{
+            new double[4], new double[4], new double[4], new double[4]
         };
     }
 
@@ -591,7 +590,6 @@ public class Matrix4x4 {
      * @param factor
      * @return
      */
-
     public Matrix4x4 multiply(double factor) {
         return new Matrix4x4(this).multiplySelf(factor);
     }
@@ -673,8 +671,7 @@ public class Matrix4x4 {
     /**
      * Applies rotation about X to this matrix.
      *
-     * @param theta
-     *            rotation angle in radians
+     * @param theta rotation angle in radians
      * @return itself
      */
     public Matrix4x4 rotateX(double theta) {
@@ -688,8 +685,7 @@ public class Matrix4x4 {
     /**
      * Applies rotation about Y to this matrix.
      *
-     * @param theta
-     *            rotation angle in radians
+     * @param theta rotation angle in radians
      * @return itself
      */
     public Matrix4x4 rotateY(double theta) {
@@ -701,13 +697,12 @@ public class Matrix4x4 {
     }
 
     // Apply Rotation about Z to Matrix
-
     /**
      *
      * @param theta
      * @return
      */
-        public Matrix4x4 rotateZ(double theta) {
+    public Matrix4x4 rotateZ(double theta) {
         TEMP.identity();
         TEMP.matrix[0][0] = TEMP.matrix[1][1] = Math.cos(theta);
         TEMP.matrix[1][0] = Math.sin(theta);
@@ -853,7 +848,7 @@ public class Matrix4x4 {
         return set((2.0 * near) / (right - left), 0, (left + right)
                 / (right - left), 0, 0, (2.0 * near) / (top - bottom),
                 (top + bottom) / (top - bottom), 0, 0, 0, -(near + far)
-                        / (far - near), (-2 * near * far) / (far - near), 0, 0,
+                / (far - near), (-2 * near * far) / (far - near), 0, 0,
                 -1, 0);
     }
 
@@ -946,8 +941,7 @@ public class Matrix4x4 {
     /**
      * Copies all matrix elements into an linear array.
      *
-     * @param result
-     *            array (or null to create a new one)
+     * @param result array (or null to create a new one)
      * @return matrix as 16 element array
      */
     public double[] toArray(double[] result) {
@@ -984,25 +978,23 @@ public class Matrix4x4 {
      *
      * @see java.lang.Object#toString()
      */
-
     /**
      *
      * @return
      */
-
-     @Override
-     public String toString() {
-       return String.join("\n",
-       String.format("| %d %d %d %d |",
-       matrix[0][0], matrix[0][1], matrix[0][2], matrix[0][3]),
-       String.format("| %d %d %d %d |",
-       matrix[1][0], matrix[1][1], matrix[1][2], matrix[1][3]),
-       String.format("| %d %d %d %d |",
-       matrix[2][0], matrix[2][1],  matrix[2][2], matrix[2][3]),
-       String.format("| %d %d %d %d |",
-       matrix[3][0], matrix[3][1], matrix[3][2], matrix[3][3])
-       );
-     }
+    @Override
+    public String toString() {
+        return String.join("\n",
+                String.format("| %f %f %f %f |",
+                        matrix[0][0], matrix[0][1], matrix[0][2], matrix[0][3]),
+                String.format("| %f %f %f %f |",
+                        matrix[1][0], matrix[1][1], matrix[1][2], matrix[1][3]),
+                String.format("| %f %f %f %f |",
+                        matrix[2][0], matrix[2][1], matrix[2][2], matrix[2][3]),
+                String.format("| %f %f %f %f |",
+                        matrix[3][0], matrix[3][1], matrix[3][2], matrix[3][3])
+        );
+    }
 
     /**
      *
