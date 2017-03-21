@@ -1,4 +1,6 @@
 
+**v0.9.2** Bump processing version
+
 **v0.9.1** Make it easier to load PerlinNoise and SimplexNoise
 
 **v0.9.0** Updated maven artifacts, somewhat arbitarily require JRubyArt-1.2+
