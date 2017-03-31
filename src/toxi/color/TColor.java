@@ -223,30 +223,37 @@ public class TColor implements ReadonlyTColor {
             float q = v * (1 - s * f);
             float t = v * (1 - s * (1 - f));
 
-            if (i == 0) {
-                rgb[0] = v;
-                rgb[1] = t;
-                rgb[2] = p;
-            } else if (i == 1) {
-                rgb[0] = q;
-                rgb[1] = v;
-                rgb[2] = p;
-            } else if (i == 2) {
-                rgb[0] = p;
-                rgb[1] = v;
-                rgb[2] = t;
-            } else if (i == 3) {
-                rgb[0] = p;
-                rgb[1] = q;
-                rgb[2] = v;
-            } else if (i == 4) {
-                rgb[0] = t;
-                rgb[1] = p;
-                rgb[2] = v;
-            } else {
-                rgb[0] = v;
-                rgb[1] = p;
-                rgb[2] = q;
+            switch (i) {
+                case 0:
+                    rgb[0] = v;
+                    rgb[1] = t;
+                    rgb[2] = p;
+                    break;
+                case 1:
+                    rgb[0] = q;
+                    rgb[1] = v;
+                    rgb[2] = p;
+                    break;
+                case 2:
+                    rgb[0] = p;
+                    rgb[1] = v;
+                    rgb[2] = t;
+                    break;
+                case 3:
+                    rgb[0] = p;
+                    rgb[1] = q;
+                    rgb[2] = v;
+                    break;
+                case 4:
+                    rgb[0] = t;
+                    rgb[1] = p;
+                    rgb[2] = v;
+                    break;
+                default:
+                    rgb[0] = v;
+                    rgb[1] = p;
+                    rgb[2] = q;
+                    break;
             }
         }
         return rgb;

@@ -41,12 +41,12 @@ public class Hue {
     /**
      *
      */
-    protected static final HashMap<String, Hue> namedHues = new HashMap<>();
+    protected static final HashMap<String, Hue> NAMED_HUES = new HashMap<>();
 
     /**
      *
      */
-    protected static final ArrayList<Hue> primaryHues = new ArrayList<>();
+    protected static final ArrayList<Hue> PRIMARY_HUES = new ArrayList<>();
 
     /**
      *
@@ -127,7 +127,7 @@ public class Hue {
         hue %= 1;
         float dist = Float.MAX_VALUE;
         Hue closest = null;
-        Iterable<Hue> hues = (primaryOnly ? primaryHues : namedHues.values());
+        Iterable<Hue> hues = (primaryOnly ? PRIMARY_HUES : NAMED_HUES.values());
         for (Hue h : hues) {
             float d = MathUtils.min(MathUtils.abs(h.hue - hue),
                     MathUtils.abs(1 + h.hue - hue));
@@ -145,7 +145,7 @@ public class Hue {
      * @return
      */
     public static final Hue getForName(String name) {
-        return namedHues.get(name.toLowerCase());
+        return NAMED_HUES.get(name.toLowerCase());
     }
 
     /**
@@ -165,7 +165,7 @@ public class Hue {
      */
     public static boolean isPrimary(float hue, float variance) {
         boolean isPrimary = false;
-        for (Hue h : primaryHues) {
+        for (Hue h : PRIMARY_HUES) {
             if (MathUtils.abs(hue - h.hue) < variance) {
                 isPrimary = true;
                 break;
@@ -208,9 +208,9 @@ public class Hue {
         this.name = name;
         this.hue = hue;
         this.isPrimary = isPrimary;
-        namedHues.put(name, this);
+        NAMED_HUES.put(name, this);
         if (isPrimary) {
-            primaryHues.add(this);
+            PRIMARY_HUES.add(this);
         }
     }
 

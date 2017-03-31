@@ -69,7 +69,7 @@ public class ColorTheme {
     /**
      *
      */
-    protected ArrayList<ThemePart> parts = new ArrayList<>();
+    private final ArrayList<ThemePart> parts = new ArrayList<>();
 
     /**
      *

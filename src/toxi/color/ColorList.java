@@ -2,23 +2,23 @@
  * Some classes in this package have been partly inspired by & bits ported from
  * Python code written by Tom De Smedt & Frederik De Bleser for the "colors" library
  * of Nodebox.net.
- * 
+ *
  * http://nodebox.net/code/index.php/Colors
  *
  * Copyright (c) 2006-2011 Karsten Schmidt
- * 
+ *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
  * version 2.1 of the License, or (at your option) any later version.
- * 
+ *
  * http://creativecommons.org/licenses/LGPL/2.1/
- * 
+ *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * Lesser General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
@@ -45,7 +45,7 @@ import toxi.math.MathUtils;
  * are also created when working with {@link ColorRange}s. The class has various
  * methods to manipulate all colors in the list in parallel, as well as sort
  * them by various criteria.
- * 
+ *
  * @see ColorRange
  * @see AccessCriteria
  */
@@ -56,7 +56,7 @@ public class ColorList implements Iterable<TColor> {
      * ARGB image array. If the number of samples equals or exceeds the number
      * of pixels in the image and no unique colors are required, the function
      * will simply return the same as {@link #ColorList(int[])}.
-     * 
+     *
      * @param pixels
      *            int array of ARGB pixels
      * @param num
@@ -78,7 +78,7 @@ public class ColorList implements Iterable<TColor> {
      * the number of pixels in the source image and no unique colors are
      * required, the function will simply return the same as
      * {@link #ColorList(int[])}.
-     * 
+     *
      * @param pixels
      *            int array of ARGB pixels
      * @param num
@@ -127,7 +127,7 @@ public class ColorList implements Iterable<TColor> {
      * Factory method. Creates a new ColorList based on the given
      * {@link ColorTheoryStrategy} instance and the given source color. The
      * number of colors returned will vary with the strategy chosen.
-     * 
+     *
      * @param strategy
      * @param c
      * @return new list
@@ -140,7 +140,7 @@ public class ColorList implements Iterable<TColor> {
     /**
      * Factory method. Creates a ColorList based on the name of a
      * {@link ColorTheoryStrategy} and the given source color.
-     * 
+     *
      * @param name
      *            strategy name
      * @param c
@@ -174,7 +174,7 @@ public class ColorList implements Iterable<TColor> {
     /**
      * Creates a ColorList by wrapping the given ArrayList of colors. No copies
      * of the given colors are created (shallow copy only).
-     * 
+     *
      * @param colors
      */
     public ColorList(Collection<TColor> colors) {
@@ -185,7 +185,7 @@ public class ColorList implements Iterable<TColor> {
     /**
      * Creates a deep copy of the given ColorList. Manipulating the new list or
      * its color entries does NOT change the colors of the original.
-     * 
+     *
      * @param list
      *            source list to copy
      */
@@ -199,7 +199,7 @@ public class ColorList implements Iterable<TColor> {
     /**
      * Creates a new color list from the array of ARGB int values. In most cases
      * this will be the pixel buffer of an image.
-     * 
+     *
      * @param argbArray
      */
     public ColorList(int[] argbArray) {
@@ -213,18 +213,18 @@ public class ColorList implements Iterable<TColor> {
      * Creates new ColorList from the given colors. Copies of the given colors
      * are created. This is a varargs constructor allowing these two parameter
      * formats:
-     * 
+     *
      * <pre>
      * // individual parameters
      * ColorList cols=new ColorList(TColor.BLACK,TColor.WHITE,TColor.newRGB(1,0,0));
-     * 
+     *
      * // or array of colors
      * ReadonlyTColor[] colArray=new ReadonlyTColor[] {
      *   TColor.BLACK,TColor.WHITE,TColor.newRGB(1,0,0);
      * };
      * ColorList cols=new ColorList(colArray);
      * </pre>
-     * 
+     *
      * @param colorArray
      */
     public ColorList(ReadonlyTColor... colorArray) {
@@ -236,7 +236,7 @@ public class ColorList implements Iterable<TColor> {
 
     /**
      * Adds a copy of the given color to the list
-     * 
+     *
      * @param c
      * @return itself
      */
@@ -248,7 +248,7 @@ public class ColorList implements Iterable<TColor> {
     /**
      * Adds all entries of the TColor collection to the list (shallow copy only,
      * manipulating the new list will modify the original colors).
-     * 
+     *
      * @param collection
      * @return itself
      */
@@ -259,36 +259,36 @@ public class ColorList implements Iterable<TColor> {
 
     /**
      * Adjusts the brightness component of all list colors by the given amount.
-     * 
+     *
      * @param step
      *            adjustment value
      * @return itself
      */
     public ColorList adjustBrightness(float step) {
-        for (TColor c : colors) {
+        colors.forEach((c) -> {
             c.lighten(step);
-        }
+        });
         return this;
     }
 
     /**
      * Adjusts the saturation component of all list colors by the given amount.
-     * 
+     *
      * @param step
      *            adjustment value
      * @return itself
      */
     public ColorList adjustSaturation(float step) {
-        for (TColor c : colors) {
+        colors.forEach((c) -> {
             c.saturate(step);
-        }
+        });
         return this;
     }
 
     /**
      * Sorts the list based on two criteria to create clusters/segments within
      * the list.
-     * 
+     *
      * @param clusterCriteria
      *            main sort criteria
      * @param subClusterCriteria
@@ -334,30 +334,25 @@ public class ColorList implements Iterable<TColor> {
 
     /**
      * Switches all list colors to their complementary color.
-     * 
+     *
      * @return itself
      */
     public ColorList complement() {
-        for (TColor c : colors) {
+        colors.forEach((c) -> {
             c.complement();
-        }
+        });
         return this;
     }
 
     /**
      * Checks if the given color is part of the list. Check is done by value,
      * not instance.
-     * 
+     *
      * @param color
      * @return true, if the color is present.
      */
     public boolean contains(ReadonlyTColor color) {
-        for (ReadonlyTColor c : colors) {
-            if (c.equals(color)) {
-                return true;
-            }
-        }
-        return false;
+        return colors.stream().anyMatch((c) -> (c.equals(color)));
     }
 
     /**
@@ -365,7 +360,7 @@ public class ColorList implements Iterable<TColor> {
      * convention, in that if the index is negative, it is considered relative
      * to the list end. Therefore the color at index -1 is the last color in the
      * list.
-     * 
+     *
      * @param i
      *            index
      * @return color
@@ -379,7 +374,7 @@ public class ColorList implements Iterable<TColor> {
 
     /**
      * Calculates and returns the average color of the list.
-     * 
+     *
      * @return average color or null, if there're no entries yet.
      */
     public ReadonlyTColor getAverage() {
@@ -404,7 +399,7 @@ public class ColorList implements Iterable<TColor> {
     /**
      * Creates a new ColorList by blending all colors in the list with each
      * other (successive indices only)
-     * 
+     *
      * @param amount
      *            blend amount
      * @return new color list
@@ -420,7 +415,7 @@ public class ColorList implements Iterable<TColor> {
 
     /**
      * Finds and returns the darkest color of the list.
-     * 
+     *
      * @return darkest color or null if there're no entries yet.
      */
     public TColor getDarkest() {
@@ -438,7 +433,7 @@ public class ColorList implements Iterable<TColor> {
 
     /**
      * Finds and returns the lightest (luminance) color of the list.
-     * 
+     *
      * @return lightest color or null, if there're no entries yet.
      */
     public ReadonlyTColor getLightest() {
@@ -464,7 +459,7 @@ public class ColorList implements Iterable<TColor> {
 
     /**
      * Returns a reversed copy of the current list.
-     * 
+     *
      * @return reversed copy of the list
      */
     public ColorList getReverse() {
@@ -473,20 +468,35 @@ public class ColorList implements Iterable<TColor> {
 
     /**
      * Inverts all colors in the list.
-     * 
+     *
      * @return itself
      */
     public ColorList invert() {
-        for (TColor c : colors) {
+        colors.forEach((c) -> {
             c.invert();
-        }
+        });
         return this;
+    }
+
+
+    public String toRubyString() {
+        StringBuilder ruby = new StringBuilder("%w(");
+        colors.stream().map((c) -> {
+            ruby.append('#');
+            ruby.append(c.toHex());
+            return c;
+        }).forEachOrdered((_item) -> {
+            ruby.append(' ');
+        });
+        ruby.deleteCharAt(ruby.length() - 1);
+        ruby.append(")\n");
+        return ruby.toString();
     }
 
     /**
      * Returns an iterator over the internal list. This means the list can be
      * accessed via standard Iterator loops.
-     * 
+     *
      * @return list iterator
      */
     @Override
@@ -496,7 +506,7 @@ public class ColorList implements Iterable<TColor> {
 
     /**
      * Reverses the current order of the list.
-     * 
+     *
      * @return itself
      */
     public ColorList reverse() {
@@ -506,7 +516,7 @@ public class ColorList implements Iterable<TColor> {
 
     /**
      * Rotates the hues of all colors in the list by the given amount.
-     * 
+     *
      * @param theta
      *            rotation angle in radians
      * @return itself
@@ -518,7 +528,7 @@ public class ColorList implements Iterable<TColor> {
 
     /**
      * Rotates the hues of all colors in the list by the given amount.
-     * 
+     *
      * @param angle
      *            rotation angle in degrees
      * @return itself
@@ -527,17 +537,17 @@ public class ColorList implements Iterable<TColor> {
         rotateImplementation(angle);
         return this;
     }
-    
+
      /**
      * Rotates the hues of all colors in the list by the given amount.
-     * 
+     *
      * @param angle
      *            rotation angle in degrees
      */
     private void rotateImplementation(float angle) {
-        for (TColor c : colors) {
+        colors.forEach((c) -> {
             c.rotateRYB(angle);
-        }
+        });
     }
 
     /**
@@ -549,7 +559,7 @@ public class ColorList implements Iterable<TColor> {
 
     /**
      * Convenience method. Sorts the list by hue.
-     * 
+     *
      * @return itself
      */
     public ColorList sort() {
@@ -558,7 +568,7 @@ public class ColorList implements Iterable<TColor> {
 
     /**
      * Sorts the list using the given comparator.
-     * 
+     *
      * @param comp
      *            comparator
      * @param isReversed
@@ -576,7 +586,7 @@ public class ColorList implements Iterable<TColor> {
 
     /**
      * Sorts the list using the given {@link AccessCriteria}.
-     * 
+     *
      * @param criteria
      *            sort criteria
      * @param isReversed
@@ -590,7 +600,7 @@ public class ColorList implements Iterable<TColor> {
     /**
      * Sorts the list by relative distance to each predecessor, starting with
      * the darkest color in the list.
-     * 
+     *
      * @param isReversed
      *            true, if list is to be sorted in reverse.
      * @return itself
@@ -602,7 +612,7 @@ public class ColorList implements Iterable<TColor> {
     /**
      * Sorts the list by relative distance to each predecessor, starting with
      * the darkest color in the list.
-     * 
+     *
      * @param proxy
      * @param isReversed
      *            true, if list is to be sorted in reverse.
@@ -653,7 +663,7 @@ public class ColorList implements Iterable<TColor> {
     /**
      * Sorts the list by proximity to the given target color (using RGB distance
      * metrics).
-     * 
+     *
      * @see #sortByProximityTo(ReadonlyTColor, DistanceProxy, boolean)
      * @param target
      *            color
@@ -668,7 +678,7 @@ public class ColorList implements Iterable<TColor> {
     /**
      * Sorts the list by proximity to the given target color using the given
      * {@link DistanceProxy} implementation.
-     * 
+     *
      * @param target
      *            color
      * @param proxy
@@ -685,7 +695,7 @@ public class ColorList implements Iterable<TColor> {
 
     /**
      * Creates an ARGB integer array of the list items.
-     * 
+     *
      * @return all list colors as ARGB values
      */
     public int[] toARGBArray() {

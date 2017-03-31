@@ -169,6 +169,7 @@ public class Histogram implements Iterable<HistEntry> {
      * loops processing the entries.
      * @return 
      */
+    @Override
     public Iterator<HistEntry> iterator() {
         return entries.iterator();
     }
