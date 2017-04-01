@@ -3,7 +3,7 @@ layout: post
 title:  "Calling Toxiclibs from JRubyArt"
 date:   2015-11-29 06:26:13
 categories: toxiclibs update
-permalink: /namespace/ 
+permalink: /namespace/
 ---
 
 <style>
@@ -26,7 +26,8 @@ th{
 |Other geometry|eg Matrix4x4               |Toxi::Matrix4x4<sup>c</sup>     |
 |Volume        |eg VolumetricSpace         |VolumetricSpace<sup>b</sup>     |
 |Color         |eg ToneMap                 |Toxi::ToneMap<sup>c</sup>       |
-|Graphics Util |not available              |Gfx::MeshToVBO.new(self)<sup>d</sup> |
+|Color         |TColor                     |TColor<sup>d</sup>              |
+|Graphics Util |not available              |Gfx::MeshToVBO.new(self)<sup>e</sup> |
 
 -----
 
@@ -36,7 +37,9 @@ th{
 
 <sup>c</sup>Using Toxi prefix to avoid possible namespace clash, see [toxiclibs.rb][library]
 
-<sup>d</sup>Using Gfx prefix to provide access to the `toxi.processing` package, see [toxiclibs.rb][library]. Most common usage would be to call `ToxiclibsSupport` see below:-
+<sup>d</sup>Since version 0.92 (previously required `Toxi` prefix)
+
+<sup>e</sup>Using Gfx prefix to provide access to the `toxi.processing` package, see [toxiclibs.rb][library]. Most common usage would be to call `ToxiclibsSupport` see below:-
 
 {% highlight java %}
 ToxiclibsSupport gfx = new ToxiclibsSupport(this);
