@@ -1,5 +1,5 @@
 
-**v0.9.2** Bump processing version
+**v0.9.2** Bump processing version, add `to_ruby_string` method to `ColorList` see examples, allow use of `TColor` without `Toxi` prefix 
 
 **v0.9.1** Make it easier to load PerlinNoise and SimplexNoise
 
