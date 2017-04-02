@@ -28,7 +28,6 @@ project 'toxiclibs' do
               'polyglot.dump.pom' => 'pom.xml'
             )
 
-  jar 'org.jogamp.joal:joal-main:2.3.1'
   jar 'args4j:args4j:2.0.31'
   jar 'org.processing:core:3.3.0'
 
@@ -45,11 +44,6 @@ project 'toxiclibs' do
                    'artifactItems' => [ { 'groupId' =>  'args4j',
                                           'artifactId' =>  'args4j',
                                           'version' =>  '2.0.31',
-                                          'type' =>  'jar',
-                                          'outputDirectory' =>  'lib' },
-                                        { 'groupId' =>  'org.jogamp.joal',
-                                          'artifactId' =>  'joal',
-                                          'version' =>  '2.3.1',
                                           'type' =>  'jar',
                                           'outputDirectory' =>  'lib' } ] )
   end
