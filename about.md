@@ -20,8 +20,6 @@ The toxiclibs gem is a derived work based on the version-22 of toxis libraries (
 
 ### Packages ###
 
-* <s>toxi.audio</s>
-   * <s>JOAL based 3D spatial audio sound manager</s> work in progress
 * toxi.color
   * float based color type with RGB, HSV, CMYK accessors & operators
   * named colors & hues
