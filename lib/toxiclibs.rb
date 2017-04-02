@@ -83,6 +83,8 @@ if RUBY_PLATFORM == 'java'
   TVec2D = Toxi::Vec2D
   TVec3D = Toxi::Vec3D
   AABB = Toxi::AABB
+  # alias Toxi::TColor
+  TColor = Toxi::TColor
   volume = %w(AdditiveBrush ArrayIsoSurface BoxBrush BrushMode HashIsoSurface
               IsoSurface MarchingCubesIndex MeshLatticeBuilder MeshVoxelizer
               MultiplyBrush PeakBrush ReplaceBrush RoundBrush VolumetricBrush
