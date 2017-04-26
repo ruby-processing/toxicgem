@@ -1,4 +1,6 @@
 
+**v0.9.3** Bump processing version to processing-3.3.2.
+
 **v0.9.2** Bump processing version, add `to_ruby_string` method to `ColorList` see examples, allow use of `TColor` without `Toxi` prefix. Removed audio. 
 
 **v0.9.1** Make it easier to load PerlinNoise and SimplexNoise

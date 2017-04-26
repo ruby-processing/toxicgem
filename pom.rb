@@ -1,17 +1,17 @@
 project 'toxiclibs' do
 
   model_version '4.0.0'
-  id 'ruby-processing:toxiclibs:0.9.2'
+  id 'ruby-processing:toxiclibs:0.9.3'
   packaging 'jar'
 
   description 'toxiclibs-library for JRubyArt'
-  
+
   organization 'ruby-processing', 'https://ruby-processing.github.io'
 
   developer 'monkstone' do
     name 'Martin Prout'
     email 'mamba2928@yahoo.co.uk'
-    roles 'developer' 
+    roles 'developer'
   end
 
   license 'LGPL 2', 'http://www.gnu.org/licenses/lgpl-2.1-standalone.html'
@@ -29,7 +29,7 @@ project 'toxiclibs' do
             )
 
   jar 'args4j:args4j:2.0.31'
-  jar 'org.processing:core:3.3.0'
+  jar 'org.processing:core:3.3.2'
 
   plugin( :compiler, '3.5.1',
           'source' =>  '1.8',
