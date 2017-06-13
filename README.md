@@ -8,10 +8,10 @@
 gem install toxiclibs
 ```
 
-### NB: Use version 0.4 for ruby-processing, and 0.9.2 for propane and JRubyArt
+### NB: Use version 0.4 for ruby-processing, and 1.0.0 for propane and JRubyArt
 
 NB: Build is only failing because current version of processing is not available at maven central.
-This gem provides Karsten Schmidts (aka toxi, @postspectacular) toxiclibs jars for JRubyArt. To compile the gem follow the instructions for [JRubyArt][]. Most parts of toxiclibs API is exposed in the latest version, (but only a few examples are included) in principle it should be possible to make all available!!! For this demonstration I have used up to date source code for version 21, since [toxis final release][] has not yet been released (although [Dan Shiffman][] has released a version for processing-3.0+). There are reported to be number of outstanding bugs with toxiclibs, if they affect you report it [here][] (or better fix them yourself and submit a pull request). Version 0.9.2 features java code updated to use java lambda (jdk8) and was compiled against processing-3.3 core.jar. The audio library was not working and has been dropped since version 0.9.2.
+This gem provides Karsten Schmidts (aka toxi, @postspectacular) toxiclibs jars for JRubyArt. To compile the gem follow the instructions for [JRubyArt][]. Most parts of toxiclibs API is exposed in the latest version, (but only a few examples are included) in principle it should be possible to make all available!!! For this demonstration I have used up to date source code for version 21, since [toxis final release][] has not yet been released (although [Dan Shiffman][] has released a version for processing-3.0+). There are reported to be number of outstanding bugs with toxiclibs, if they affect you report it [here][] (or better fix them yourself and submit a pull request).
 
 ![grayscott image](http://4.bp.blogspot.com/-d4MiL4_0Njk/VFJMv6VUicI/AAAAAAAAEgY/fFAfrXDxNXM/s400/grayscott.png)
 
