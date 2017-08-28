@@ -45,7 +45,7 @@ th{
 ToxiclibsSupport gfx = new ToxiclibsSupport(this);
 {% endhighlight %}
 
-in JRubyArt
+in JRubyArt and propane
 
 {% highlight ruby %}
 @gfx = Gfx::ToxiclibsSupport.new(self)
