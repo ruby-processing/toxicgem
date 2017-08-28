@@ -3,8 +3,8 @@ port: 4000
 title: Toxiclibs gem for JRubyArt
 email: mamba2928@yahoo.co.uk
 description: > # this means to ignore newlines until "baseurl:"
-  A gem wrapper for the awesome toxilibs library, that you can now easily 
-  use with JRubyArt 
+  A gem wrapper for the awesome toxiclibs library, that you can now easily
+  use with JRubyArt / propane
 baseurl: "" # the subpath of your site, e.g. /blog
 # url: "http://ruby-processing.github.io/toxicgem"
 urls:
@@ -14,9 +14,8 @@ twitter_username: monkstoneT
 github_username:  monkstone
 
 syntax-highlighting:
-  enabled: true       
+  enabled: true
 # Build settings
 markdown: kramdown
 gems:
   - jekyll-sitemap
-
