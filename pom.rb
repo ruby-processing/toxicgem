@@ -29,17 +29,17 @@ project 'toxiclibs' do
             )
 
   jar 'args4j:args4j:2.0.31'
-  jar 'org.processing:core:3.3.4'
+  jar 'org.processing:core:3.3.5'
 
-  plugin( :compiler, '3.5.1',
+  plugin( :compiler, '3.7.0',
           'source' =>  '1.8',
           'target' =>  '1.8' )
   plugin( :jar, '3.0.2',
           'archive' => {
             'manifestFile' =>  'MANIFEST.MF'
           } )
-  plugin :resources, '2.6'
-  plugin :dependency, '2.10' do
+  plugin :resources, '3.0.2'
+  plugin :dependency, '3.0.2' do
     execute_goals( :id => 'default-cli',
                    'artifactItems' => [ { 'groupId' =>  'args4j',
                                           'artifactId' =>  'args4j',

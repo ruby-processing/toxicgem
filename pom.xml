@@ -58,7 +58,7 @@ DO NOT MODIFIY - GENERATED CODE
     <dependency>
       <groupId>org.processing</groupId>
       <artifactId>core</artifactId>
-      <version>3.3.4</version>
+      <version>3.3.5</version>
     </dependency>
   </dependencies>
   <build>
@@ -68,7 +68,7 @@ DO NOT MODIFIY - GENERATED CODE
     <plugins>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.5.1</version>
+        <version>3.7.0</version>
         <configuration>
           <source>1.8</source>
           <target>1.8</target>
@@ -85,11 +85,11 @@ DO NOT MODIFIY - GENERATED CODE
       </plugin>
       <plugin>
         <artifactId>maven-resources-plugin</artifactId>
-        <version>2.6</version>
+        <version>3.0.2</version>
       </plugin>
       <plugin>
         <artifactId>maven-dependency-plugin</artifactId>
-        <version>2.10</version>
+        <version>3.0.2</version>
         <executions>
           <execution>
             <id>default-cli</id>
