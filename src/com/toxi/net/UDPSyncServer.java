@@ -102,7 +102,7 @@ public class UDPSyncServer {
      */
     protected int frameCount;
 
-    private static Logger logger;
+    private static Logger LOGGER;
 
     /**
      * Optional server event listener
@@ -147,9 +147,9 @@ public class UDPSyncServer {
         try {
             if (configFile != null)
                 config.load(new FileInputStream(configFile));
-            logger = Logger.getLogger("com.postspectacular");
-            logger.addHandler(new ConsoleHandler());
-            logger.setLevel(Level.CONFIG);
+            LOGGER = Logger.getLogger("com.postspectacular");
+            LOGGER.addHandler(new ConsoleHandler());
+            LOGGER.setLevel(Level.CONFIG);
             configure(config);
             run();
         } catch (FileNotFoundException e) {
@@ -175,8 +175,8 @@ public class UDPSyncServer {
         connectionTimeOut = config.getInt("udp.ttl", connectionTimeOut);
         UDPConnection.setTTL(connectionTimeOut);
         receiveTimeOut = config.getInt("udp.receivetimeout", receiveTimeOut);
-        if (logger != null) {
-            logger.log(Level.INFO, "configured server... port:{0} clients:{1} fps:{2} ttl:{3} rto:{4}", new Object[]{port, numClients, frameRate, connectionTimeOut, receiveTimeOut});
+        if (LOGGER != null) {
+            LOGGER.log(Level.INFO, "configured server... port:{0} clients:{1} fps:{2} ttl:{3} rto:{4}", new Object[]{port, numClients, frameRate, connectionTimeOut, receiveTimeOut});
         }
         setState(ServerState.WAITING_FOR_CLIENTS);
     }
@@ -188,8 +188,8 @@ public class UDPSyncServer {
     public void run() {
         try {
             socket = new DatagramSocket(port);
-            if (logger != null)
-                logger.log(Level.INFO, "creating socket @ port {0}", port);
+            if (LOGGER != null)
+                LOGGER.log(Level.INFO, "creating socket @ port {0}", port);
             if (listener != null) {
                 listener.serverStarted();
             }
@@ -197,8 +197,8 @@ public class UDPSyncServer {
                 switch (state) {
 
                     case WAITING_FOR_CLIENTS:
-                        if (logger != null)
-                            logger.info("Server running, waiting for connections...");
+                        if (LOGGER != null)
+                            LOGGER.info("Server running, waiting for connections...");
                         // disable timeout, i.e socket will block indefinitely
                         // until
                         // a packet is received
@@ -224,8 +224,8 @@ public class UDPSyncServer {
                                 UDPConnection conn = iter.next();
                                 if (!conn.isAlive()) {
                                     iter.remove();
-                                    if (logger != null)
-                                        logger.log(Level.WARNING, "{0} disconnected", conn);
+                                    if (LOGGER != null)
+                                        LOGGER.log(Level.WARNING, "{0} disconnected", conn);
                                     if (listener != null)
                                         listener.clientDisconnected(conn);
                                 }
@@ -252,8 +252,8 @@ public class UDPSyncServer {
                                         conn = new UDPConnection(ip, portDP);
                                         conn.send(socket, getSyncPayload());
                                         connections.put(connID, conn);
-                                        if (logger != null)
-                                            logger.log(Level.FINE, "re-adding connection: {0}", conn);
+                                        if (LOGGER != null)
+                                            LOGGER.log(Level.FINE, "re-adding connection: {0}", conn);
                                     }
                                     if (listener != null)
                                         listener.clientUpdated(conn,
@@ -267,13 +267,13 @@ public class UDPSyncServer {
                             long delta = (endSynch - beginSynch) / 1000000;
                             if (delta < frameDuration) {
                                 int sleep = frameDuration - (int) delta;
-                                if (logger != null)
-                                    logger.log(Level.FINEST, "sleeping: {0}", sleep);
+                                if (LOGGER != null)
+                                    LOGGER.log(Level.FINEST, "sleeping: {0}", sleep);
                                 Thread.sleep(sleep);
                             }
                         } else {
-                            if (logger != null)
-                                logger.info("all clients disconnected");
+                            if (LOGGER != null)
+                                LOGGER.info("all clients disconnected");
                             setState(ServerState.WAITING_FOR_CLIENTS);
                         }
                 }
@@ -281,8 +281,8 @@ public class UDPSyncServer {
         } catch (IOException | InterruptedException e) {
             handleException(e);
         } finally {
-            if (logger != null)
-                logger.info("server shutting down...");
+            if (LOGGER != null)
+                LOGGER.info("server shutting down...");
             if (socket != null)
                 socket.close();
         }
@@ -302,8 +302,8 @@ public class UDPSyncServer {
         try {
             DatagramPacket receivePacket = new DatagramPacket(receiveData,
                     receiveData.length);
-            if (logger != null)
-                logger.log(Level.INFO, "waiting for {0} more clients to reconnect...", (numClients - connections.size()));
+            if (LOGGER != null)
+                LOGGER.log(Level.INFO, "waiting for {0} more clients to reconnect...", (numClients - connections.size()));
             socket.receive(receivePacket);
             InetAddress ip = receivePacket.getAddress();
             int portDP = receivePacket.getPort();
@@ -311,14 +311,14 @@ public class UDPSyncServer {
             if (connections.get(connID) == null) {
                 if (connections.isEmpty()) {
                     frameCount = 0;
-                    if (logger != null)
-                        logger.info("resetting frame count");
+                    if (LOGGER != null)
+                        LOGGER.info("resetting frame count");
                 }
                 UDPConnection conn = new UDPConnection(ip, portDP);
                 connections.put(connID, conn);
                 conn.send(socket, getSyncPayload());
-                if (logger != null)
-                    logger.log(Level.FINE, "added new connection: {0}", conn);
+                if (LOGGER != null)
+                    LOGGER.log(Level.FINE, "added new connection: {0}", conn);
                 if (listener != null) {
                     listener.clientConnected(conn);
                 }
@@ -332,8 +332,8 @@ public class UDPSyncServer {
     private void handleException(Exception e) {
         if (listener != null)
             listener.serverError(e);
-        if (logger != null)
-            logger.log(Level.SEVERE, "Server error", e);
+        if (LOGGER != null)
+            LOGGER.log(Level.SEVERE, "Server error", e);
         else
             e.printStackTrace();
     }
@@ -381,8 +381,8 @@ public class UDPSyncServer {
      */
     private void setState(ServerState s) {
         state = s;
-        if (logger != null)
-            logger.log(Level.CONFIG, "new server state: {0}", state);
+        if (LOGGER != null)
+            LOGGER.log(Level.CONFIG, "new server state: {0}", state);
         if (listener != null)
             listener.serverStateChanged(s);
     }
@@ -434,7 +434,7 @@ public class UDPSyncServer {
      * @param logger
      */
     public void setLogger(Logger logger) {
-        UDPSyncServer.logger = logger;
+        UDPSyncServer.LOGGER = logger;
     }
 
     /**
@@ -444,7 +444,7 @@ public class UDPSyncServer {
      */
     public void setListener(ServerListener listener) {
         this.listener = listener;
-        if (logger != null)
-            logger.log(Level.INFO, "new server listener: {0}", listener);
+        if (LOGGER != null)
+            LOGGER.log(Level.INFO, "new server listener: {0}", listener);
     }
 }

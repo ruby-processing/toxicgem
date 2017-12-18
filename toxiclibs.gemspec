@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.extra_rdoc_files = %w(README.md LICENSE.md)
   spec.summary = %q(Updated and extended toxiclibs libraries for JRubyArt and propane)
   spec.description =<<-EOS
-  Toxiclibs java libraries wrapped in a rubygem. Compiled and tested with JRubyArt-1.3.2 and processing-3.3.2
+  Toxiclibs java libraries wrapped in a rubygem. Compiled and tested with JRubyArt-1.4.4 and processing-3.3.6
   EOS
   spec.licenses = %w(MIT LGPL-3.0)
   spec.authors = %w(Karsten\ Schmidt Martin\ Prout)
@@ -20,5 +20,5 @@ Gem::Specification.new do |spec|
   spec.files << 'lib/toxiclibs.jar'
   spec.files << 'lib/args4j-2.0.31.jar'
   spec.require_paths = ['lib']
-  spec.add_development_dependency 'rake', '~> 12.0', '>= 12.0.0'
+  spec.add_development_dependency 'rake', '~> 12.3', '>= 12.3.0'
 end

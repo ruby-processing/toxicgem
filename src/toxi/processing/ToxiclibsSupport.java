@@ -73,7 +73,7 @@ public class ToxiclibsSupport {
     /**
      *
      */
-    protected static final Logger logger = Logger
+    protected static final Logger LOGGER = Logger
             .getLogger(ToxiclibsSupport.class.getName());
 
     /**
@@ -237,7 +237,7 @@ public class ToxiclibsSupport {
                 gfx.ellipse(e.x - r.x, e.y - r.y, r.x * 2, r.y * 2);
                 break;
             default:
-                logger.log(Level.WARNING, "invalid ellipse mode: {0}", gfx.ellipseMode);
+                LOGGER.log(Level.WARNING, "invalid ellipse mode: {0}", gfx.ellipseMode);
         }
     }
 
@@ -968,7 +968,7 @@ public class ToxiclibsSupport {
                 gfx.rect(r.x + rw, r.y + rh, rw, rh);
                 break;
             default:
-                logger.log(Level.WARNING, "invalid rect mode: {0}", gfx.rectMode);
+                LOGGER.log(Level.WARNING, "invalid rect mode: {0}", gfx.rectMode);
         }
     }
 

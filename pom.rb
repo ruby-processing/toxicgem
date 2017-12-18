@@ -29,7 +29,7 @@ project 'toxiclibs' do
             )
 
   jar 'args4j:args4j:2.0.31'
-  jar 'org.processing:core:3.3.5'
+  jar 'org.processing:core:3.3.6'
 
   plugin( :compiler, '3.7.0',
           'source' =>  '1.8',
