@@ -28,7 +28,7 @@ end
 
 def setup
   sketch_title 'Inflate Mesh'
-  Processing::ArcBall.init(self)
+  ArcBall.init(self)
   @gfx = Gfx::ToxiclibsSupport.new(self)
   init_physics
 end

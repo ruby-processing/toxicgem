@@ -1,4 +1,4 @@
-load_library :geomerative
+require 'geomerative'
 require 'toxiclibs'
 include_package 'geomerative'
 attr_reader :font, :input, :physics

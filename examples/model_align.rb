@@ -16,7 +16,7 @@ end
 
 def setup
   sketch_title 'Model Align'
-  Processing::ArcBall.init(self)
+  ArcBall.init(self)
   @gfx = Gfx::ToxiclibsSupport.new(self)
   # compute mesh positions on circle in XZ plane
   @positions = (Toxi::Circle.new(200).toPolygon2D(8)).map(&:to3DXZ)

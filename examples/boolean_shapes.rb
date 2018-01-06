@@ -1,9 +1,14 @@
 require 'toxiclibs'
+# Original toxi example had ellipse and circle but there were flaws in union and
+# and XOR rendering caused by ellipse shapes
 load_library :control_panel
 attr_reader :gfx, :bool, :panel, :type, :hide, :polies
 include Toxi
 
-TYPE = [BooleanShapeBuilder::Type::UNION, BooleanShapeBuilder::Type::XOR]
+TYPE = [
+  BooleanShapeBuilder::Type::UNION,
+  BooleanShapeBuilder::Type::XOR
+]
 KEY = %w(union xor).freeze
 
 def setup
@@ -11,7 +16,7 @@ def setup
   @gfx = Gfx::ToxiclibsSupport.new(self)
   @bool = KEY.zip(TYPE).to_h
   control_panel do |c|
-    c.title = 'Control Panel'
+    c.title = 'Union or XOR'
     c.menu :type, KEY, 'union'
     @panel = c
   end
@@ -26,8 +31,7 @@ def draw
   background(160)
   builder = BooleanShapeBuilder.new(bool[type])
   phi = frame_count * 0.01
-  builder.add_shape(Circle.new(mouse_x, mouse_y, 50))
-  builder.add_shape(Ellipse.new(150, 130 + sin(phi) * 50, 120, 60))
+  builder.add_shape(Circle.new(mouse_x, mouse_y, 70).toPolygon2D(30))
   builder.add_shape(Rect.new(200 + sin(phi * 13 / 8) * 50, 180, 100, 100))
   builder.add_shape(Triangle2D.create_equilateral_from(
     TVec2D.new(50 + sin(phi * 15 / 13) * 50, 200), TVec2D.new(300, 200))
