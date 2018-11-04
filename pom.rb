@@ -1,7 +1,7 @@
 project 'toxiclibs' do
 
   model_version '4.0.0'
-  id 'ruby-processing:toxiclibs:1.0.0'
+  id 'ruby-processing:toxiclibs:1.0.1'
   packaging 'jar'
 
   description 'toxiclibs-library for JRubyArt'
@@ -29,9 +29,9 @@ project 'toxiclibs' do
             )
 
   jar 'args4j:args4j:2.0.31'
-  jar 'org.processing:core:3.3.6'
+  jar 'org.processing:core:3.3.7'
 
-  plugin( :compiler, '3.7.0',
+  plugin( :compiler, '3.8.0',
           'source' =>  '1.8',
           'target' =>  '1.8' )
   plugin( :jar, '3.0.2',

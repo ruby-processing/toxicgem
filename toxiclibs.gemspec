@@ -6,11 +6,10 @@ require 'toxiclibs/version'
 Gem::Specification.new do |spec|
   spec.name = 'toxiclibs'
   spec.version = Toxiclibs::VERSION
-  spec.has_rdoc = true
   spec.extra_rdoc_files = %w(README.md LICENSE.md)
   spec.summary = %q(Updated and extended toxiclibs libraries for JRubyArt and propane)
   spec.description =<<-EOS
-  Toxiclibs java libraries wrapped in a rubygem. Compiled and tested with JRubyArt-1.4.4 and processing-3.3.6
+  Toxiclibs java libraries wrapped in a rubygem. Compiled and tested with JRubyArt-1.5.4 and processing-3.4
   EOS
   spec.licenses = %w(MIT LGPL-3.0)
   spec.authors = %w(Karsten\ Schmidt Martin\ Prout)
