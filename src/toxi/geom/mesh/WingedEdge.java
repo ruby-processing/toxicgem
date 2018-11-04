@@ -97,9 +97,9 @@ public class WingedEdge extends Line3D {
      *
      */
     public void remove() {
-        for (WEFace f : faces) {
+        faces.forEach((f) -> {
             f.edges.remove(this);
-        }
+        });
         ((WEVertex) a).edges.remove(this);
         ((WEVertex) b).edges.remove(this);
     }

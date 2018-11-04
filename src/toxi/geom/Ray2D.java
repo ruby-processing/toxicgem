@@ -140,6 +140,7 @@ public class Ray2D extends Vec2D {
      *
      * @return
      */
+    @Override
     public String toString() {
         return "origin: " + super.toString() + " dir: " + dir;
     }

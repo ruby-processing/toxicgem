@@ -108,12 +108,18 @@ public class Origin3D {
         this.zAxis = dir.getNormalized();
         Vec3D av = null;
         Axis a = zAxis.getClosestAxis();
-        if (a == Vec3D.Axis.X) {
-            av = Vec3D.Axis.Z.getVector().getInverted();
-        } else if (a == Vec3D.Axis.Y) {
-            av = Vec3D.Axis.Z.getVector().getInverted();
-        } else if (a == Vec3D.Axis.Z) {
-            av = Vec3D.Axis.X.getVector().getInverted();
+        if (null != a) switch (a) {
+            case X:
+                av = Vec3D.Axis.Z.getVector().getInverted();
+                break;
+            case Y:
+                av = Vec3D.Axis.Z.getVector().getInverted();
+                break;
+            case Z:
+                av = Vec3D.Axis.X.getVector().getInverted();
+                break;
+            default:
+                break;
         }
         if (av == null) {
             throw new IllegalArgumentException(

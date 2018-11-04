@@ -119,9 +119,9 @@ public class Polygon2D implements Shape2D, Iterable<Vec2D> {
      * @param points
      */
     public Polygon2D(List<Vec2D> points) {
-        for (Vec2D p : points) {
+        points.forEach((p) -> {
             add(p.copy());
-        }
+        });
     }
 
     /**
@@ -152,7 +152,7 @@ public class Polygon2D implements Shape2D, Iterable<Vec2D> {
      *            vertex point to add
      * @return itself
      */
-    public Polygon2D add(Vec2D p) {
+    public final Polygon2D add(Vec2D p) {
         if (!vertices.contains(p)) {
             vertices.add(p);
         }
@@ -178,12 +178,13 @@ public class Polygon2D implements Shape2D, Iterable<Vec2D> {
     public Polygon2D center(ReadonlyVec2D origin) {
         Vec2D centroid = getCentroid();
         Vec2D delta = origin != null ? origin.sub(centroid) : centroid.invert();
-        for (Vec2D v : vertices) {
+        vertices.forEach((v) -> {
             v.addSelf(delta);
-        }
+        });
         return this;
     }
 
+    @Override
     public boolean containsPoint(ReadonlyVec2D p) {
         int num = vertices.size();
         int i, j = num - 1;
@@ -209,10 +210,8 @@ public class Polygon2D implements Shape2D, Iterable<Vec2D> {
      * @return
      */
     public boolean containsPolygon(Polygon2D poly) {
-        for (Vec2D p : poly.vertices) {
-            if (!containsPoint(p)) {
-                return false;
-            }
+        if (!poly.vertices.stream().noneMatch((p) -> (!containsPoint(p)))) {
+            return false;
         }
         return true;
     }
@@ -270,6 +269,7 @@ public class Polygon2D implements Shape2D, Iterable<Vec2D> {
      * 
      * @return polygon area
      */
+    @Override
     public float getArea() {
         float area = 0;
         for (int i = 0, num = vertices.size(); i < num; i++) {
@@ -282,6 +282,7 @@ public class Polygon2D implements Shape2D, Iterable<Vec2D> {
         return area;
     }
 
+    @Override
     public Circle getBoundingCircle() {
         return Circle.newBoundingCircle(vertices);
     }
@@ -292,6 +293,7 @@ public class Polygon2D implements Shape2D, Iterable<Vec2D> {
      * @return bounding rect
      * @see toxi.geom.Shape2D#getBounds()
      */
+    @Override
     public Rect getBounds() {
         return Rect.getBoundingRect(vertices);
     }
@@ -321,6 +323,7 @@ public class Polygon2D implements Shape2D, Iterable<Vec2D> {
      * 
      * @see toxi.geom.Shape2D#getCircumference()
      */
+    @Override
     public float getCircumference() {
         float circ = 0;
         for (int i = 0, num = vertices.size(); i < num; i++) {
@@ -371,9 +374,10 @@ public class Polygon2D implements Shape2D, Iterable<Vec2D> {
      * 
      * @return list of lines
      */
+    @Override
     public List<Line2D> getEdges() {
         int num = vertices.size();
-        List<Line2D> edges = new ArrayList<Line2D>(num);
+        List<Line2D> edges = new ArrayList<>(num);
         for (int i = 0; i < num; i++) {
             edges.add(new Line2D(vertices.get(i), vertices.get((i + 1) % num)));
         }
@@ -404,6 +408,7 @@ public class Polygon2D implements Shape2D, Iterable<Vec2D> {
      * 
      * @return Vec2D
      */
+    @Override
     public Vec2D getRandomPoint() {
         List<Line2D> edges = getEdges();
         int numEdges = edges.size();
@@ -459,11 +464,8 @@ public class Polygon2D implements Shape2D, Iterable<Vec2D> {
      * @return
      */
     protected boolean intersectsLine(Line2D l, List<Line2D> edges) {
-        for (Line2D e : edges) {
-            final Type isec = l.intersectLine(e).getType();
-            if (isec == Type.INTERSECTING || isec == Type.COINCIDENT) {
-                return true;
-            }
+        if (edges.stream().map((e) -> l.intersectLine(e).getType()).anyMatch((isec) -> (isec == Type.INTERSECTING || isec == Type.COINCIDENT))) {
+            return true;
         }
         return false;
     }
@@ -477,10 +479,8 @@ public class Polygon2D implements Shape2D, Iterable<Vec2D> {
      */
     public boolean intersectsPolygon(Polygon2D poly) {
         List<Line2D> edgesB = poly.getEdges();
-        for (Line2D ea : getEdges()) {
-            if (intersectsLine(ea, edgesB)) {
-                return true;
-            }
+        if (getEdges().stream().anyMatch((ea) -> (intersectsLine(ea, edgesB)))) {
+            return true;
         }
         return false;
     }
@@ -492,10 +492,8 @@ public class Polygon2D implements Shape2D, Iterable<Vec2D> {
      */
     public boolean intersectsRect(Rect r) {
         List<Line2D> edges = r.getEdges();
-        for (Line2D ea : getEdges()) {
-            if (intersectsLine(ea, edges)) {
-                return true;
-            }
+        if (getEdges().stream().anyMatch((ea) -> (intersectsLine(ea, edges)))) {
+            return true;
         }
         return false;
     }
@@ -539,6 +537,7 @@ public class Polygon2D implements Shape2D, Iterable<Vec2D> {
      *
      * @return
      */
+    @Override
     public Iterator<Vec2D> iterator() {
         return vertices.iterator();
     }
@@ -653,7 +652,7 @@ public class Polygon2D implements Shape2D, Iterable<Vec2D> {
      */
     public Polygon2D reduceVertices(float minEdgeLen) {
         minEdgeLen *= minEdgeLen;
-        List<Vec2D> reduced = new ArrayList<Vec2D>();
+        List<Vec2D> reduced = new ArrayList<>();
         Vec2D prev = vertices.get(0);
         reduced.add(prev);
         int num = vertices.size() - 1;
@@ -705,9 +704,9 @@ public class Polygon2D implements Shape2D, Iterable<Vec2D> {
      * @return
      */
     public Polygon2D rotate(float theta) {
-        for (Vec2D v : vertices) {
+        vertices.forEach((v) -> {
             v.rotate(theta);
-        }
+        });
         return this;
     }
 
@@ -727,9 +726,9 @@ public class Polygon2D implements Shape2D, Iterable<Vec2D> {
      * @return
      */
     public Polygon2D scale(float x, float y) {
-        for (Vec2D v : vertices) {
+        vertices.forEach((v) -> {
             v.scaleSelf(x, y);
-        }
+        });
         return this;
     }
 
@@ -759,9 +758,9 @@ public class Polygon2D implements Shape2D, Iterable<Vec2D> {
      */
     public Polygon2D scaleSize(float x, float y) {
         Vec2D centroid = getCentroid();
-        for (Vec2D v : vertices) {
+        vertices.forEach((v) -> {
             v.subSelf(centroid).scaleSelf(x, y).addSelf(centroid);
-        }
+        });
         return this;
     }
 
@@ -794,7 +793,7 @@ public class Polygon2D implements Shape2D, Iterable<Vec2D> {
     public Polygon2D smooth(float amount, float baseWeight) {
         Vec2D centroid = getCentroid();
         int num = vertices.size();
-        List<Vec2D> filtered = new ArrayList<Vec2D>(num);
+        List<Vec2D> filtered = new ArrayList<>(num);
         for (int i = 0, j = num - 1, k = 1; i < num; i++) {
             Vec2D a = vertices.get(i);
             Vec2D dir = vertices.get(j).sub(a).addSelf(vertices.get(k).sub(a))
@@ -863,7 +862,7 @@ public class Polygon2D implements Shape2D, Iterable<Vec2D> {
     public boolean toOutline() {
         int corners = vertices.size();
         int maxSegs = corners * 3;
-        List<Vec2D> newVerts = new ArrayList<Vec2D>(corners);
+        List<Vec2D> newVerts = new ArrayList<>(corners);
         Vec2D[] segments = new Vec2D[maxSegs];
         Vec2D[] segEnds = new Vec2D[maxSegs];
         float[] segAngles = new float[maxSegs];
@@ -995,6 +994,7 @@ public class Polygon2D implements Shape2D, Iterable<Vec2D> {
      * 
      * @return itself
      */
+    @Override
     public Polygon2D toPolygon2D() {
         return this;
     }
@@ -1003,6 +1003,7 @@ public class Polygon2D implements Shape2D, Iterable<Vec2D> {
      *
      * @return
      */
+    @Override
     public String toString() {
         StringBuilder buf = new StringBuilder();
         for (Iterator<Vec2D> i = vertices.iterator(); i.hasNext();) {
@@ -1021,9 +1022,9 @@ public class Polygon2D implements Shape2D, Iterable<Vec2D> {
      * @return
      */
     public Polygon2D translate(float x, float y) {
-        for (Vec2D v : vertices) {
+        vertices.forEach((v) -> {
             v.addSelf(x, y);
-        }
+        });
         return this;
     }
 

@@ -254,9 +254,9 @@ public class Spline3D {
      */
     public Spline3D setPointList(List<Vec3D> plist) {
         pointList.clear();
-        for (ReadonlyVec3D p : plist) {
+        plist.forEach((p) -> {
             pointList.add(p.copy());
-        }
+        });
         return this;
     }
 

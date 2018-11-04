@@ -129,9 +129,9 @@ public class ParticleString2D {
      * particles & springs.
      */
     public void clear() {
-        for (VerletSpring2D s : links) {
+        links.forEach((s) -> {
             physics.removeSpringElements(s);
-        }
+        });
         particles.clear();
         links.clear();
     }

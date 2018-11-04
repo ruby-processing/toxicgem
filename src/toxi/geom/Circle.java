@@ -99,9 +99,9 @@ public class Circle extends Ellipse {
     public static Circle newBoundingCircle(List<Vec2D> vertices) {
         Vec2D origin = new Vec2D();
         float maxD = 0;
-        for (Vec2D v : vertices) {
+        vertices.forEach((v) -> {
             origin.addSelf(v);
-        }
+        });
         origin.scaleSelf(1f / vertices.size());
         for (Vec2D v : vertices) {
             float d = origin.distanceToSquared(v);

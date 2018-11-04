@@ -254,9 +254,9 @@ public class Spline2D {
      */
     public Spline2D setPointList(List<Vec2D> plist) {
         pointList.clear();
-        for (ReadonlyVec2D p : plist) {
+        plist.forEach((p) -> {
             pointList.add(p.copy());
-        }
+        });
         return this;
     }
 

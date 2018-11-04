@@ -87,9 +87,9 @@ public class PointCloud3D implements Iterable<Vec3D> {
      * @return
      */
     public PointCloud3D addAll(List<? extends Vec3D> plist) {
-        for (Vec3D p : plist) {
+        plist.forEach((p) -> {
             addPoint(p);
-        }
+        });
         return this;
     }
 
@@ -116,9 +116,9 @@ public class PointCloud3D implements Iterable<Vec3D> {
      * @return itself
      */
     public PointCloud3D applyMatrix(Matrix4x4 m) {
-        for (Vec3D p : points) {
+        points.forEach((p) -> {
             p.set(m.applyTo(p));
-        }
+        });
         updateBounds();
         return this;
     }
@@ -145,9 +145,9 @@ public class PointCloud3D implements Iterable<Vec3D> {
         getCentroid();
         Vec3D delta = origin != null ? origin.sub(centroid) : centroid
                 .getInverted();
-        for (Vec3D p : points) {
+        points.forEach((p) -> {
             p.addSelf(delta);
-        }
+        });
         min.addSelf(delta);
         max.addSelf(delta);
         centroid.addSelf(delta);
@@ -174,9 +174,9 @@ public class PointCloud3D implements Iterable<Vec3D> {
      */
     public PointCloud3D copy() {
         PointCloud3D c = new PointCloud3D(points.size());
-        for (ReadonlyVec3D p : points) {
+        points.forEach((p) -> {
             c.addPoint(p.copy());
-        }
+        });
         return c;
     }
 
@@ -208,6 +208,7 @@ public class PointCloud3D implements Iterable<Vec3D> {
      * 
      * @see java.lang.Iterable#iterator()
      */
+    @Override
     public Iterator<Vec3D> iterator() {
         return points.iterator();
     }
@@ -238,16 +239,18 @@ public class PointCloud3D implements Iterable<Vec3D> {
     public PointCloud3D updateBounds() {
         min = Vec3D.MAX_VALUE.copy();
         max = Vec3D.NEG_MAX_VALUE.copy();
-        for (Vec3D p : points) {
+        points.stream().map((p) -> {
             min.minSelf(p);
+            return p;
+        }).forEachOrdered((p) -> {
             max.maxSelf(p);
-        }
+        });
         centroid.set(min.add(max).scaleSelf(0.5f));
         radiusSquared = 0;
-        for (ReadonlyVec3D p : points) {
+        points.forEach((p) -> {
             radiusSquared = MathUtils.max(radiusSquared,
                     p.distanceToSquared(centroid));
-        }
+        });
         return this;
     }
 }

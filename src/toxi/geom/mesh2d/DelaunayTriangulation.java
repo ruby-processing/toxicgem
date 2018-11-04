@@ -313,13 +313,11 @@ public class DelaunayTriangulation extends AbstractSet<DelaunayTriangle> {
 
         // Update the graph links for each new triangle
         theTriangles.addAll(newTriangles); // Adj triangle + new triangles
-        for (DelaunayTriangle triangle : newTriangles) {
-            for (DelaunayTriangle other : theTriangles) {
-                if (triangle.isNeighbor(other)) {
-                    triGraph.connect(triangle, other);
-                }
-            }
-        }
+        newTriangles.forEach((triangle) -> {
+            theTriangles.stream().filter((other) -> (triangle.isNeighbor(other))).forEachOrdered((other) -> {
+                triGraph.connect(triangle, other);
+            });
+        });
 
         // Return one of the new triangles
         return newTriangles.iterator().next();

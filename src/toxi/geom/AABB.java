@@ -76,10 +76,12 @@ public class AABB extends Vec3D implements Shape3D {
         Vec3D first = points.get(0);
         Vec3D min = first.copy();
         Vec3D max = first.copy();
-        for (Vec3D p : points) {
+        points.stream().map((p) -> {
             min.minSelf(p);
+            return p;
+        }).forEachOrdered((p) -> {
             max.maxSelf(p);
-        }
+        });
         return fromMinMax(min, max);
     }
 

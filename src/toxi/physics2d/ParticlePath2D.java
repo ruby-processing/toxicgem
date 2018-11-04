@@ -78,11 +78,12 @@ public class ParticlePath2D extends Spline2D {
     public List<VerletParticle2D> createParticles(VerletPhysics2D physics,
             int subDiv, float step, float mass) {
         particles.clear();
-        for (Vec2D v : toLineStrip2D(subDiv).getDecimatedVertices(step, true)) {
-            VerletParticle2D p = createSingleParticle(v, mass);
+        toLineStrip2D(subDiv).getDecimatedVertices(step, true).stream().map((v) -> createSingleParticle(v, mass)).map((p) -> {
             particles.add(p);
+            return p;
+        }).forEachOrdered((p) -> {
             physics.addParticle(p);
-        }
+        });
         return particles;
     }
 
