@@ -13,7 +13,7 @@ KEY = %w(union xor).freeze
 
 def setup
   sketch_title 'Boolean Shapes'
-  @gfx = Gfx::ToxiclibsSupport.new(self)
+  @gfx = Gfx::ToxiclibsSupport.new(self, self.g)
   @bool = KEY.zip(TYPE).to_h
   control_panel do |c|
     c.title = 'Union or XOR'

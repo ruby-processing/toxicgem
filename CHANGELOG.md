@@ -1,3 +1,5 @@
+**v2.0.0** Bump to jdk12 and fix code 
+
 **v1.0.1** Bump processing to 3.4, support toxiclibs Voronoi etc
 
 **v1.0.0** About time we got to 1.0.0 bump processing to 3.3.4

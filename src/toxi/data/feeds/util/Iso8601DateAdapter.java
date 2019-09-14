@@ -36,7 +36,7 @@ import javax.xml.bind.annotation.adapters.XmlAdapter;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
-import com.sun.org.apache.xerces.internal.jaxp.datatype.DatatypeFactoryImpl;
+//import com.sun.org.apache.xerces.internal.jaxp.datatype.DatatypeFactoryImpl;
 
 /**
  *
@@ -73,7 +73,7 @@ public class Iso8601DateAdapter extends
     public XMLGregorianCalendar unmarshal(String dateString) throws Exception {
         XMLGregorianCalendar calendar = null;
         GregorianCalendar cal = new GregorianCalendar();
-        DatatypeFactory dataType = DatatypeFactoryImpl.newInstance();
+        DatatypeFactory dataType = DatatypeFactory.newInstance();
         for (SimpleDateFormat f : ISO8601_FORMATS) {
             try {
                 Date d = f.parse(dateString);

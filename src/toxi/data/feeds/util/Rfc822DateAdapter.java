@@ -36,7 +36,7 @@ import javax.xml.bind.annotation.adapters.XmlAdapter;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
-import com.sun.org.apache.xerces.internal.jaxp.datatype.DatatypeFactoryImpl;
+//import com.sun.org.apache.xerces.internal.jaxp.datatype.DatatypeFactoryImpl;
 
 /**
  *
@@ -82,7 +82,7 @@ public class Rfc822DateAdapter extends XmlAdapter<String, XMLGregorianCalendar> 
             try {
                 Date d = f.parse(dateString);
                 cal.setTime(d);
-                DatatypeFactory dataType = DatatypeFactoryImpl.newInstance();
+                DatatypeFactory dataType = DatatypeFactory.newInstance();
                 calendar = dataType.newXMLGregorianCalendar(cal);
                 break;
             } catch (ParseException e) {
