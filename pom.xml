@@ -6,7 +6,7 @@ DO NOT MODIFIY - GENERATED CODE
 
 
 -->
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <groupId>ruby-processing</groupId>
@@ -44,31 +44,29 @@ DO NOT MODIFIY - GENERATED CODE
     <url>https://github.com/ruby-processing/toxiclibs/issues</url>
   </issueManagement>
   <properties>
-    <maven.compiler.target>1.8</maven.compiler.target>
     <polyglot.dump.pom>pom.xml</polyglot.dump.pom>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <source.directory>src</source.directory>
     <target.release>11</target.release>
   </properties>
   <dependencies>
-    <dependency>
-      <groupId>args4j</groupId>
-      <artifactId>args4j</artifactId>
-      <version>2.0.31</version>
-    </dependency>
     <dependency>
       <groupId>org.processing</groupId>
       <artifactId>core</artifactId>
       <version>3.3.7</version>
     </dependency>
-    <dependency>
-      <groupId>javax.xml.bind</groupId>
-      <artifactId>jaxb-api</artifactId>
-      <version>2.3.0</version>
-    </dependency>
   </dependencies>
   <build>
-    <sourceDirectory>src</sourceDirectory>
+    <sourceDirectory>${source.directory}/main/java</sourceDirectory>
     <defaultGoal>package</defaultGoal>
+    <resources>
+      <resource>
+        <directory>${basedir}</directory>
+        <excludes>
+          <exclude>**/**/*.java</exclude>
+        </excludes>
+      </resource>
+    </resources>
     <finalName>toxiclibs</finalName>
     <plugins>
       <plugin>
@@ -79,13 +77,27 @@ DO NOT MODIFIY - GENERATED CODE
         </configuration>
       </plugin>
       <plugin>
-        <artifactId>maven-jar-plugin</artifactId>
-        <version>3.1.1</version>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>2.10.4</version>
         <configuration>
-          <archive>
-            <manifestFile>MANIFEST.MF</manifestFile>
-          </archive>
+          <detectOfflineLinks>false</detectOfflineLinks>
+          <links>
+            <link>${processing.api}</link>
+            <link>${jruby.api}</link>
+          </links>
         </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>maven-jdeps-plugin</artifactId>
+        <version>3.1.2</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>jdkinternals</goal>
+              <goal>test-jdkinternals</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
       <plugin>
         <artifactId>maven-resources-plugin</artifactId>

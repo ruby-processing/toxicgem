@@ -22,22 +22,24 @@ project 'toxiclibs' do
                   :connection => 'scm:git:git://github.com/ruby-processing/toxiclibs.git',
                   :developer_connection => 'scm:git:git@github.com:ruby-processing/toxiclibs.git' )
 
-  properties( 'target.release' => '11',
+  properties( 'source.directory' => 'src',
+              'target.release' => '11',
               'project.build.sourceEncoding' => 'UTF-8',
-              'maven.compiler.target' => '1.8',
               'polyglot.dump.pom' => 'pom.xml'
             )
 
-  jar 'args4j:args4j:2.0.31'
   jar 'org.processing:core:3.3.7'
-  jar 'javax.xml.bind:jaxb-api:2.3.0'
 
-  plugin( :compiler, '3.8.1',
-          'release' =>  '${target.release}' )
-  plugin( :jar, '3.1.1',
-          'archive' => {
-            'manifestFile' =>  'MANIFEST.MF'
-          } )
+
+  plugin(:compiler, '3.8.1',
+         'release' => '${target.release}')
+  plugin(:javadoc, '2.10.4',
+         'detectOfflineLinks' => 'false',
+         'links' => ['${processing.api}',
+                     '${jruby.api}'])
+          plugin :jdeps, '3.1.2' do
+            execute_goals 'jdkinternals', 'test-jdkinternals'
+          end
   plugin :resources, '3.1.0'
   plugin :dependency, '3.1.1' do
     execute_goals( :id => 'default-cli',
@@ -50,8 +52,11 @@ project 'toxiclibs' do
 
 
   build do
+    resource do
+      excludes '**/**/*.java'
+    end
     default_goal 'package'
-    source_directory 'src'
+    source_directory '${source.directory}/main/java'
     final_name 'toxiclibs'
   end
 end
