@@ -24,7 +24,6 @@ end
 desc 'Compile'
 task :compile do
   sh "mvn package"
-  sh "mvn dependency:copy"
   sh "mv target/toxiclibs.jar lib"
 end
 

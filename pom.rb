@@ -40,16 +40,6 @@ project 'toxiclibs' do
           plugin :jdeps, '3.1.2' do
             execute_goals 'jdkinternals', 'test-jdkinternals'
           end
-  plugin :resources, '3.1.0'
-  plugin :dependency, '3.1.1' do
-    execute_goals( :id => 'default-cli',
-                   'artifactItems' => [ { 'groupId' =>  'args4j',
-                                          'artifactId' =>  'args4j',
-                                          'version' =>  '2.0.31',
-                                          'type' =>  'jar',
-                                          'outputDirectory' =>  'lib' } ] )
-  end
-
 
   build do
     resource do
