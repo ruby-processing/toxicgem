@@ -6,15 +6,11 @@ project 'toxiclibs' do
 
   description 'toxiclibs-library for JRubyArt'
 
-  organization 'ruby-processing', 'https://ruby-processing.github.io'
-
   developer 'monkstone' do
     name 'Martin Prout'
     email 'mamba2928@yahoo.co.uk'
     roles 'developer'
   end
-
-  license 'LGPL 2', 'http://www.gnu.org/licenses/lgpl-2.1-standalone.html'
 
   issue_management 'https://github.com/ruby-processing/toxiclibs/issues', 'Github'
 
@@ -23,30 +19,35 @@ project 'toxiclibs' do
                   :developer_connection => 'scm:git:git@github.com:ruby-processing/toxiclibs.git' )
 
   properties( 'source.directory' => 'src',
-              'target.release' => '11',
+              'polyglot.dump.pom' => 'pom.xml',
               'project.build.sourceEncoding' => 'UTF-8',
+              'target.release' => '11',
               'polyglot.dump.pom' => 'pom.xml'
             )
 
   jar 'org.processing:core:3.3.7'
 
+  overrides do
+    plugin( :compiler, '3.8.1',
+            'release' =>  '11' )
+    plugin :javadoc, '2.10.4'
+    plugin(
+      :jar, '3.2.0',
+      'archive' => {
+        'manifestFile' =>  'MANIFEST.MF'
+      }
+    )
+    plugin :jdeps, '3.1.2' do
+      execute_goals 'jdkinternals', 'test-jdkinternals'
+    end
 
-  plugin(:compiler, '3.8.1',
-         'release' => '${target.release}')
-  plugin(:javadoc, '2.10.4',
-         'detectOfflineLinks' => 'false',
-         'links' => ['${processing.api}',
-                     '${jruby.api}'])
-          plugin :jdeps, '3.1.2' do
-            execute_goals 'jdkinternals', 'test-jdkinternals'
-          end
+  end
+
 
   build do
-    resource do
-      excludes '**/**/*.java'
-    end
     default_goal 'package'
     source_directory '${source.directory}/main/java'
     final_name 'toxiclibs'
   end
+
 end

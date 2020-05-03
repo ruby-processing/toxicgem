@@ -14,16 +14,6 @@ DO NOT MODIFIY - GENERATED CODE
   <version>2.0.0</version>
   <name>toxiclibs</name>
   <description>toxiclibs-library for JRubyArt</description>
-  <organization>
-    <name>ruby-processing</name>
-    <url>https://ruby-processing.github.io</url>
-  </organization>
-  <licenses>
-    <license>
-      <name>LGPL 2</name>
-      <url>http://www.gnu.org/licenses/lgpl-2.1-standalone.html</url>
-    </license>
-  </licenses>
   <developers>
     <developer>
       <id>monkstone</id>
@@ -59,46 +49,42 @@ DO NOT MODIFIY - GENERATED CODE
   <build>
     <sourceDirectory>${source.directory}/main/java</sourceDirectory>
     <defaultGoal>package</defaultGoal>
-    <resources>
-      <resource>
-        <directory>${basedir}</directory>
-        <excludes>
-          <exclude>**/**/*.java</exclude>
-        </excludes>
-      </resource>
-    </resources>
     <finalName>toxiclibs</finalName>
-    <plugins>
-      <plugin>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.8.1</version>
-        <configuration>
-          <release>${target.release}</release>
-        </configuration>
-      </plugin>
-      <plugin>
-        <artifactId>maven-javadoc-plugin</artifactId>
-        <version>2.10.4</version>
-        <configuration>
-          <detectOfflineLinks>false</detectOfflineLinks>
-          <links>
-            <link>${processing.api}</link>
-            <link>${jruby.api}</link>
-          </links>
-        </configuration>
-      </plugin>
-      <plugin>
-        <artifactId>maven-jdeps-plugin</artifactId>
-        <version>3.1.2</version>
-        <executions>
-          <execution>
-            <goals>
-              <goal>jdkinternals</goal>
-              <goal>test-jdkinternals</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-    </plugins>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>3.8.1</version>
+          <configuration>
+            <release>11</release>
+          </configuration>
+        </plugin>
+        <plugin>
+          <artifactId>maven-javadoc-plugin</artifactId>
+          <version>2.10.4</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-jar-plugin</artifactId>
+          <version>3.2.0</version>
+          <configuration>
+            <archive>
+              <manifestFile>MANIFEST.MF</manifestFile>
+            </archive>
+          </configuration>
+        </plugin>
+        <plugin>
+          <artifactId>maven-jdeps-plugin</artifactId>
+          <version>3.1.2</version>
+          <executions>
+            <execution>
+              <goals>
+                <goal>jdkinternals</goal>
+                <goal>test-jdkinternals</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+      </plugins>
+    </pluginManagement>
   </build>
 </project>
