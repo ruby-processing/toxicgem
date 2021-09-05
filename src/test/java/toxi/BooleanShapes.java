@@ -1,4 +1,4 @@
-
+package toxi;
 import processing.core.*;
 
 import toxi.geom.*;
@@ -56,7 +56,7 @@ public class BooleanShapes extends PApplet {
     }
 
     static public void main(String[] passedArgs) {
-        String[] appletArgs = new String[]{"BooleanShapes"};
+        String[] appletArgs = new String[]{"toxi.BooleanShapes"};
         if (passedArgs != null) {
             PApplet.main(concat(appletArgs, passedArgs));
         } else {

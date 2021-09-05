@@ -18,7 +18,7 @@ end
 
 desc 'Build gem'
 task :gem do
-  sh "gem build toxiclibs.gemspec" 
+  sh "jgem build toxiclibs.gemspec" 
 end
 
 desc 'Compile'

@@ -25,7 +25,7 @@ project 'toxiclibs' do
               'polyglot.dump.pom' => 'pom.xml'
             )
 
-  jar 'org.processing:core:3.3.7'
+  jar 'org.processing:core:4.0.0'
 
   overrides do
     plugin( :compiler, '3.8.1',
