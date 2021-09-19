@@ -11,7 +11,7 @@ DO NOT MODIFIY - GENERATED CODE
   <modelVersion>4.0.0</modelVersion>
   <groupId>ruby-processing</groupId>
   <artifactId>toxiclibs</artifactId>
-  <version>2.0.0</version>
+  <version>2.1.0</version>
   <name>toxiclibs</name>
   <description>toxiclibs-library for JRubyArt</description>
   <developers>
@@ -34,6 +34,7 @@ DO NOT MODIFIY - GENERATED CODE
     <url>https://github.com/ruby-processing/toxiclibs/issues</url>
   </issueManagement>
   <properties>
+    <maven.deploy.skip>true</maven.deploy.skip>
     <polyglot.dump.pom>pom.xml</polyglot.dump.pom>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <source.directory>src</source.directory>
@@ -66,11 +67,6 @@ DO NOT MODIFIY - GENERATED CODE
         <plugin>
           <artifactId>maven-jar-plugin</artifactId>
           <version>3.2.0</version>
-          <configuration>
-            <archive>
-              <manifestFile>MANIFEST.MF</manifestFile>
-            </archive>
-          </configuration>
         </plugin>
         <plugin>
           <artifactId>maven-jdeps-plugin</artifactId>

@@ -1,7 +1,7 @@
 project 'toxiclibs' do
 
   model_version '4.0.0'
-  id 'ruby-processing:toxiclibs:2.0.0'
+  id 'ruby-processing:toxiclibs:2.1.0'
   packaging 'jar'
 
   description 'toxiclibs-library for JRubyArt'
@@ -22,7 +22,8 @@ project 'toxiclibs' do
               'polyglot.dump.pom' => 'pom.xml',
               'project.build.sourceEncoding' => 'UTF-8',
               'target.release' => '11',
-              'polyglot.dump.pom' => 'pom.xml'
+              'polyglot.dump.pom' => 'pom.xml',
+              'maven.deploy.skip' => 'true'
             )
 
   jar 'org.processing:core:4.0.0'
@@ -31,12 +32,7 @@ project 'toxiclibs' do
     plugin( :compiler, '3.8.1',
             'release' =>  '11' )
     plugin :javadoc, '2.10.4'
-    plugin(
-      :jar, '3.2.0',
-      'archive' => {
-        'manifestFile' =>  'MANIFEST.MF'
-      }
-    )
+    plugin :jar, '3.2.0'
     plugin :jdeps, '3.1.2' do
       execute_goals 'jdkinternals', 'test-jdkinternals'
     end
