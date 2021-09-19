@@ -1,3 +1,5 @@
+**v2.1.0** Add module-info.
+
 **v2.0.0** Bump to target minimum of jdk11 thus removing JAXB annotations (possibly esoteric and underused anyway).
 
 **v1.0.1** Bump processing to 3.4, support toxiclibs Voronoi etc
