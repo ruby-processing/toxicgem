@@ -12,4 +12,6 @@ module toxiclibs{
   exports toxi.volume;
   exports com.toxi;
   requires org.processing.core;
+  requires java.desktop;
+  requires java.logging;
 }
